@@ -1,22 +1,14 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className="relative w-full h-screen">
-      <div className="absolute inset-0 bg-cover bg-center blur-lg" ></div>
-      
-      <div className="relative z-10  p-8">
-        <h1 className="text-3xl font-bold underline text-center mt-10">
-          Hello world!
-        </h1>
-      </div>
+    <div className="bg-red-500 text-white p-6">
+      <h1 className="text-2xl mb-4">¿Tailwind está funcionando?</h1>
+      <button
+        className="bg-[var(--color-cuaternario)] text-white px-4 py-2"
+      >
+        Botón con color primario
+      </button>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

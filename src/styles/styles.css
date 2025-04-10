@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+html {
+    font-family: 'Poppins', sans-serif;
+}
+
+@layer base {
+    :root {
+        /* Colores de la paleta */
+        --color-primario: #113751;
+        --color-secundario: #4FACA9;
+        --color-terciario: #0E3BB5;
+        --color-cuaternario: #2F71A1;
+        --color-header: #3A4563;
+
+        /* Colores para los componentes */
+        --color-gris-formularios-bordes: #DEE8F4;
+        --color-gris-formularios-fondo: #F6F6F9;    
+        --color-azul-fondo: #E2EFFF;
+        --color-amarillo-fondo: #FBF1DA;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    button {
+        @apply cursor-pointer rounded;
+    }
+
+}
