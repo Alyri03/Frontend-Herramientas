@@ -4,6 +4,7 @@ import ModulosDeSalud from './components/ModulosDeSalud';
 import EspecialidadesCarrusel from './components/EspecialidadesCarrusel';
 import PresentacionServicios from './components/PresentacionServicios';
 import Aseguradoras from '../../components/Aseguradoras';
+import Preefooter from '../../components/Preefooter';
 const PaginaPrincipal = () => {
     return (
         <>
@@ -12,7 +13,7 @@ const PaginaPrincipal = () => {
             <EspecialidadesCarrusel />
             <PresentacionServicios />
             <Aseguradoras />
-
+            <Preefooter />
         </>
     );
 };

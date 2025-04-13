@@ -3,8 +3,9 @@ import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 const CardEspecialidad = ({ icono, titulo }) => {
   return (
-    <div className="relative flex h-[210px] w-full max-w-[300px] flex-col items-start justify-start rounded-[20px] bg-white px-4 py-3 mb-3 transition-all group hover:shadow-[0_4px_12px_rgba(11,63,211,0.15)]">
-      
+    <div className="relative flex h-[210px] w-full max-w-[300px] flex-col items-start justify-start rounded-[20px] bg-white px-4 py-3 mb-4 transition duration-300 ease-in-out transform group hover:shadow-[0_12px_28px_rgba(11,63,211,0.25)] group-hover:-translate-y-1">
+
+
       {/* Ícono circular */}
       <div className="mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-[#1B669A]">
         <FontAwesomeIcon icon={icono} className="text-4xl text-white" />

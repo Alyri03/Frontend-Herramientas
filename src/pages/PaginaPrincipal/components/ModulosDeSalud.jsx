@@ -1,3 +1,4 @@
+// src/components/ModulosDeSalud.jsx
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faVials,
@@ -6,6 +7,7 @@ import {
   faSyringe,
   faClock,
   faNotesMedical,
+  faArrowRight
 } from '@fortawesome/free-solid-svg-icons';
 
 const ModulosDeSalud = () => {
@@ -60,7 +62,10 @@ const ModulosDeSalud = () => {
     <div className="flex justify-center px-4 mt-10">
       <section className="w-full max-w-7xl">
         {/* Barra de acciones */}
-        <div className="flex flex-col sm:flex-row sm:items-center w-full gap-4 sm:gap-x-6 px-4 sm:px-6 py-4 rounded-2xl md:rounded-2xl lg:rounded-full bg-[var(--color-primario)] transition-shadow hover:shadow-[0_8px_30px_rgba(11,63,211,0.5)]">
+        <div
+          className="flex flex-col sm:flex-row sm:items-center w-full gap-4 sm:gap-x-6 px-4 sm:px-6 py-4 rounded-2xl md:rounded-2xl lg:rounded-full bg-[var(--color-primario)] transition-shadow hover:shadow-[0_8px_30px_rgba(11,63,211,0.5)]"
+          data-aos="fade-up"
+        >
           <span className="mx-auto sm:text-left text-center text-2xl font-semibold text-white">
             ¿Qué quieres hacer hoy?
           </span>
@@ -69,7 +74,7 @@ const ModulosDeSalud = () => {
             {Buscados.map((item, idx) => (
               <button
                 key={idx}
-                className="flex-shrink-0 px-4 py-1 text-sm sm:text-base font-medium text-[var(--color-secundario)] border-2 border-[var(--color-secundario)] rounded-full bg-white hover:bg-[var(--color-secundario)] hover:text-white transition-all"
+                className="flex-shrink-0 px-4 py-1 text-sm sm:text-base font-medium text-[var(--color-secundario)] border-3 border-[var(--color-secundario)] rounded-full bg-white hover:bg-[var(--color-secundario)] hover:text-white transition-all"
               >
                 {item.nombre}
               </button>
@@ -78,8 +83,8 @@ const ModulosDeSalud = () => {
         </div>
 
         {/* Título */}
-        <div className="mt-10 sm:mt-8 text-center sm:text-start">
-          <h2 className="text-2xl sm:text-3xl font-semibold">
+        <div className="mt-10 sm:mt-8 text-center sm:text-start" data-aos="fade-up">
+          <h2 className="text-2xl sm:text-3xl font-bold">
             La mejor Clínica de Ica
           </h2>
           <p className="mt-2 text-sm sm:text-base text-gray-600">
@@ -88,9 +93,16 @@ const ModulosDeSalud = () => {
         </div>
 
         {/* Módulos */}
-        <div className="flex flex-wrap justify-center gap-8 sm:gap-10 mt-12">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mt-12 place-items-center">
+
+
           {modulos.map((modulo, idx) => (
-            <div key={idx} className="flex flex-col items-center max-w-[120px]">
+            <div
+              key={idx}
+              className="flex flex-col items-center max-w-[120px]"
+              data-aos="zoom-in"
+              data-aos-delay={idx * 100}
+            >
               <div
                 className="flex items-center justify-center w-[80px] h-[80px] rounded-full cursor-pointer transition-all hover:scale-[1.03]"
                 style={{
@@ -113,9 +125,13 @@ const ModulosDeSalud = () => {
         </div>
 
         {/* Botón "Conocer más" */}
-        <div className="flex justify-center my-10">
-          <button className="px-6 py-2 text-base font-medium text-[var(--color-secundario)] border-2 border-[var(--color-secundario)] rounded-full hover:bg-[var(--color-secundario)] hover:text-white transition-all">
+        <div className="flex justify-center my-10" data-aos="fade-up">
+          <button className="group flex items-center gap-2 px-6 py-2 text-base font-medium text-[var(--color-secundario)] border-3 border-[var(--color-secundario)] rounded-full hover:bg-[var(--color-secundario)] hover:text-white transition-all">
             Conocer más
+            <FontAwesomeIcon
+              icon={faArrowRight}
+              className="text-sm transition-transform duration-300 group-hover:translate-x-1"
+            />
           </button>
         </div>
       </section>

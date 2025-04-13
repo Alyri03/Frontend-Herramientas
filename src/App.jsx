@@ -1,12 +1,19 @@
-import React from 'react';
+// src/App.jsx
+import React, { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 import AppRoutes from '@/routes/Routes.jsx';
-// Si no tienes Header aún, comenta esta línea
-// import Header from '@/components/Header.jsx';
+import Header from './components/Header';
 
 const App = () => {
+  useEffect(() => {
+    AOS.init({ duration: 800, once: true });
+  }, []);
+
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       <AppRoutes />
     </>
   );

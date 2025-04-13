@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Grid } from 'swiper/modules';
 import 'swiper/css';
@@ -8,7 +8,6 @@ import 'swiper/css/grid';
 import {
   faHeartPulse,
   faBrain,
-  faTooth,
   faUserDoctor,
   faChild,
   faUserNurse,
@@ -17,7 +16,6 @@ import {
   faHospitalUser,
   faBone,
   faVenusMars,
-  faWeightScale,
   faEye,
   faNotesMedical,
   faHeadSideVirus,
@@ -52,9 +50,11 @@ const especialidades = [
 const EspecialidadesCarrusel = () => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
+  const [isBeginning, setIsBeginning] = useState(true);
+  const [isEnd, setIsEnd] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    // Se actualiza el swiper al montar para que reconozca los botones de navegación
     setTimeout(() => {
       if (window.dispatchEvent) {
         window.dispatchEvent(new Event('resize'));
@@ -92,12 +92,25 @@ const EspecialidadesCarrusel = () => {
               swiper.navigation.destroy();
               swiper.navigation.init();
               swiper.navigation.update();
+
+              setIsBeginning(swiper.isBeginning);
+              setIsEnd(swiper.isEnd);
+              setProgress(swiper.progress);
             });
+          }}
+          onSlideChange={(swiper) => {
+            setIsBeginning(swiper.isBeginning);
+            setIsEnd(swiper.isEnd);
+            setProgress(swiper.progress);
           }}
           spaceBetween={20}
           grid={{ rows: 2, fill: 'row' }}
           breakpoints={{
             0: {
+              slidesPerView: 2,
+              grid: { rows: 2, fill: 'row' },
+            },
+            350:{
               slidesPerView: 2,
               grid: { rows: 2, fill: 'row' },
             },
@@ -118,7 +131,7 @@ const EspecialidadesCarrusel = () => {
           ))}
         </Swiper>
 
-        {/* Controles de navegación y link */}
+        {/* Controles de navegación y barra de progreso */}
         <div className="mt-6 flex items-center justify-between gap-3">
           <a
             href="#"
@@ -127,18 +140,34 @@ const EspecialidadesCarrusel = () => {
             + Ver todas las especialidades
           </a>
 
-          <div className="mx-2 h-[2px] flex-1 rounded bg-gray-300" />
+          {/* Barra de progreso */}
+          <div className="relative mx-2 h-[2px] flex-1 rounded bg-gray-300 overflow-hidden">
+            <div
+              className="absolute top-0 left-0 h-full bg-[#1B669A] transition-all duration-300"
+              style={{ width: `${progress * 100}%` }}
+            />
 
+          </div>
+
+          {/* Flechas */}
           <div className="flex items-center gap-2">
             <button
               ref={prevRef}
-              className="flex h-9 w-9 items-center justify-center rounded-full bg-[#E7EAEE] transition hover:bg-[#d3d6db]"
+              disabled={isBeginning}
+              className={`flex h-9 w-9 items-center justify-center rounded-full transition ${isBeginning
+                  ? 'bg-gray-400 cursor-not-allowed'
+                  : 'bg-[#E7EAEE] hover:bg-[#d3d6db]'
+                }`}
             >
               <FontAwesomeIcon icon={faChevronLeft} className="text-[#4B5563]" />
             </button>
             <button
               ref={nextRef}
-              className="flex h-9 w-9 items-center justify-center rounded-full bg-[#E7EAEE] transition hover:bg-[#d3d6db]"
+              disabled={isEnd}
+              className={`flex h-9 w-9 items-center justify-center rounded-full transition ${isEnd
+                  ? 'bg-gray-400 cursor-not-allowed'
+                  : 'bg-[#E7EAEE] hover:bg-[#d3d6db]'
+                }`}
             >
               <FontAwesomeIcon icon={faChevronRight} className="text-[#4B5563]" />
             </button>
