@@ -10,12 +10,42 @@ import {
 
 const ModulosDeSalud = () => {
   const modulos = [
-    { nombre: 'Laboratorio', icono: faVials, color: 'var(--color-secundario)' },
-    { nombre: 'Atención Médica', icono: faUserDoctor, color: '#1B669A' },
-    { nombre: 'Emergencias y Urgencias', icono: faTruckMedical, color: 'var(--color-secundario)' },
-    { nombre: 'Enfermería', icono: faSyringe, color: '#1B669A' },
-    { nombre: 'Atención 24 horas', icono: faClock, color: 'var(--color-secundario)' },
-    { nombre: 'Consultas Médicas', icono: faNotesMedical, color: '#1B669A' },
+    {
+      nombre: 'Laboratorio',
+      icono: faVials,
+      color: 'var(--color-secundario)',
+      shadow: 'rgba(27, 102, 154, 0.5)',
+    },
+    {
+      nombre: 'Atención Médica',
+      icono: faUserDoctor,
+      color: '#1B669A',
+      shadow: 'rgba(27, 102, 154, 0.5)',
+    },
+    {
+      nombre: 'Emergencias y Urgencias',
+      icono: faTruckMedical,
+      color: 'var(--color-secundario)',
+      shadow: 'rgba(27, 102, 154, 0.5)',
+    },
+    {
+      nombre: 'Enfermería',
+      icono: faSyringe,
+      color: '#1B669A',
+      shadow: 'rgba(27, 102, 154, 0.5)',
+    },
+    {
+      nombre: 'Atención 24 horas',
+      icono: faClock,
+      color: 'var(--color-secundario)',
+      shadow: 'rgba(27, 102, 154, 0.5)',
+    },
+    {
+      nombre: 'Consultas Médicas',
+      icono: faNotesMedical,
+      color: '#1B669A',
+      shadow: 'rgba(27, 102, 154, 0.5)',
+    },
   ];
 
   const Buscados = [
@@ -23,63 +53,73 @@ const ModulosDeSalud = () => {
     { nombre: 'Servicios' },
     { nombre: 'Contactar' },
     { nombre: 'Ver Médicos' },
-    { nombre: 'Mis Citas' }
+    { nombre: 'Mis Citas' },
   ];
 
   return (
-    <>
-      <div className="flex justify-center mt-10">
-        <section className="w-full max-w-7xl px-4">
-          {/* Barra de acciones */}
-          <div className="bg-[var(--color-primario)] px-6 py-3 rounded-full flex items-center gap-x-6 w-full">
-            <span className="text-white font-semibold text-2xl whitespace-nowrap mx-auto">
-              ¿Qué quieres hacer hoy?
-            </span>
-            <div className="flex gap-4 ml-auto">
-              {Buscados.map((item, idx) => (
-                <button
-                  key={idx}
-                  className="px-4 py-1 text-base border-3 rounded-full text-[var(--color-secundario)] border-[var(--color-secundario)] font-medium bg-white hover:bg-[var(--color-secundario)] hover:text-white transition-all"
-                >
-                  {item.nombre}
-                </button>
-              ))}
-            </div>
-          </div>
+    <div className="flex justify-center px-4 mt-10">
+      <section className="w-full max-w-7xl">
+        {/* Barra de acciones */}
+        <div className="flex flex-col sm:flex-row sm:items-center w-full gap-4 sm:gap-x-6 px-4 sm:px-6 py-4 rounded-2xl md:rounded-2xl lg:rounded-full bg-[var(--color-primario)] transition-shadow hover:shadow-[0_8px_30px_rgba(11,63,211,0.5)]">
+          <span className="mx-auto sm:text-left text-center text-2xl font-semibold text-white">
+            ¿Qué quieres hacer hoy?
+          </span>
 
-          {/* Título justo debajo */}
-          <div className="text-start mt-8">
-            <h2 className="text-3xl font-medium">La mejor Clínica de Ica</h2>
-            <p className="text-gray-600 mt-2">
-              Atendemos todas tus necesidades de salud, para cuidarte siempre.
-            </p>
-          </div>
-
-          {/* Módulos de salud */}
-          <div className="flex flex-wrap justify-center gap-10 mt-12">
-            {modulos.map((modulo, idx) => (
-              <div key={idx} className="flex flex-col items-center max-w-[120px]">
-                <div
-                  className="w-[80px] h-[80px] flex items-center justify-center rounded-full"
-                  style={{ backgroundColor: modulo.color }}
-                >
-                  <FontAwesomeIcon icon={modulo.icono} className="text-white text-2xl" />
-                </div>
-                <p className="mt-3 font-medium text-sm text-center">{modulo.nombre}</p>
-              </div>
+          <div className="flex flex-wrap justify-center sm:justify-start w-full sm:w-auto gap-2 sm:gap-4 mx-auto">
+            {Buscados.map((item, idx) => (
+              <button
+                key={idx}
+                className="flex-shrink-0 px-4 py-1 text-sm sm:text-base font-medium text-[var(--color-secundario)] border-2 border-[var(--color-secundario)] rounded-full bg-white hover:bg-[var(--color-secundario)] hover:text-white transition-all"
+              >
+                {item.nombre}
+              </button>
             ))}
           </div>
+        </div>
 
-          {/* Botón "Conocer más" */}
-          <div className="flex justify-center mt-10">
-            <button className="px-6 py-1 text-base border-3 rounded-full text-[#4FACA9] border-[#4FACA9] font-medium hover:bg-[var(--color-secundario)] hover:text-white transition-all">
-              Conocer más
-            </button>
-          </div>
-        </section>
-      </div>
+        {/* Título */}
+        <div className="mt-10 sm:mt-8 text-center sm:text-start">
+          <h2 className="text-2xl sm:text-3xl font-semibold">
+            La mejor Clínica de Ica
+          </h2>
+          <p className="mt-2 text-sm sm:text-base text-gray-600">
+            Atendemos todas tus necesidades de salud, para cuidarte siempre.
+          </p>
+        </div>
 
-    </>
+        {/* Módulos */}
+        <div className="flex flex-wrap justify-center gap-8 sm:gap-10 mt-12">
+          {modulos.map((modulo, idx) => (
+            <div key={idx} className="flex flex-col items-center max-w-[120px]">
+              <div
+                className="flex items-center justify-center w-[80px] h-[80px] rounded-full cursor-pointer transition-all hover:scale-[1.03]"
+                style={{
+                  backgroundColor: modulo.color,
+                  boxShadow: '0 0 0 transparent',
+                  transition: 'box-shadow 0.3s ease',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = `0 8px 25px ${modulo.shadow}`;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = '0 0 0 transparent';
+                }}
+              >
+                <FontAwesomeIcon icon={modulo.icono} className="text-white text-2xl" />
+              </div>
+              <p className="mt-3 text-sm font-medium text-center">{modulo.nombre}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Botón "Conocer más" */}
+        <div className="flex justify-center my-10">
+          <button className="px-6 py-2 text-base font-medium text-[var(--color-secundario)] border-2 border-[var(--color-secundario)] rounded-full hover:bg-[var(--color-secundario)] hover:text-white transition-all">
+            Conocer más
+          </button>
+        </div>
+      </section>
+    </div>
   );
 };
 
