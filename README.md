@@ -55,7 +55,7 @@ src/
 ├── styles/         → Estilos globales
 ├── App.jsx         → Componente raíz
 ├── main.jsx        → Punto de entrada
-
+```
 
 ## 👨‍💻 Flujo de trabajo en equipo
 
