@@ -1,6 +1,6 @@
 # 💻 Frontend Herramientas
 
-Este proyecto es una **SPA (Single Page Application)** construida con **React + Vite**, utilizando **TailwindCSS** para estilos y estructurada para trabajo colaborativo en equipo. Incluye configuración de rutas, manejo de estado global y buenas prácticas de desarrollo.
+Este proyecto es una **SPA (Single Page Application)** construida con **React + Vite**, utilizando **TailwindCSS** para estilos y estructurada para trabajo colaborativo en equipo. Incluye configuración de rutas, manejo de estado global y buenas prácticas de desarrollo..
 
 ---
 

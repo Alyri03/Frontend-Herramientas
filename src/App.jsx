@@ -1,12 +1,22 @@
-function App() {
+// src/App.jsx
+import React, { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+import AppRoutes from '@/routes/Routes.jsx';
+import Header from './components/Header';
+
+const App = () => {
+  useEffect(() => {
+    AOS.init({ duration: 800, once: true });
+  }, []);
+
   return (
-    <div className="bg-red-500 text-white p-6">
-      <h1 className="text-2xl mb-4">¿Tailwind está funcionando?</h1>
-      <button className="bg-[var(--color-cuaternario)] text-white px-4 py-2">
-        Botón con color primario
-      </button>
-    </div>
+    <>
+      <Header />
+      <AppRoutes />
+    </>
   );
-}
+};
 
 export default App;
