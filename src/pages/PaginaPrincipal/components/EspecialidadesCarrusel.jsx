@@ -110,7 +110,7 @@ const EspecialidadesCarrusel = () => {
               slidesPerView: 2,
               grid: { rows: 2, fill: 'row' },
             },
-            350:{
+            350: {
               slidesPerView: 2,
               grid: { rows: 2, fill: 'row' },
             },
@@ -131,8 +131,9 @@ const EspecialidadesCarrusel = () => {
           ))}
         </Swiper>
 
-        {/* Controles de navegación y barra de progreso */}
-        <div className="mt-6 flex items-center justify-between gap-3">
+        {/* Controles y barra de progreso */}
+        <div className="mt-6 flex flex-col-reverse items-center justify-between gap-4 md:flex-row md:gap-3">
+          {/* Link */}
           <a
             href="#"
             className="text-sm font-medium text-[#1B669A] hover:underline whitespace-nowrap"
@@ -141,12 +142,11 @@ const EspecialidadesCarrusel = () => {
           </a>
 
           {/* Barra de progreso */}
-          <div className="relative mx-2 h-[2px] flex-1 rounded bg-gray-300 overflow-hidden">
+          <div className="relative mx-2 h-[2px] w-full md:flex-1 rounded bg-gray-300 overflow-hidden">
             <div
               className="absolute top-0 left-0 h-full bg-[#1B669A] transition-all duration-300"
               style={{ width: `${progress * 100}%` }}
             />
-
           </div>
 
           {/* Flechas */}
