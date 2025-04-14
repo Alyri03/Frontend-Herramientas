@@ -44,66 +44,50 @@ const PresentacionServicios = () => {
   const [servicioActivo, setServicioActivo] = useState(servicios[0]);
 
   return (
-    <div
-      className="mx-auto mt-16 flex max-w-7xl flex-col items-start justify-between gap-10 px-4 py-14 lg:flex-row"
-      data-aos="fade-up"
-    >
-      {/* Columna izquierda */}
-      <div className="w-full lg:w-1/3" data-aos="fade-right" data-aos-delay="100">
-        <h2 className="mb-6 text-center text-2xl font-semibold leading-tight sm:text-3xl lg:text-left">
-          Contamos con una amplia variedad de{' '}
-          <span className="text-[#1B669A]">servicios de salud</span>
-        </h2>
+    <section class="bg-[#FCFCFC] py-12 px-6 max-w-5xl mx-auto">
+      <h2 class="text-3xl font-semibold text-center mb-4">Contáctanos</h2>
+      <p class="text-lg text-center text-gray-700 mb-10">
+        Deja tus datos y tu consulta, y nos comunicaremos contigo
+      </p>
+      <form class="space-y-6">
+        <p class="text-gray-500 text-sm">Todos los campos son obligatorios</p>
 
-        {/* Botones */}
-        <div className="flex w-full items-center gap-3 overflow-x-auto whitespace-nowrap pb-2 lg:flex-col lg:items-start lg:overflow-visible lg:whitespace-normal">
-          {servicios.map((servicio, idx) => (
-            <button
-              key={idx}
-              onClick={() => setServicioActivo(servicio)}
-              className={`flex h-[52px] w-[260px] items-center justify-center gap-2 rounded-full border px-6 text-center text-sm font-medium transition-all sm:text-base ${
-                servicioActivo.nombre === servicio.nombre
-                  ? 'bg-black text-white'
-                  : 'border-gray-300 text-gray-500 hover:bg-gray-100'
-              }`}
-            >
-              {servicioActivo.nombre === servicio.nombre && (
-                <FontAwesomeIcon icon={faArrowRight} />
-              )}
-              {servicio.nombre}
-            </button>
-          ))}
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <input type="text" placeholder="Nombres" class="w-full px-4 py-3 border border-blue-100 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300" />
+          <input type="text" placeholder="Apellidos" class="w-full px-4 py-3 border border-blue-100 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300" />
+
+          <input type="email" placeholder="Email" class="w-full px-4 py-3 border border-blue-100 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300" />
+          <input type="tel" placeholder="Teléfono" class="w-full px-4 py-3 border border-blue-100 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300" />
         </div>
-      </div>
 
-      {/* Imagen */}
-      <div className="flex w-full justify-center lg:w-[300px]" data-aos="zoom-in" data-aos-delay="200">
-        <img
-          src={servicioActivo.imagen}
-          alt={servicioActivo.nombre}
-          className="h-[400px] w-[300px] rounded-full object-cover sm:h-[440px] sm:w-[320px]"
-        />
-      </div>
-
-      {/* Texto */}
-      <div className="flex w-full flex-col justify-start lg:w-1/3" data-aos="fade-left" data-aos-delay="300">
-        <h3 className="mb-4 text-center text-3xl font-semibold lg:text-center">
-          {servicioActivo.nombre}
-        </h3>
-        <p className="mb-4 text-center text-sm leading-relaxed text-gray-600 sm:text-base lg:text-left">
-          {servicioActivo.descripcion}
-        </p>
-        <div className="mt-4 flex w-full justify-center lg:justify-center">
-          <button className="group inline-flex items-center gap-2 rounded-full bg-[#1B669A] px-6 py-2 font-medium text-white transition-all hover:bg-[#15577e]">
-            Conoce Más
-            <FontAwesomeIcon
-              icon={faArrowRight}
-              className="text-sm transition-transform duration-300 group-hover:translate-x-1"
-            />
-          </button>
+        <div class="space-y-2">
+          <label class="text-gray-800 font-medium text-[17px]">Motivo de consulta *</label>
+          <select class="w-full px-4 py-3 border border-blue-100 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300">
+            <option disabled selected>Seleccione un Motivo</option>
+            <option>Consulta general</option>
+            <option>Soporte técnico</option>
+            <option>Otro</option>
+          </select>
         </div>
-      </div>
-    </div>
+
+        <div class="space-y-2">
+          <label class="text-gray-800 font-medium text-[17px]">Consulta*</label>
+          <textarea rows="5" class="w-full px-4 py-3 border border-blue-100 rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-blue-300"></textarea>
+        </div>
+
+        <div class="flex items-start space-x-2">
+          <input type="checkbox" id="data" class="h-4 w-4 mt-1 text-blue-600 border-gray-300 rounded focus:ring-blue-500" />
+          <label for="data" class="text-sm text-gray-700">
+            Cláusula informativa de <a href="#" class="text-blue-600 underline">Protección de Datos</a>
+          </label>
+        </div>
+
+        <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition font-medium">
+          Enviar
+        </button>
+      </form>
+    </section>
+
   );
 };
 
