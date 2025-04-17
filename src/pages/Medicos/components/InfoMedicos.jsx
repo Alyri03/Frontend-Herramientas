@@ -5,9 +5,9 @@ import { faLongArrowRight } from '@fortawesome/free-solid-svg-icons';
 const InfoMedicos = () => {
     return (<>
         <section className="pt-10 pb-10">
-            <div className="flex flex-wrap justify-around container m-auto px-20 gap-10">
+            <div className="flex flex-wrap justify-around container m-auto gap-16">
                 {/* Item1 */}
-                <div className=" bg-white rounded-3xl shadow-md overflow-hidden">
+                <div className=" bg-white rounded-3xl shadow-md overflow-hidden max-w-sm">
                     <img src={ImagenDoctorGenerica} alt="Doctor" className="w-full h-60 object-cover"/>
                     <div className="p-4 space-y-3">
                         <div className="bg-blue-100 text-sm font-semibold text-center rounded-lg py-1">
