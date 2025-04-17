@@ -1,14 +1,17 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLongArrowLeft } from '@fortawesome/free-solid-svg-icons';
+
 const DetalleMedico = () => {
     return(<>
         <section>
             <div className="flex w-full gap-5 container mx-auto" >
-                <div className="flex flex-col ">
-                    <div className="">
-                       <img src="https://i.pinimg.com/originals/e4/8d/3f/e48d3f340a27d1c4e1501e8dbca154ee.jpg" alt="doctor" />
+                <div className="flex flex-col bg-yellow-900 w-3xl justify-center items-center">
+                    <div className="bg-yellow-400 h-full">
+                       <img src="https://droscargaona.com/wp-content/uploads/Imagen-1.jpg" alt="doctor"/>
                     </div>
-                    <div>
+                    <div className="flex gap-5 bg-white w-full">
                         <div>
-                            {/* ACÁ EL ICONO */}
+                            <FontAwesomeIcon icon={faLongArrowLeft}/>
                         </div>
                         <div>
                             <p>Volver al listado</p>
@@ -18,7 +21,7 @@ const DetalleMedico = () => {
                         </div>
                     </div>
                 </div>
-                <div>
+                <div className='bg-yellow-600 w-[50%] h-full'>
                     <div>
                         <p><b>Dr Reyes Pérez, Alvaro Orlando</b></p>
                         <p>CMP: 55124</p>
@@ -45,7 +48,7 @@ const DetalleMedico = () => {
                     </div>
                     <div>
                         <p><b>Horarios</b></p>
-                        <ul className="bg-yellow-400">
+                        <ul className="">
                             <li>
                                 <p>Martes</p>
                                 <p>16:00 - 17:00</p>
