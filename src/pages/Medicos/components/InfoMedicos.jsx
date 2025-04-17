@@ -15,7 +15,7 @@ const InfoMedicos = () => {
                         </div>
                         <div>
                             <p className="font-bold text-gray-800">Dr. Martinez Quijandria Luis</p>
-                            <p className="text-gray-400 text-sm">CMP: 55124</p>
+                            <p className="text-gray-400 text-sm pt-2">CMP: 55124</p>
                         </div>
                         <a href="/detalle-medico" className="flex text-blue-600 justify-center items-center">
                             <p className='pr-2'><b>Conoce al médico</b></p>
@@ -25,15 +25,15 @@ const InfoMedicos = () => {
                 </div>
 
                 {/* Item2 */}
-                <div className="max-w-xs bg-white rounded-3xl shadow-md overflow-hidden">
+                <div className=" bg-white rounded-3xl shadow-md overflow-hidden">
                     <img src={ImagenDoctorGenerica} alt="Doctor" className="w-full h-60 object-cover"/>
                     <div className="p-4 space-y-3">
                         <div className="bg-blue-100 text-sm font-semibold text-center rounded-lg py-1">
-                            Cardiología
+                            <p>Cardiología</p>
                         </div>
                         <div>
                             <p className="font-bold text-gray-800">Dr. Martinez Quijandria Luis</p>
-                            <p className="text-gray-400 text-sm">CMP: 55124</p>
+                            <p className="text-gray-400 text-sm pt-2">CMP: 55124</p>
                         </div>
                         <a href="/detalle-medico" className="flex text-blue-600 justify-center items-center">
                             <p className='pr-2'><b>Conoce al médico</b></p>
@@ -43,15 +43,15 @@ const InfoMedicos = () => {
                 </div>
 
                 {/* Item3 */}
-                <div className="max-w-xs bg-white rounded-3xl shadow-md overflow-hidden">
+                <div className=" bg-white rounded-3xl shadow-md overflow-hidden">
                     <img src={ImagenDoctorGenerica} alt="Doctor" className="w-full h-60 object-cover"/>
                     <div className="p-4 space-y-3">
                         <div className="bg-blue-100 text-sm font-semibold text-center rounded-lg py-1">
-                            Cardiología
+                            <p>Cardiología</p>
                         </div>
                         <div>
                             <p className="font-bold text-gray-800">Dr. Martinez Quijandria Luis</p>
-                            <p className="text-gray-400 text-sm">CMP: 55124</p>
+                            <p className="text-gray-400 text-sm pt-2">CMP: 55124</p>
                         </div>
                         <a href="/detalle-medico" className="flex text-blue-600 justify-center items-center">
                             <p className='pr-2'><b>Conoce al médico</b></p>
@@ -61,15 +61,15 @@ const InfoMedicos = () => {
                 </div>
 
                 {/* Item4 */}
-                <div className="max-w-xs bg-white rounded-3xl shadow-md overflow-hidden">
+                <div className=" bg-white rounded-3xl shadow-md overflow-hidden">
                     <img src={ImagenDoctorGenerica} alt="Doctor" className="w-full h-60 object-cover"/>
                     <div className="p-4 space-y-3">
                         <div className="bg-blue-100 text-sm font-semibold text-center rounded-lg py-1">
-                            Cardiología
+                            <p>Cardiología</p>
                         </div>
                         <div>
                             <p className="font-bold text-gray-800">Dr. Martinez Quijandria Luis</p>
-                            <p className="text-gray-400 text-sm">CMP: 55124</p>
+                            <p className="text-gray-400 text-sm pt-2">CMP: 55124</p>
                         </div>
                         <a href="/detalle-medico" className="flex text-blue-600 justify-center items-center">
                             <p className='pr-2'><b>Conoce al médico</b></p>
@@ -79,15 +79,15 @@ const InfoMedicos = () => {
                 </div>
 
                 {/* Item5 */}
-                <div className="max-w-xs bg-white rounded-3xl shadow-md overflow-hidden">
+                <div className=" bg-white rounded-3xl shadow-md overflow-hidden">
                     <img src={ImagenDoctorGenerica} alt="Doctor" className="w-full h-60 object-cover"/>
                     <div className="p-4 space-y-3">
                         <div className="bg-blue-100 text-sm font-semibold text-center rounded-lg py-1">
-                            Cardiología
+                            <p>Cardiología</p>
                         </div>
                         <div>
                             <p className="font-bold text-gray-800">Dr. Martinez Quijandria Luis</p>
-                            <p className="text-gray-400 text-sm">CMP: 55124</p>
+                            <p className="text-gray-400 text-sm pt-2">CMP: 55124</p>
                         </div>
                         <a href="/detalle-medico" className="flex text-blue-600 justify-center items-center">
                             <p className='pr-2'><b>Conoce al médico</b></p>
@@ -97,15 +97,15 @@ const InfoMedicos = () => {
                 </div>
 
                 {/* Item6 */}
-                <div className="max-w-xs bg-white rounded-3xl shadow-md overflow-hidden">
+                <div className=" bg-white rounded-3xl shadow-md overflow-hidden">
                     <img src={ImagenDoctorGenerica} alt="Doctor" className="w-full h-60 object-cover"/>
                     <div className="p-4 space-y-3">
                         <div className="bg-blue-100 text-sm font-semibold text-center rounded-lg py-1">
-                            Cardiología
+                            <p>Cardiología</p>
                         </div>
                         <div>
                             <p className="font-bold text-gray-800">Dr. Martinez Quijandria Luis</p>
-                            <p className="text-gray-400 text-sm">CMP: 55124</p>
+                            <p className="text-gray-400 text-sm pt-2">CMP: 55124</p>
                         </div>
                         <a href="/detalle-medico" className="flex text-blue-600 justify-center items-center">
                             <p className='pr-2'><b>Conoce al médico</b></p>
@@ -115,15 +115,15 @@ const InfoMedicos = () => {
                 </div>
 
                 {/* Item7 */}
-                <div className="max-w-xs bg-white rounded-3xl shadow-md overflow-hidden">
+                <div className=" bg-white rounded-3xl shadow-md overflow-hidden">
                     <img src={ImagenDoctorGenerica} alt="Doctor" className="w-full h-60 object-cover"/>
                     <div className="p-4 space-y-3">
                         <div className="bg-blue-100 text-sm font-semibold text-center rounded-lg py-1">
-                            Cardiología
+                            <p>Cardiología</p>
                         </div>
                         <div>
                             <p className="font-bold text-gray-800">Dr. Martinez Quijandria Luis</p>
-                            <p className="text-gray-400 text-sm">CMP: 55124</p>
+                            <p className="text-gray-400 text-sm pt-2">CMP: 55124</p>
                         </div>
                         <a href="/detalle-medico" className="flex text-blue-600 justify-center items-center">
                             <p className='pr-2'><b>Conoce al médico</b></p>
@@ -133,15 +133,15 @@ const InfoMedicos = () => {
                 </div>
 
                 {/* Item8 */}
-                <div className="max-w-xs bg-white rounded-3xl shadow-md overflow-hidden">
+                <div className=" bg-white rounded-3xl shadow-md overflow-hidden">
                     <img src={ImagenDoctorGenerica} alt="Doctor" className="w-full h-60 object-cover"/>
                     <div className="p-4 space-y-3">
                         <div className="bg-blue-100 text-sm font-semibold text-center rounded-lg py-1">
-                            Cardiología
+                            <p>Cardiología</p>
                         </div>
                         <div>
                             <p className="font-bold text-gray-800">Dr. Martinez Quijandria Luis</p>
-                            <p className="text-gray-400 text-sm">CMP: 55124</p>
+                            <p className="text-gray-400 text-sm pt-2">CMP: 55124</p>
                         </div>
                         <a href="/detalle-medico" className="flex text-blue-600 justify-center items-center">
                             <p className='pr-2'><b>Conoce al médico</b></p>
