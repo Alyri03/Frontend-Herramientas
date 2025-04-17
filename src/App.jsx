@@ -5,6 +5,7 @@ import 'aos/dist/aos.css';
 
 import AppRoutes from '@/routes/Routes.jsx';
 import Header from './components/Header';
+import Footer from './components/Footer';
 
 const App = () => {
   useEffect(() => {
@@ -15,6 +16,7 @@ const App = () => {
     <>
       <Header />
       <AppRoutes />
+      <Footer/>
     </>
   );
 };
