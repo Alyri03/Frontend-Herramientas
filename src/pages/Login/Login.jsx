@@ -3,14 +3,14 @@ import login from '../../assets/images/login.png'
 
 export const Login = () => {
     return (
-        <article className="flex items-center justify-center h-full w-full ">
+        <article className="flex flex-col md:flex-row items-center justify-center h-full w-full ">
 
-            <div className=" w-1/2">
+            <div className="hidden md:block w-1/2">
                 <img src={login} className='object-contain w-full h-dvh' />
 
             </div>
 
-            <form className='flex flex-col gap-6 w-1/2  p-8 justify-center text-center'>
+            <form className='flex flex-col gap-6 w-full md:w-1/2  p-8 justify-center text-center'>
 
                 
                 <h1 className='text-5xl font-bold mb-12 '>Inicia sesion</h1>
@@ -26,12 +26,12 @@ export const Login = () => {
                 </div>
 
 
-                <div className='flex gap-95  items-center justify-center'>
+                <div className='flex flex-col sm:flex-row gap-4 items-center justify-between'>
 
-                    <div className='flex gap-2'>
+                    <label className='flex gap-2 items-center'>
                         <input type="checkbox" />
-                        <label htmlFor="">Recuerdame</label>
-                    </div>
+                        <span>Recuerdame</span>
+                    </label>
 
                     <a href="" className='text-[#2F71A1] font-bold'>Olvide mi contraseña</a>
                 </div>
