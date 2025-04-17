@@ -16,7 +16,6 @@ const ReservaBusqueda = () => {
                     <div className="w-full h-full">
                         <input className="min-w-2xs h-full focus:outline-none bg-transparent" type="text" placeholder=" Busca a tu medico o escribe la especialidad"/>  
                     </div>
-                    
                 </div>
             </div>
         </section>
