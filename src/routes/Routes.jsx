@@ -5,7 +5,6 @@ import PaginaNosotros from '../pages/Nosotros/PaginaNosotros.jsx';
 import Contactanos from '../pages/Contactanos/Contactanos.jsx';
 import NoDisponible from '../pages/NoDisponible.jsx';
 
-
 const AppRoutes = () => {
   return (
     <Router>
