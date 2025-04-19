@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+html {
+    font-family: 'Poppins', sans-serif;
+}
+
 @layer base {
     :root {
         /* Colores de la paleta */
@@ -18,10 +22,12 @@
 
     html {
         scroll-behavior: smooth;
-        font-family: 'Poppins', sans-serif; /* 👈 Aquí aplicamos Poppins */
+        font-family: 'Poppins', sans-serif; 
     }
+
 
     button {
         @apply cursor-pointer rounded;
     }
+
 }
