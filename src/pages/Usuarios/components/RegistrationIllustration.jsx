@@ -3,10 +3,7 @@ const RegistrationIllustration = () => {
       <div className="w-full lg:w-[45%] bg-blue-100 relative overflow-hidden py-16 px-4 sm:px-8 flex items-center justify-center">
         { }
         <div className="absolute top-4 sm:top-8 left-4 sm:left-8 z-10">
-          <img
-            src="/logo-clinica.png"
-            alt="Clínica Regional ICA"
-            className="h-24 sm:h-32 w-32"
+          <img src="/logo-clinica.png" alt="Clínica Regional ICA" className="h-12 sm:h-32 w-38"
             onError={(e) => {
               e.target.onerror = null
               e.target.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLecFyB71Pj1Uam50k8cJo_hgSm5FZ-ivnog&s"
@@ -21,10 +18,7 @@ const RegistrationIllustration = () => {
             <div className="relative w-28 sm:w-32 md:w-36 lg:w-40 h-28 sm:h-32 md:h-36 lg:h-40">
               <div className="absolute inset-0 bg-blue-200 rounded-full shadow-md"></div>
               <div className="absolute inset-[4px] rounded-full overflow-hidden">
-                <img
-                  src="/person1.jpg"
-                  alt="Person"
-                  className="w-full h-full object-cover"
+                <img src="/person1.jpg" alt="Person" className="w-full h-full object-cover"
                   onError={(e) => {
                     e.target.onerror = null
                     e.target.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTym6TLorBx4-e681AL_VgHdxYMkFgZ0om0O6aoR_rt2EX0jix"
@@ -46,10 +40,7 @@ const RegistrationIllustration = () => {
             <div className="relative w-28 sm:w-32 md:w-36 lg:w-40 h-28 sm:h-32 md:h-36 lg:h-40">
               <div className="absolute inset-0 bg-yellow-200 rounded-full shadow-md"></div>
               <div className="absolute inset-[4px] rounded-full overflow-hidden">
-                <img
-                  src="/person2.jpg"
-                  alt="Person"
-                  className="w-full h-full object-cover"
+                <img src="/person2.jpg" alt="Person" className="w-full h-full object-cover"
                   onError={(e) => {
                     e.target.onerror = null
                     e.target.src = "https://us.123rf.com/450wm/pavlik18/pavlik182204/pavlik18220400007/184583127-chica-de-cerca-ilustraci%C3%B3n-de-vector-de-estilo-plano.jpg?ver=6"
@@ -71,10 +62,7 @@ const RegistrationIllustration = () => {
             <div className="relative w-28 sm:w-32 md:w-36 lg:w-40 h-28 sm:h-32 md:h-36 lg:h-40">
               <div className="absolute inset-0 bg-yellow-200 rounded-full shadow-md"></div>
               <div className="absolute inset-[4px] rounded-full overflow-hidden">
-                <img
-                  src="/person3.jpg"
-                  alt="Person"
-                  className="w-full h-full object-cover"
+                <img src="/person3.jpg" alt="Person" className="w-full h-full object-cover"
                   onError={(e) => {
                     e.target.onerror = null
                     e.target.src = "https://img.freepik.com/vector-premium/hombre-feliz-sonriente_198838-270.jpg"
