@@ -24,14 +24,17 @@ const Carrusel = () => {
     {
       titulo: 'Conéctate desde cualquier lugar.',
       descripcion: 'Agenda tus citas y comunícate estés donde estés.',
+      imagen:'https://images.pexels.com/photos/4260643/pexels-photo-4260643.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
     },
     {
       titulo: 'Siempre cerca de ti.',
       descripcion: 'Nos adaptamos a tu ritmo con atención virtual rápida.',
+      imagen: 'https://442271.fs1.hubspotusercontent-na1.net/hubfs/442271/ES-LG-CONTENT/Photography%20library/GettyImages-1422149739.jpg'
     },
     {
       titulo: 'Comodidad y salud en un clic.',
       descripcion: 'Solicita tus citas sin salir de casa.',
+      imagen: 'https://news.microsoft.com/wp-content/uploads/prod/sites/41/2023/03/Exam_Room_Physician_Patient_8326_RT-2048x1366-1.jpg'
     },
   ];
 
@@ -90,7 +93,7 @@ const Carrusel = () => {
                 <figure className="w-full md:w-1/2 relative">
                   <div className="absolute left-0 top-0 w-1/3 h-full bg-gradient-to-r from-white to-transparent z-10 hidden md:block" />
                   <img
-                    src={imagen}
+                    src={slide.imagen}
                     alt={`Imagen representativa de: ${slide.titulo}`}
                     className="w-full h-[240px] sm:h-[320px] md:h-[400px] object-cover rounded-lg shadow"
                   />

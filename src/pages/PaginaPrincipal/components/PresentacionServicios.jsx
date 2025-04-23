@@ -6,37 +6,37 @@ const servicios = [
   {
     nombre: 'Centro Quirúrgico',
     descripcion:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit...',
+      'Contamos con quirófanos modernos, equipados con tecnología de última generación para garantizar procedimientos seguros y efectivos en diversas especialidades médicas.',
     imagen:
-      'https://www.stellamaris.com.pe/uploads/shares/servicios/Centro%20Quirurgico/CENTRO_QUIR__RGICO_408_X_592.jpg',
+      'https://www.clinicapj.org.pe/store-imagenes/clinica/Servicios/Quirurgico/Cl__nica_0374.jpg',
   },
   {
     nombre: 'Medicina física y rehabilitación',
     descripcion:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit...',
+      'Ofrecemos terapias especializadas para ayudarte a recuperar tu movilidad, fuerza y bienestar físico, adaptadas a tus necesidades y con un enfoque integral en tu recuperación.',
     imagen:
-      'https://www.stellamaris.com.pe/uploads/shares/servicios/Medicina%20F%C3%ADsica%20y%20Rehabilitaci%C3%B3n/Medfisica_Bannerweb_medicos.jpg',
+      'https://web.sisol.gob.pe/wp-content/uploads/2023/04/9-TERAPIA-FISICA-Y-REHABILITACION.jpg',
   },
   {
     nombre: 'Atención Hospitalaria',
     descripcion:
-      'Brindamos servicios de hospitalización con atención profesional las 24 horas...',
+      'Brindamos un servicio de hospitalización cálido y seguro, con profesionales altamente capacitados y atención personalizada las 24 horas del día.',
     imagen:
-      'https://www.stellamaris.com.pe/uploads/shares/servicios/Centro%20Quirurgico/CENTRO_QUIR__RGICO_408_X_592.jpg',
+      'https://www.esan.edu.pe/images/blog/2020/08/20/1500x844-flujo-pacientes.jpg',
   },
   {
     nombre: 'Emergencia Adulta',
     descripcion:
-      'Atención inmediata y especializada para adultos en casos de urgencia...',
+      'Atendemos urgencias médicas en adultos con rapidez y eficiencia, priorizando el diagnóstico oportuno y la intervención inmediata en un entorno seguro.',
     imagen:
-      'https://www.stellamaris.com.pe/uploads/shares/servicios/Centro%20Quirurgico/CENTRO_QUIR__RGICO_408_X_592.jpg',
+      'https://cdn.sanity.io/images/1gm9mx7i/production/5498774875d711f9ce7c570834bbd761b4efb532-1060x424.jpg?w=1920&q=90&fit=max&auto=format',
   },
   {
     nombre: 'Emergencia Pediátrica',
     descripcion:
-      'Espacios diseñados y adaptados para la atención rápida y segura de emergencias en niños...',
+      'Un espacio especialmente diseñado para la atención de emergencias en niños, con equipos médicos especializados y un enfoque centrado en el bienestar infantil.',
     imagen:
-      'https://www.stellamaris.com.pe/uploads/shares/servicios/Centro%20Quirurgico/CENTRO_QUIR__RGICO_408_X_592.jpg',
+      'https://www.insnsb.gob.pe/wp-content/uploads/2020/01/DSC_3027.jpg',
   },
 ];
 
