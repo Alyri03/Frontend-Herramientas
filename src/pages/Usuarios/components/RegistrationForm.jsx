@@ -17,11 +17,7 @@ const RegistrationForm = ({ formData, setFormData, handleSubmit }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-        <SelectField
-          label="Tipo de Documento"
-          name="documentType"
-          value={formData.documentType}
-          onChange={handleChange}
+        <SelectField label="Tipo de Documento" name="documentType" value={formData.documentType} onChange={handleChange}
           options={[
             { value: "DNI", label: "DNI" },
             { value: "Pasaporte", label: "Pasaporte" },
@@ -29,28 +25,14 @@ const RegistrationForm = ({ formData, setFormData, handleSubmit }) => {
           ]}
         />
 
-        <FormField
-          label="Número de Documento"
-          name="documentNumber"
-          type="text"
-          value={formData.documentNumber}
-          onChange={handleChange}
+        <FormField label="Número de Documento" name="documentNumber" type="text" value={formData.documentNumber}
+        onChange={handleChange}
         />
       </div>
 
-      <FormField
-        label="Apellido Paterno"
-        name="lastName"
-        type="text"
-        value={formData.lastName}
-        onChange={handleChange}
-      />
+      <FormField label="Apellido Paterno" name="lastName" type="text" value={formData.lastName} onChange={handleChange}/>
 
-      <FormField
-        label="Apellido Materno"
-        name="motherLastName"
-        type="text"
-        value={formData.motherLastName}
+      <FormField label="Apellido Materno" name="motherLastName" type="text" value={formData.motherLastName}
         onChange={handleChange}
       />
 
@@ -63,11 +45,7 @@ const RegistrationForm = ({ formData, setFormData, handleSubmit }) => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         <DateField label="Fecha de nacimiento" name="birthDate" value={formData.birthDate} onChange={handleChange} />
 
-        <SelectField
-          label="Género"
-          name="gender"
-          value={formData.gender}
-          onChange={handleChange}
+        <SelectField label="Género" name="gender" value={formData.gender} onChange={handleChange}
           options={[
             { value: "M", label: "Masculino" },
             { value: "F", label: "Femenino" },
@@ -78,10 +56,7 @@ const RegistrationForm = ({ formData, setFormData, handleSubmit }) => {
       <FormField label="Dirección" name="address" type="text" value={formData.address} onChange={handleChange} />
 
       <div className="mt-8 space-y-4">
-        <CheckboxField
-          name="infoVerified"
-          checked={formData.infoVerified}
-          onChange={handleChange}
+        <CheckboxField name="infoVerified" checked={formData.infoVerified} onChange={handleChange}
           label={
             <span>
               Declaro que la <span className="text-blue-600 font-medium">información proporcionada es verdadera</span>
@@ -89,10 +64,7 @@ const RegistrationForm = ({ formData, setFormData, handleSubmit }) => {
           }
         />
 
-        <CheckboxField
-          name="termsAccepted"
-          checked={formData.termsAccepted}
-          onChange={handleChange}
+        <CheckboxField name="termsAccepted" checked={formData.termsAccepted} onChange={handleChange}
           label={
             <span>
               He leído y acepto los{" "}
