@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from 'react-router-dom';
 import Logo from "../assets/images/Logo.png";
 
 const Header = () => {
@@ -28,9 +29,9 @@ const Header = () => {
           {/* Logo */}
           <div className="flex items-center gap-2">
             <div className="w-1 h-12 bg-[#1B669A] rounded-sm hidden sm:block" />
-            <a href="/" className="flex items-center">
+            <Link to="/" className="flex items-center">
               <img src={Logo} alt="Logo" className="h-14 sm:h-16 w-auto max-w-[200px] object-contain" />
-            </a>
+            </Link>
           </div>
 
           {/* Navegación Desktop */}
@@ -53,33 +54,33 @@ const Header = () => {
                     <ul className="flex flex-col py-2 text-sm text-gray-700">
                       {dropdownItems.map((d, j) => (
                         <li key={j}>
-                          <a href={d.href} className="block px-4 py-2 hover:bg-gray-100 hover:text-[#2F71A1] transition">{d.name}</a>
+                          <Link to={d.href} className="block px-4 py-2 hover:bg-gray-100 hover:text-[#2F71A1] transition">{d.name}</Link>
                         </li>
                       ))}
                     </ul>
                   </div>
                 </div>
               ) : (
-                <a
+                <Link
                   key={i}
-                  href={item.href}
+                  to={item.href}
                   className="relative block py-2 hover:text-[#2F71A1] transition group"
                 >
                   {item.name}
                   <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-[#2F71A1] transition-all duration-300 group-hover:w-full" />
-                </a>
+                </Link>
               )
             ))}
           </div>
 
           {/* Botón Desktop */}
           <div className="hidden lg:block">
-            <a
-              href="/login"
+            <Link
+              to="/login"
               className="border-[3px] border-[#2F71A1] text-[#2F71A1] px-5 py-2 rounded-full hover:bg-[#2F71A1] hover:text-white transition-all duration-300 transform hover:-translate-y-1 hover:scale-105"
             >
               Mi Clínica Virtual
-            </a>
+            </Link>
           </div>
 
           {/* Botón Menú Mobile */}
@@ -101,10 +102,10 @@ const Header = () => {
           <div className="fixed inset-0 z-40 bg-white w-full max-w-full overflow-x-hidden flex flex-col px-6 py-4 gap-6">
             {/* Header Mobile */}
             <div className="flex items-center justify-between">
-              <a href="/" className="flex items-center gap-2">
+              <Link to="/" className="flex items-center gap-2">
                 <div className="w-1 h-10 bg-[#1B669A] rounded-sm" />
                 <img src={Logo} alt="Logo" className="h-14 w-auto max-w-[180px] object-contain" />
-              </a>
+              </Link>
               <button onClick={() => setNav(!nav)} className="w-8 h-8 text-2xl text-gray-600 flex items-center justify-center focus:outline-none">
                 &times;
               </button>
@@ -114,25 +115,24 @@ const Header = () => {
             <ul className="flex flex-col divide-y divide-gray-200">
               {navItems.map((item, i) => (
                 <li key={i}>
-                  <a
-                    href={item.href}
+                  <Link to={item.href}
                     className="flex justify-between items-center py-3.5 text-gray-800 text-base font-medium hover:text-[#2F71A1] transition"
                   >
                     {item.name}
                     <span className="text-xl text-gray-400">&rsaquo;</span>
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
 
             {/* Botón Mobile */}
             <div>
-              <a
-                href="/login"
+              <Link
+                to="/login"
                 className="w-full block border-[3px] border-[#2F71A1] text-[#2F71A1] text-center py-2.5 rounded-full font-semibold hover:bg-[#2F71A1] hover:text-white transition"
               >
                 Mi Clínica Virtual
-              </a>
+              </Link>
             </div>
           </div>
         )}
