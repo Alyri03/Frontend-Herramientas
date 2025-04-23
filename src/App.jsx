@@ -10,17 +10,21 @@ import Footer from './components/Footer';
 const Layout = () => {
   const location = useLocation();
 
-  // Detecta si estás en la sección de clínica virtual
-  const isClinicaVirtual = location.pathname.startsWith('/clinica-virtual');
+  const noHeaderNoFooter = ['/login', '/registro', '/clinica-virtual/inicio', '/clinica-virtual/mis-citas','/clinica-virtual/resultados',
+    '/clinica-virtual/historial-clinico'
+  ].some((path) =>
+    location.pathname.startsWith(path)
+  );
 
   return (
     <>
-      {!isClinicaVirtual && <Header />}
+      {!noHeaderNoFooter && <Header />}
       <AppRoutes />
-      {!isClinicaVirtual && <Footer />}
+      {!noHeaderNoFooter && <Footer />}
     </>
   );
 };
+
 
 const App = () => {
   useEffect(() => {
