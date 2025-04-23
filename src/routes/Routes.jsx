@@ -1,10 +1,10 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 import PaginaPrincipal from '@/pages/PaginaPrincipal/PaginaPrincipal.jsx';
 import PaginaNosotros from '../pages/Nosotros/PaginaNosotros.jsx';
-import PaginaEspecialidades from '../pages/Especialidades/PaginaEspecialidades.jsx';
+import PaginaEspecialidades from '../pages/Especilidades/PaginaEspecialidades.jsx';
 import Contactanos from '../pages/Contactanos/Contactanos.jsx';
-import { Login } from '../pages/Login/Login.jsx';
+import { Login } from '../pages/Usuarios/Login.jsx';
 import Register from '../pages/Usuarios/Register';
 import ClientLayout from '../pages/ClinicaVirtual/ClientLayout.jsx';
 import Inicio from '../pages/ClinicaVirtual/Inicio.jsx';
@@ -23,7 +23,8 @@ const AppRoutes = () => {
       <Route path="/clinica-virtual" element={<ClientLayout />}>
         <Route path="inicio" element={<Inicio />} />
       </Route>
-      <Route path="*" element={<NoDisponible />} />
+      <Route path="/404" element={<NoDisponible />} />
+      <Route path="*" element={<Navigate to="/404" />} />
     </Routes>
   );
 }

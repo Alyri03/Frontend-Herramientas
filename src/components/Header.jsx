@@ -7,10 +7,10 @@ const Header = () => {
 
   const navItems = [
     { name: "Nosotros", href: "/nosotros" },
-    { name: "Equipo Médico", href: "#" },
-    { name: "Especialidades", href: "#" },
+    { name: "Equipo Médico", href: "/equipo-medico" },
+    { name: "Especialidades", href: "/especialidades" },
     { name: "Contáctanos", href: "/Contactanos" },
-    { name: "Servicios", href: "#" },
+    { name: "Servicios", href: "/servicios" },
   ];
 
   const dropdownItems = [

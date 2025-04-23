@@ -14,8 +14,13 @@ const SearchBar = ({ onSearch }) => {
   }
 
   return (
-    <div className="relative max-w-md mx-4">
-      <input type="text" placeholder="Buscar especialidad"
+    <div
+      className="relative max-w-md mx-4"
+      data-aos="fade-up"
+    >
+      <input
+        type="text"
+        placeholder="Buscar especialidad"
         className="w-full py-2 pl-4 pr-10 rounded-full border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-[#1B669A] text-sm"
         value={searchTerm}
         onChange={handleChange}

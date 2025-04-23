@@ -10,17 +10,22 @@ import Footer from './components/Footer';
 const Layout = () => {
   const location = useLocation();
 
-  const noHeaderNoFooter = ['/login', '/registro', '/clinica-virtual/inicio', '/clinica-virtual/mis-citas','/clinica-virtual/resultados',
+  const noHeaderNoFooter = [
+    '*',
+    '/login',
+    '/registro',
+    '/clinica-virtual/',
+    '/clinica-virtual/inicio',
+    '/clinica-virtual/mis-citas',
+    '/clinica-virtual/resultados',
     '/clinica-virtual/historial-clinico'
-  ].some((path) =>
-    location.pathname.startsWith(path)
-  );
+  ].some((path) => location.pathname.startsWith(path)) || location.pathname === '/404';
 
   return (
     <>
-      <Header/>
+      {!noHeaderNoFooter && <Header />}
       <AppRoutes />
-      <Footer/>
+      {!noHeaderNoFooter && <Footer />}
     </>
   );
 };
