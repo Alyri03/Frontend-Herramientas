@@ -3,7 +3,7 @@ import login from '../../assets/images/login.png'
 
 export const Login = () => {
     return (
-        <article className="flex flex-col md:flex-row items-center justify-center h-full w-full ">
+        <article className="flex flex-col md:flex-row items-center justify-center h-full w-full p-6">
 
             <div className="hidden md:block w-1/2">
                 <img src={login} className='object-contain w-full h-dvh' />

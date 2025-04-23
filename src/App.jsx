@@ -18,9 +18,9 @@ const Layout = () => {
 
   return (
     <>
-      {!noHeaderNoFooter && <Header />}
+      <Header/>
       <AppRoutes />
-      {!noHeaderNoFooter && <Footer />}
+      <Footer/>
     </>
   );
 };

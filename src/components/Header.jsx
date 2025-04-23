@@ -75,7 +75,7 @@ const Header = () => {
           {/* Botón Desktop */}
           <div className="hidden lg:block">
             <a
-              href="#"
+              href="/login"
               className="border-[3px] border-[#2F71A1] text-[#2F71A1] px-5 py-2 rounded-full hover:bg-[#2F71A1] hover:text-white transition-all duration-300 transform hover:-translate-y-1 hover:scale-105"
             >
               Mi Clínica Virtual
@@ -128,7 +128,7 @@ const Header = () => {
             {/* Botón Mobile */}
             <div>
               <a
-                href="#"
+                href="/login"
                 className="w-full block border-[3px] border-[#2F71A1] text-[#2F71A1] text-center py-2.5 rounded-full font-semibold hover:bg-[#2F71A1] hover:text-white transition"
               >
                 Mi Clínica Virtual
