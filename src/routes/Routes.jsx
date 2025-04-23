@@ -4,6 +4,7 @@ import PaginaPrincipal from '@/pages/PaginaPrincipal/PaginaPrincipal.jsx';
 import PaginaNosotros from '../pages/Nosotros/PaginaNosotros.jsx';
 import PaginaEspecialidades from '../pages/Especilidades/PaginaEspecialidades.jsx';
 import Contactanos from '../pages/Contactanos/Contactanos.jsx';
+import PaginaServicios from '../pages/Servicios/PaginaServicios.jsx';
 import { Login } from '../pages/Usuarios/Login.jsx';
 import Register from '../pages/Usuarios/Register';
 import ClientLayout from '../pages/ClinicaVirtual/ClientLayout.jsx';
@@ -17,6 +18,7 @@ const AppRoutes = () => {
       <Route path="/nosotros" element={<PaginaNosotros />} />
       <Route path="/especialidades" element={<PaginaEspecialidades />} />
       <Route path="/contactanos" element={<Contactanos />} />
+      <Route path="/servicios" element={<PaginaServicios />} />
       <Route path="/login" element={<Login />} />
       <Route path="/registro" element={<Register />} />
 
