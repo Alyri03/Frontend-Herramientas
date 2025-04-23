@@ -105,7 +105,7 @@ const Header = () => {
                 <div className="w-1 h-10 bg-[#1B669A] rounded-sm" />
                 <img src={Logo} alt="Logo" className="h-14 w-auto max-w-[180px] object-contain" />
               </a>
-              <button onClick={() => setNav(false)} className="w-8 h-8 text-2xl text-gray-600 flex items-center justify-center focus:outline-none">
+              <button onClick={() => setNav(!nav)} className="w-8 h-8 text-2xl text-gray-600 flex items-center justify-center focus:outline-none">
                 &times;
               </button>
             </div>
