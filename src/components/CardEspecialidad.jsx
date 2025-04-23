@@ -13,7 +13,7 @@ const CardEspecialidad = ({ icono, titulo }) => {
 
 
       {/* Título */}
-      <p className="my-5 text-center text-base sm:text-lg md:text-xl font-semibold leading-snug text-[#222] break-words">
+      <p className="my-5 text-center text-sm sm:text-base md:text-lg font-semibold leading-snug text-[#222] break-words hyphens-auto overflow-hidden text-ellipsis line-clamp-2">
         {titulo}
       </p>
 
