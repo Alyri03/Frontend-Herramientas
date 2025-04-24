@@ -10,6 +10,10 @@ import Register from '../pages/Usuarios/Register';
 import ClientLayout from '../pages/ClinicaVirtual/ClientLayout.jsx';
 import Inicio from '../pages/ClinicaVirtual/Inicio.jsx';
 import NoDisponible from '../pages/NoDisponible.jsx';
+import EquipoMedico from '../pages/Medicos/PaginaEquipoMedico.jsx';
+import DetalleMedico from '../pages/Medicos/DetalleMedicos.jsx';
+
+
 
 const AppRoutes = () => {
   return (
@@ -17,6 +21,8 @@ const AppRoutes = () => {
       <Route path="/" element={<PaginaPrincipal />} />
       <Route path="/nosotros" element={<PaginaNosotros />} />
       <Route path="/especialidades" element={<PaginaEspecialidades />} />
+      <Route path="/equipo-medico" element={<EquipoMedico />}/>
+      <Route path="/detalle-medico" element={<DetalleMedico />}/>
       <Route path="/contactanos" element={<Contactanos />} />
       <Route path="/servicios" element={<PaginaServicios />} />
       <Route path="/login" element={<Login />} />
@@ -31,3 +37,4 @@ const AppRoutes = () => {
   );
 }
 export default AppRoutes;
+
