@@ -1,7 +1,7 @@
 import ImagenDoctorGenerica from '../../../assets/images/ImagenDoctorGenerica.jpg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLongArrowRight } from '@fortawesome/free-solid-svg-icons';
-
+import { Link } from 'react-router-dom';
 const InfoMedicos = () => {
     return (<>
         <section className="pt-10 pb-10">
@@ -17,10 +17,11 @@ const InfoMedicos = () => {
                             <p className="font-bold text-gray-800">Dr. Martinez Quijandria Luis</p>
                             <p className="text-gray-400 text-sm pt-2">CMP: 55124</p>
                         </div>
-                        <a href="/detalle-medico" className="flex text-blue-600 justify-center items-center pt-1">
+
+                        <Link to="/detalle-medico" className="flex text-blue-600 justify-center items-center pt-1">
                             <p className='pr-2'><b>Conoce al médico</b></p>
                             <FontAwesomeIcon icon={faLongArrowRight} />
-                        </a>
+                        </Link>
                     </div>
                 </div>
 
@@ -35,10 +36,10 @@ const InfoMedicos = () => {
                             <p className="font-bold text-gray-800">Dr. Martinez Quijandria Luis</p>
                             <p className="text-gray-400 text-sm pt-2">CMP: 55124</p>
                         </div>
-                        <a href="/detalle-medico" className="flex text-blue-600 justify-center items-center pt-1">
+                        <Link to="/detalle-medico" className="flex text-blue-600 justify-center items-center pt-1">
                             <p className='pr-2'><b>Conoce al médico</b></p>
                             <FontAwesomeIcon icon={faLongArrowRight} />
-                        </a>
+                        </Link>
                     </div>
                 </div>
 
@@ -53,10 +54,10 @@ const InfoMedicos = () => {
                             <p className="font-bold text-gray-800">Dr. Martinez Quijandria Luis</p>
                             <p className="text-gray-400 text-sm pt-2">CMP: 55124</p>
                         </div>
-                        <a href="/detalle-medico" className="flex text-blue-600 justify-center items-center pt-1">
+                        <Link to="/detalle-medico" className="flex text-blue-600 justify-center items-center pt-1">
                             <p className='pr-2'><b>Conoce al médico</b></p>
                             <FontAwesomeIcon icon={faLongArrowRight} />
-                        </a>
+                        </Link>
                     </div>
                 </div>
 
@@ -71,10 +72,10 @@ const InfoMedicos = () => {
                             <p className="font-bold text-gray-800">Dr. Martinez Quijandria Luis</p>
                             <p className="text-gray-400 text-sm pt-2">CMP: 55124</p>
                         </div>
-                        <a href="/detalle-medico" className="flex text-blue-600 justify-center items-center pt-1">
+                        <Link to="/detalle-medico" className="flex text-blue-600 justify-center items-center pt-1">
                             <p className='pr-2'><b>Conoce al médico</b></p>
                             <FontAwesomeIcon icon={faLongArrowRight} />
-                        </a>
+                        </Link>
                     </div>
                 </div>
 
@@ -88,11 +89,11 @@ const InfoMedicos = () => {
                         <div>
                             <p className="font-bold text-gray-800">Dr. Martinez Quijandria Luis</p>
                             <p className="text-gray-400 text-sm pt-2">CMP: 55124</p>
-                        </div>
-                        <a href="/detalle-medico" className="flex text-blue-600 justify-center items-center pt-1">
+                        </div> 
+                         <Link to="/detalle-medico" className="flex text-blue-600 justify-center items-center pt-1">
                             <p className='pr-2'><b>Conoce al médico</b></p>
                             <FontAwesomeIcon icon={faLongArrowRight} />
-                        </a>
+                        </Link>
                     </div>
                 </div>
 
@@ -107,10 +108,10 @@ const InfoMedicos = () => {
                             <p className="font-bold text-gray-800">Dr. Martinez Quijandria Luis</p>
                             <p className="text-gray-400 text-sm pt-2">CMP: 55124</p>
                         </div>
-                        <a href="/detalle-medico" className="flex text-blue-600 justify-center items-center pt-1">
+                        <Link to="/detalle-medico" className="flex text-blue-600 justify-center items-center pt-1">
                             <p className='pr-2'><b>Conoce al médico</b></p>
                             <FontAwesomeIcon icon={faLongArrowRight} />
-                        </a>
+                        </Link>
                     </div>
                 </div>
 
@@ -125,10 +126,10 @@ const InfoMedicos = () => {
                             <p className="font-bold text-gray-800">Dr. Martinez Quijandria Luis</p>
                             <p className="text-gray-400 text-sm pt-2">CMP: 55124</p>
                         </div>
-                        <a href="/detalle-medico" className="flex text-blue-600 justify-center items-center pt-1">
+                        <Link to="/detalle-medico" className="flex text-blue-600 justify-center items-center pt-1">
                             <p className='pr-2'><b>Conoce al médico</b></p>
                             <FontAwesomeIcon icon={faLongArrowRight} />
-                        </a>
+                        </Link>
                     </div>
                 </div>
 
@@ -143,10 +144,10 @@ const InfoMedicos = () => {
                             <p className="font-bold text-gray-800">Dr. Martinez Quijandria Luis</p>
                             <p className="text-gray-400 text-sm pt-2">CMP: 55124</p>
                         </div>
-                        <a href="/detalle-medico" className="flex text-blue-600 justify-center items-center pt-1">
+                        <Link to="/detalle-medico" className="flex text-blue-600 justify-center items-center pt-1">
                             <p className='pr-2'><b>Conoce al médico</b></p>
                             <FontAwesomeIcon icon={faLongArrowRight} />
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>
