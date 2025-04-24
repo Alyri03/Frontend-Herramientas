@@ -47,7 +47,7 @@ export const Login = () => {
                         ¿No tienes una cuenta?
                     </p>
 
-                    <a href="/registrar" className='text-[#2F71A1] font-bold'>Registrate aqui</a>
+                    <a href="/registro" className='text-[#2F71A1] font-bold'>Registrate aqui</a>
                 </div>
 
 
