@@ -8,7 +8,7 @@ const Header = () => {
 
   const navItems = [
     { name: "Nosotros", href: "/nosotros" },
-    { name: "Equipo Médico", href: "/equipo-medico" },
+    { name: "Equipo Médico", href: "/medicos-equipo" },
     { name: "Especialidades", href: "/especialidades" },
     { name: "Contáctanos", href: "/Contactanos" },
     { name: "Servicios", href: "/servicios" },
