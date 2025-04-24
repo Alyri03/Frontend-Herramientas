@@ -39,16 +39,19 @@ const Header = () => {
             {navItems.map((item, i) => (
               item.name === "Servicios" ? (
                 <div key={i} className="relative group">
-                  <button
-                    onClick={() => setMenu(!menu)}
+                  <Link
+                    to="/servicios"
                     className="relative flex items-center gap-1 py-2 hover:text-[#2F71A1] group transition"
+                    onMouseEnter={() => setMenu(true)}
+                    onMouseLeave={() => setMenu(false)}
                   >
                     {item.name}
                     <svg className="w-3 h-3" fill="none" viewBox="0 0 10 6">
                       <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                     <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-[#2F71A1] transition-all duration-300 group-hover:w-full" />
-                  </button>
+                  </Link>
+
 
                   <div className={`${menu ? "block" : "hidden"} absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-100 transition-all duration-300`}>
                     <ul className="flex flex-col py-2 text-sm text-gray-700">
