@@ -5,10 +5,10 @@ import { faLongArrowRight } from '@fortawesome/free-solid-svg-icons';
 const InfoMedicos = () => {
     return (<>
         <section className="pt-10 pb-10">
-            <div className="flex flex-wrap justify-around container m-auto gap-16">
+            <div className="flex flex-wrap justify-around container m-auto sm:gap-10 gap-7">
                 {/* Item1 */}
-                <div className="bg-white rounded-3xl shadow-md overflow-hidden max-w-sm">
-                    <img src={ImagenDoctorGenerica} alt="Doctor" className="w-full h-60 object-cover" />
+                <div className="bg-white rounded-3xl shadow-md overflow-hidden max-w-sm w-70">
+                    <img src={ImagenDoctorGenerica} alt="Doctor" className="w-full h-60 object-cover"/>
                     <div className="p-4 space-y-2">
                         <p className="bg-blue-100 rounded-full w-30 h-8 flex justify-center items-center font-semibold text-sm">
                             Cardiología
@@ -25,7 +25,7 @@ const InfoMedicos = () => {
                 </div>
 
                 {/* Item2 */}
-                <div className="bg-white rounded-3xl shadow-md overflow-hidden max-w-sm">
+                <div className="bg-white rounded-3xl shadow-md overflow-hidden max-w-sm w-70">
                     <img src={ImagenDoctorGenerica} alt="Doctor" className="w-full h-60 object-cover" />
                     <div className="p-4 space-y-2">
                         <p className="bg-blue-100 rounded-full w-30 h-8 flex justify-center items-center font-semibold text-sm">
@@ -43,7 +43,7 @@ const InfoMedicos = () => {
                 </div>
 
                 {/* Item3 */}
-                <div className="bg-white rounded-3xl shadow-md overflow-hidden max-w-sm">
+                <div className="bg-white rounded-3xl shadow-md overflow-hidden max-w-sm w-70">
                     <img src={ImagenDoctorGenerica} alt="Doctor" className="w-full h-60 object-cover" />
                     <div className="p-4 space-y-2">
                         <p className="bg-blue-100 rounded-full w-30 h-8 flex justify-center items-center font-semibold text-sm">
@@ -61,7 +61,7 @@ const InfoMedicos = () => {
                 </div>
 
                 {/* Item4 */}
-                <div className="bg-white rounded-3xl shadow-md overflow-hidden max-w-sm">
+                <div className="bg-white rounded-3xl shadow-md overflow-hidden max-w-sm w-70">
                     <img src={ImagenDoctorGenerica} alt="Doctor" className="w-full h-60 object-cover" />
                     <div className="p-4 space-y-2">
                         <p className="bg-blue-100 rounded-full w-30 h-8 flex justify-center items-center font-semibold text-sm">
@@ -79,7 +79,7 @@ const InfoMedicos = () => {
                 </div>
 
                 {/* Item5 */}
-                <div className="bg-white rounded-3xl shadow-md overflow-hidden max-w-sm">
+                <div className="bg-white rounded-3xl shadow-md overflow-hidden max-w-sm w-70">
                     <img src={ImagenDoctorGenerica} alt="Doctor" className="w-full h-60 object-cover" />
                     <div className="p-4 space-y-2">
                         <p className="bg-blue-100 rounded-full w-30 h-8 flex justify-center items-center font-semibold text-sm">
@@ -97,7 +97,7 @@ const InfoMedicos = () => {
                 </div>
 
                 {/* Item6 */}
-                <div className="bg-white rounded-3xl shadow-md overflow-hidden max-w-sm">
+                <div className="bg-white rounded-3xl shadow-md overflow-hidden max-w-sm w-70">
                     <img src={ImagenDoctorGenerica} alt="Doctor" className="w-full h-60 object-cover" />
                     <div className="p-4 space-y-2">
                         <p className="bg-blue-100 rounded-full w-30 h-8 flex justify-center items-center font-semibold text-sm">
@@ -115,7 +115,7 @@ const InfoMedicos = () => {
                 </div>
 
                 {/* Item7 */}
-                <div className="bg-white rounded-3xl shadow-md overflow-hidden max-w-sm">
+                <div className="bg-white rounded-3xl shadow-md overflow-hidden max-w-sm w-70">
                     <img src={ImagenDoctorGenerica} alt="Doctor" className="w-full h-60 object-cover" />
                     <div className="p-4 space-y-2">
                         <p className="bg-blue-100 rounded-full w-30 h-8 flex justify-center items-center font-semibold text-sm">
@@ -133,7 +133,7 @@ const InfoMedicos = () => {
                 </div>
 
                 {/* Item8 */}
-                <div className="bg-white rounded-3xl shadow-md overflow-hidden max-w-sm">
+                <div className="bg-white rounded-3xl shadow-md overflow-hidden max-w-sm w-70">
                     <img src={ImagenDoctorGenerica} alt="Doctor" className="w-full h-60 object-cover" />
                     <div className="p-4 space-y-2">
                         <p className="bg-blue-100 rounded-full w-30 h-8 flex justify-center items-center font-semibold text-sm">

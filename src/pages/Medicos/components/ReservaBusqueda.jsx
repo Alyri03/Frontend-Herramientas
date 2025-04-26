@@ -5,8 +5,8 @@ const ReservaBusqueda = () => {
     return (<>
         <section className="bg-sky-200 w-auto h-45 sm:h-55 md:h-65 flex flex-col items-center">
             <div className="flex flex-col items-center w-auto h-auto pt-10 sm:pt-15 md:pt-20">
-                <p className="text-2xl sm:text-3xl md:text-4xl"><b>¡Hola!, Encuentra aquí a tu</b></p> 
-                <p className="text-2xl sm:text-3xl md:text-4xl"><b>médico y</b> <b className="text-cyan-800">reserva tu cita</b></p>
+                <p className="md:text-4xl sm:text-3xl text-2xl"><b>¡Hola!, Encuentra aquí a tu</b></p> 
+                <p className="md:text-4xl sm:text-3xl text-2xl"><b>médico y</b> <b className="text-cyan-800">reserva tu cita</b></p>
             </div>
             <div className="w-auto h-auto pt-7 sm:pt-10 md:pt-13">
                 <div className="flex bg-stone-50 text-xs sm:text-sm md:text-base rounded-xl h-10" >
