@@ -11,6 +11,7 @@ const InfoMedicos = ({ medicoss }) => {
                         especialidad={doctores.especialidad}
                         nombre={doctores.nombre}
                         cmp={doctores.CMP}
+                        img={doctores.img}
                     />
                 ))}
             </div>
