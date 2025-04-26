@@ -12,7 +12,7 @@ const ReservaBusqueda = ({ onSearch }) => {
     }
 
     return (<>
-        <section className="bg-sky-200 w-auto h-45 sm:h-55 md:h-65 flex flex-col items-center">
+        <section className="bg-sky-200 w-auto h-45 sm:h-55 md:h-65 flex flex-col items-center" data-aos="fade-down">
             <div className="flex flex-col items-center w-auto h-auto pt-10 sm:pt-15 md:pt-20">
                 <p className="md:text-4xl sm:text-3xl text-2xl"><b>¡Hola!, Encuentra aquí a tu</b></p>
                 <p className="md:text-4xl sm:text-3xl text-2xl"><b>médico y</b> <b className="text-cyan-800">reserva tu cita</b></p>

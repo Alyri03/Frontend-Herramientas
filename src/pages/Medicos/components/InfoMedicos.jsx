@@ -3,11 +3,12 @@ import CardMedico from "./cardMedico"
 const InfoMedicos = ({ medicoss }) => {
 
     return (<>
-        <section className="pt-10 pb-10">
+        <section className="pt-10 pb-10" data-aos="fade-up">
             <div className="flex flex-wrap justify-around container m-auto sm:gap-9 gap-7">
                 {medicoss.map((doctores) => (
                     <CardMedico
                         key={doctores.id}
+                        data-aos-delay={50}
                         especialidad={doctores.especialidad}
                         nombre={doctores.nombre}
                         cmp={doctores.CMP}
@@ -16,7 +17,6 @@ const InfoMedicos = ({ medicoss }) => {
                 ))}
             </div>
         </section>
-
     </>)
 }
 
