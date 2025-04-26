@@ -19,7 +19,7 @@ const DetalleMedico = () => {
                         </a>
                     </div>
                 </div>
-
+                
                 {/* Info Doctor */}
                 <div className='2xl:w-[750px] xl:w-[650px] lg:w-[550px] h-auto lg:p-0 sm:pl-10 sm:pr-10 p-5'>
                     <div className='flex flex-col'>

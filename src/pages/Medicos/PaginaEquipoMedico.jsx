@@ -21,7 +21,7 @@ const EquipoMedico = () => {
         { id: 12, nombre: "Dra. Fuentes Rojas Paula", especialidad: "Reumatología", CMP: "46612" },
         { id: 13, nombre: "Dr. Delgado Ponce Álvaro", especialidad: "Oncología", CMP: "49534" },
         { id: 14, nombre: "Dra. Cabrera Torres Fiorella", especialidad: "Otorrinolaringología", CMP: "48845" },
-        { id: 15, nombre: "Dr. Núñez Salazar Bruno", especialidad: "Medicina Interna", CMP: "46231" },
+        { id: 15, nombre: "Dr. Núñez Salazar Bruno", especialidad: "Psicología", CMP: "46231" },
         { id: 16, nombre: "Dra. Palacios Guerra Andrea", especialidad: "Nefrología", CMP: "45320" },
         { id: 17, nombre: "Dr. Ríos Castro Sebastián", especialidad: "Traumatología", CMP: "51024" },
         { id: 18, nombre: "Dra. Soto Díaz Milagros", especialidad: "Infectología", CMP: "47563" },
