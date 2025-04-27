@@ -8,7 +8,6 @@ const InfoMedicos = ({ medicoss }) => {
                 {medicoss.map((doctores) => (
                     <CardMedico
                         key={doctores.id}
-                        data-aos-delay={50}
                         especialidad={doctores.especialidad}
                         nombre={doctores.nombre}
                         cmp={doctores.CMP}
