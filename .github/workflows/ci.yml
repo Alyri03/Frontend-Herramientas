@@ -30,4 +30,4 @@ jobs:
         run: |
           vercel --prod --token=${{ secrets.VERCEL_TOKEN }} \
           --scope ${{ secrets.VERCEL_ORG_ID }} \
-          --project ${{ secrets.VERCEL_PROJECT_ID }}
+          --confirm --cwd .
