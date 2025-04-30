@@ -29,5 +29,5 @@ jobs:
       - name: Desplegar en Vercel (Producción)
         run: |
           vercel --prod --token=${{ secrets.VERCEL_TOKEN }} \
-            --org ${{ secrets.VERCEL_ORG_ID }} \
-            --project ${{ secrets.VERCEL_PROJECT_ID }}
+          --scope ${{ secrets.VERCEL_ORG_ID }} \
+          --project ${{ secrets.VERCEL_PROJECT_ID }}
