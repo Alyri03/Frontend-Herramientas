@@ -20,6 +20,7 @@ jobs:
       - name: Instalar dependencias
         run: npm install
 
+      # Si luego configuras pruebas con Jest, descomenta esto:
       # - name: Ejecutar pruebas
       #   run: npm test -- --watchAll=false
 
@@ -33,3 +34,6 @@ jobs:
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
           working-directory: ./
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
