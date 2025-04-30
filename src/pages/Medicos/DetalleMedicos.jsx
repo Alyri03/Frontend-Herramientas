@@ -12,7 +12,7 @@ const DetalleMedico = () => {
                 <div className="flex flex-col justify-center items-center relative h-auto 2xl:w-[800px] xl:w-[700px] lg:w-[600px] lg:p-0 sm:p-10 p-5" data-aos="fade-right">
                     <img src={ImagenDoctorGenerica} alt="doctor" className="w-full object-cover" />
                     <div className="absolute bottom-0 w-full flex justify-between items-center border border-stone-200 bg-white border-t rounded-t-3xl sm:px-5 px-3 sm:py-3 py-2">
-                        <Link to="/equipo-medico" className="flex items-center text-blue-900 font-medium">
+                        <Link to="/medicos-equipo" className="flex items-center text-blue-900 font-medium">
                             <FontAwesomeIcon icon={faLongArrowLeft} className="mr-2" />
                             <p className='lg:text-lg md:text-md sm:text-sm text-[13px]'>Volver al listado</p>
                         </Link>
