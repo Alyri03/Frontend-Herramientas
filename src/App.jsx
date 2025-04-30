@@ -34,7 +34,7 @@ const Layout = () => {
 const App = () => {
   useEffect(() => {
     AOS.init({ duration: 800, once: true });
-    console.log("Prueba CI/CD con");
+    console.log("Prueba CI/CD 2");
   }, []);
 
   return (
