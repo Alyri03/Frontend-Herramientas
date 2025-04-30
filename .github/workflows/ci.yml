@@ -5,11 +5,11 @@ on:
     branches: [main]
 
 jobs:
-  build-test-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Clonar repo
+      - name: Clonar repositorio
         uses: actions/checkout@v3
 
       - name: Configurar Node.js
@@ -20,17 +20,14 @@ jobs:
       - name: Instalar dependencias
         run: npm install
 
-      # - name: Ejecutar pruebas
-      #   run: npm test -- --watchAll=false
-
-      - name: Construir app
+      - name: Construir aplicación
         run: npm run build
 
-      - name: Desplegar en Vercel
-        uses: amondnet/vercel-action@v20
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          working-directory: ./
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      - name: Instalar Vercel CLI
+        run: npm install --global vercel
+
+      - name: Desplegar en Vercel (Producción)
+        run: |
+          vercel --prod --token=${{ secrets.VERCEL_TOKEN }} \
+            --org ${{ secrets.VERCEL_ORG_ID }} \
+            --project ${{ secrets.VERCEL_PROJECT_ID }}
