@@ -2,9 +2,17 @@ import ImagenDoctorGenerica from '../../assets/images/ImagenDoctorGenerica.jpg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLongArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import Preefooter from '../../components/Preefooter';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const DetalleMedico = () => {
+
+    const param = useParams()
+
+    useEffect(() => {
+        console.log(param.id)
+    })
+
     return (<>
         <section className='lg:pt-5 pt-1 lg:pb-5 pb-1 xl:p-5 lg:p-3'>
             <div className="lg:flex justify-center align-center gap-10">

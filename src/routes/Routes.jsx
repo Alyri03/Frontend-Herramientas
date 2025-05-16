@@ -22,7 +22,7 @@ const AppRoutes = () => {
       <Route path="/nosotros" element={<PaginaNosotros />} />
       <Route path="/especialidades" element={<PaginaEspecialidades />} />
       <Route path="/medicos-equipo" element={<EquipoMedico />}/>
-      <Route path="/detalle-medico" element={<DetalleMedico />}/>
+      <Route path="/detalle-medico/:id" element={<DetalleMedico />}/>
       <Route path="/contactanos" element={<Contactanos />} />
       <Route path="/servicios" element={<PaginaServicios />} />
       <Route path="/login" element={<Login />} />
