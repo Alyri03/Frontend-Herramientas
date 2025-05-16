@@ -9,8 +9,8 @@ const InfoMedicos = ({ medicoss }) => {
                     <CardMedico
                         key={idx}
                         especialidad={doctores.especialidad}
-                        nombre={doctores.nombre}
-                        cmp={doctores.CMP}
+                        nombre={doctores.nombres}
+                        cmp={doctores.numeroRNE}
                         img={doctores.img}
                     />
                 ))}
