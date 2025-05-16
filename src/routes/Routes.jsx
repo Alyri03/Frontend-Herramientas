@@ -12,6 +12,7 @@ import Inicio from '../pages/ClinicaVirtual/Inicio.jsx';
 import NoDisponible from '../pages/NoDisponible.jsx';
 import EquipoMedico from '../pages/Medicos/PaginaEquipoMedico.jsx';
 import DetalleMedico from '../pages/Medicos/DetalleMedicos.jsx';
+import DetalleEspecialidades from '../pages/Especilidades/DetalleEspecialidades.jsx';
 
 
 
@@ -27,6 +28,7 @@ const AppRoutes = () => {
       <Route path="/servicios" element={<PaginaServicios />} />
       <Route path="/login" element={<Login />} />
       <Route path="/registro" element={<Register />} />
+      <Route path='/detalle-especialidad' element={<DetalleEspecialidades/>}/>
 
       <Route path="/clinica-virtual" element={<ClientLayout />}>
         <Route path="inicio" element={<Inicio />} />
