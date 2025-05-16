@@ -12,7 +12,6 @@ const EquipoMedico = () => {
     useEffect(() => {
         axios.get('https://backend-dev-desarrollo.up.railway.app/api/medicos').then((res) => {
             setMedicos(res.data)
-            console.log(medicos)
         })
 
 
