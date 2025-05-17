@@ -8,10 +8,13 @@ export const loginRequest = async (email, password) => {
         const response = await axios.post(baseUrl, {
             correo : email, 
             password : password
+        } , {
+            withCredentials: true
         });
         return response.data;
 
     } catch (error) {
         console.error('Error al autenticar el usuario: ' , error)
+        throw Error
     }
 }
