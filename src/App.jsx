@@ -4,8 +4,8 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 import AppRoutes from '@/routes/Routes.jsx';
-import Header from './components/Header';
-import Footer from './components/Footer';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 const Layout = () => {
   const location = useLocation();
@@ -14,11 +14,7 @@ const Layout = () => {
     '*',
     '/login',
     '/registro',
-    '/clinica-virtual/',
-    '/clinica-virtual/inicio',
-    '/clinica-virtual/mis-citas',
-    '/clinica-virtual/resultados',
-    '/clinica-virtual/historial-clinico'
+    '/intranet',
   ].some((path) => location.pathname.startsWith(path)) || location.pathname === '/404';
 
   return (
@@ -30,11 +26,9 @@ const Layout = () => {
   );
 };
 
-
 const App = () => {
   useEffect(() => {
     AOS.init({ duration: 800, once: true });
-    console.log("Prueba CI/CD 2");
   }, []);
 
   return (

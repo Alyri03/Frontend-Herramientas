@@ -20,6 +20,9 @@ jobs:
       - name: Instalar dependencias
         run: npm install
 
+      - name: Ejercutar pruebas
+        run: npm test -- --watchAll=false
+
       - name: Construir aplicación
         run: npm run build
 

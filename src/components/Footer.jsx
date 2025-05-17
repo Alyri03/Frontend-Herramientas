@@ -1,4 +1,5 @@
-import Logo from "../assets/images/Logo.png";
+import Logo from "@/assets/images/Logo.png";
+
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay } from 'swiper/modules';
 

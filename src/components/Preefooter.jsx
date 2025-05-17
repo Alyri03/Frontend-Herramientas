@@ -1,5 +1,5 @@
-import centralImg from '../assets/images/central_footer.png';
-import ubicanosImg from '../assets/images/ubicanos_footer.png';
+import centralImg from "@/assets/images/central_footer.png";
+import ubicanosImg from "@/assets/images/ubicanos_footer.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
