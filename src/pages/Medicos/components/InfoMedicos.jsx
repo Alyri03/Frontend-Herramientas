@@ -8,9 +8,9 @@ const InfoMedicos = ({ medicoss }) => {
                 {medicoss.map((doctores, idx) => (
                     <CardMedico
                         key={idx}
-                        // especialidad={doctores.especialidad}
-                        nombre={doctores.nombres}
-                        cmp={doctores.numeroColegiatura}
+                        especialidad={doctores.nombreEspecialidad}
+                        nombre={doctores.nombreMedico}
+                        codigo={doctores.numeroColegiatura != null ? doctores.numeroColegiatura : doctores.numeroRNE }
                         id={doctores.id}
                     />
                 ))}
