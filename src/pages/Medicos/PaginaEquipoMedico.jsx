@@ -13,8 +13,6 @@ const EquipoMedico = () => {
         axios.get('https://backend-dev-desarrollo.up.railway.app/api/medicos').then((res) => {
             setMedicos(res.data)
         })
-
-
     }, [])
 
     const filtrarMedicos = medicos.filter((medico) => {
