@@ -1,7 +1,26 @@
 import login from '../../assets/images/login.png'
-
+import { loginRequest } from '../../services/Login'
 
 export const Login = () => {
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+
+        const email = e.target.email.value
+        const password = e.target.password.value
+
+        try {
+            const resLogin = await loginRequest(email, password);
+            console.log(resLogin)
+        } catch (error) {
+            console.error('Error del servidor')
+        }
+
+
+    }
+
+
+
     return (
         <article className="flex flex-col md:flex-row items-center justify-center h-full w-full ">
 
@@ -10,19 +29,19 @@ export const Login = () => {
 
             </div>
 
-            <form className='flex flex-col gap-6 w-full md:w-1/2  p-8 justify-center text-center'>
+            <form onSubmit={handleSubmit} className='flex flex-col gap-6 w-full md:w-1/2  p-8 justify-center text-center'>
 
-                
+
                 <h1 className='text-5xl font-bold mb-12 '>Inicia sesion</h1>
 
                 <p className='font-semibold text-left text-2xl'>Ingresa tus datos</p>
 
                 <div className='flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600'>
-                    <input required type="text" name="email" id="email" class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" placeholder="Correo electrónico" />
+                    <input required type="text" name="email" id="email" className="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" placeholder="Correo electrónico" />
                 </div>
 
                 <div className='flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600'>
-                    <input required type="text" name="password" id="password" class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" placeholder="Contraseña" />
+                    <input required type="text" name="password" id="password" className="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" placeholder="Contraseña" />
                 </div>
 
 
