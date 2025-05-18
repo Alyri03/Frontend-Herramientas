@@ -6,7 +6,7 @@ import { UserContext } from "../context/user";
 const Header = () => {
   const [menu, setMenu] = useState(false);
   const [nav, setNav] = useState(false);
-  const {user} = useContext(UserContext)
+  const { user } = useContext(UserContext)
 
   const navItems = [
     { name: "Nosotros", href: "/nosotros" },
@@ -133,7 +133,12 @@ const Header = () => {
             {/* Botón Mobile */}
             <div>
               <Link
-                to={user.role === null ? '/login' : '/clinica-virtual'}
+                to={user.role === "PACIENTE" 
+                  ? '/clinica-virtual' 
+                  : user.role === "MEDICO" 
+                  ? '/clinica-virtual' 
+                  : '/login'
+                }
                 className="w-full block border-[3px] border-[#2F71A1] text-[#2F71A1] text-center py-2.5 rounded-full font-semibold hover:bg-[#2F71A1] hover:text-white transition"
               >
                 Mi Clínica Virtual
