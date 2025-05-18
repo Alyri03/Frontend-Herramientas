@@ -22,6 +22,7 @@ import NoDisponible from '@/pages/NoDisponible.jsx';
 import IntranetLayout from '@/pages/Intranet/IntranetLayout.jsx';
 import InicioPaciente from '@/pages/Intranet/paciente/InicioPaciente.jsx';
 import HistorialPaciente from '@/pages/Intranet/paciente/HistorialPaciente';
+import { MisPacientes } from '../pages/Intranet/medico/Pacientes';
 
 const AppRoutes = () => {
   return (
@@ -46,6 +47,12 @@ const AppRoutes = () => {
         <Route path="paciente/citas" element={<h1>Citas</h1>} />
         <Route path="paciente/historial" element={<HistorialPaciente/>} />
         <Route path="paciente/perfil" element={<h1>Perfil</h1>} />
+
+        <Route path="medico/pacientes" element={<MisPacientes/>} />
+
+
+
+
       </Route>
 
       {/* ❌ Ruta no encontrada */}
