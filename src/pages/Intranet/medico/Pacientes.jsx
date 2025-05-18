@@ -2,10 +2,34 @@ import { useState } from "react"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../../components/ui/table"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Eye, File } from "lucide-react";
+import { ChevronDown, Eye, File } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { CardTitle } from "../../../components/ui/card";
 import { Input } from "../../../components/ui/input"
+import {
+    DropdownMenu,
+    DropdownMenuTrigger,
+    DropdownMenuContent,
+    DropdownMenuCheckboxItem
+} from "../../../components/ui/dropdown-menu"
+
+const filter = [
+    {
+        estado: 'Activo'
+    },
+    {
+        estado: 'En tratamiento'
+    },
+    {
+        estado: 'En evaluación'
+    },
+    {
+        estado: 'Todos'
+    }
+]
+
+
+
 
 const data = [
     {
@@ -55,8 +79,15 @@ const data = [
 
 export const MisPacientes = () => {
 
+    const [sorting, setSorting] = useState("");
     const [selected, setSelected] = useState(null);
 
+
+    const filtrarPacientes = data.filter((paciente) => {
+        return (
+            paciente.nombre.toLowerCase().includes(sorting.toLowerCase())
+        );
+    });
 
     return (
         <>
@@ -66,15 +97,40 @@ export const MisPacientes = () => {
                 <Button className={`bg-green-500 text-green-50 shadow hover:bg-green-600`}> + Nuevo paciente</Button>
 
                 <Input
-                    placeholder="Filter emails..."
-                    //   value={(table.getColumn("email")?.getFilterValue()) ?? ""}
+                    placeholder="Buscar paciente..."
                     onChange={(event) =>
-                        table.getColumn("email")?.setFilterValue(event.target.value)
+                        setSorting(event.target.value)
                     }
                     className="max-w-sm"
                 />
 
-                    
+
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button variant="outline" className="ml-auto">
+                            Todos <ChevronDown />
+                        </Button>
+                    </DropdownMenuTrigger>
+
+                    <DropdownMenuContent align="end">
+                        {filter.map((opt, index) => (
+                            <DropdownMenuCheckboxItem
+                                className={"capitalize"}
+                                checked={true}
+                                onCheckedChange={(value) =>
+                                    column.toggleVisibility(!!value)
+                                }
+                            >
+                                {opt.estado}
+                            </DropdownMenuCheckboxItem>
+                        ))}
+
+
+                    </DropdownMenuContent>
+
+
+
+                </DropdownMenu>
 
 
             </div>
@@ -95,7 +151,7 @@ export const MisPacientes = () => {
                     </TableHeader>
 
                     <TableBody>
-                        {data.map((item, index) => (
+                        {filtrarPacientes.map((item, index) => (
                             <TableRow key={index}>
                                 <TableCell className={'flex flex-col'}>
                                     <span className="font-medium">{item.nombre}</span>
