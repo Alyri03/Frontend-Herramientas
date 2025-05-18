@@ -13,7 +13,7 @@ const SpecialtyGrid = ({ especialidades }) => {
           data-aos-delay={index * 50}
         >
           <CardEspecialidad
-            titulo={especialidad.titulo}
+            titulo={especialidad.nombre}
             icono={especialidad.icono}
           />
         </Link>
