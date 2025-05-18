@@ -1,9 +1,10 @@
-import * as React from "react"
-import { ChevronLeft, ChevronRight } from "lucide-react"
-import { DayPicker } from "react-day-picker"
+import * as React from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { DayPicker } from "react-day-picker";
+import { es } from "date-fns/locale"; // ⬅️ Importa localización española
 
-import { cn } from "@/lib/utils"
-import { buttonVariants } from "@/components/ui/button"
+import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/components/ui/button";
 
 function Calendar({
   className,
@@ -13,6 +14,7 @@ function Calendar({
 }) {
   return (
     <DayPicker
+      locale={es} // ⬅️ Añade esto para idioma español
       showOutsideDays={showOutsideDays}
       className={cn("p-3", className)}
       classNames={{
@@ -65,8 +67,9 @@ function Calendar({
           <ChevronRight className={cn("size-4", className)} {...props} />
         ),
       }}
-      {...props} />
+      {...props}
+    />
   );
 }
 
-export { Calendar }
+export { Calendar };

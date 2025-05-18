@@ -21,7 +21,9 @@ import NoDisponible from '@/pages/NoDisponible.jsx';
 // 🧑‍💼 Intranet
 import IntranetLayout from '@/pages/Intranet/IntranetLayout.jsx';
 import InicioPaciente from '@/pages/Intranet/paciente/InicioPaciente.jsx';
+import CitasPaciente from '@/pages/Intranet/paciente/CitasPaciente';
 import HistorialPaciente from '@/pages/Intranet/paciente/HistorialPaciente';
+import PerfilPaciente from '@/pages/Intranet/paciente/PerfilPaciente';
 
 const AppRoutes = () => {
   return (
@@ -43,9 +45,9 @@ const AppRoutes = () => {
       <Route path="/intranet" element={<IntranetLayout />}>
         <Route index element={<InicioPaciente />} />
         <Route path="paciente" element={<InicioPaciente />} />
-        <Route path="paciente/citas" element={<h1>Citas</h1>} />
+        <Route path="paciente/citas" element={<CitasPaciente/>}/>
         <Route path="paciente/historial" element={<HistorialPaciente/>} />
-        <Route path="paciente/perfil" element={<h1>Perfil</h1>} />
+        <Route path="paciente/perfil" element={<PerfilPaciente/>} />
       </Route>
 
       {/* ❌ Ruta no encontrada */}
