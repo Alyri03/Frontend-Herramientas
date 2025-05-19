@@ -4,7 +4,7 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Activity, ArrowLeft, Calendar, ChevronDown, Eye, File, FileText, Funnel, MoveLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardTitle } from "../../../components/ui/card";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "../../../components/ui/card";
 import { Input } from "../../../components/ui/input"
 import {
     DropdownMenu,
@@ -112,57 +112,59 @@ export const MisPacientes = () => {
                 <span className="leading-7 [&:not(:first-child)]:mt-6">Gestiona la información de tus pacientes</span>
             </div>
 
-            <div className="flex items-center py-4 gap-6">
+            <div className="flex flex-wrap items-center gap-4 py-4 justify-between">
 
                 <Button className={`bg-green-500 text-green-50 shadow hover:bg-green-600`}> + Nuevo paciente</Button>
 
-                <Input
-                    placeholder="Buscar paciente..."
-                    onChange={(event) =>
-                        setSorting(event.target.value)
-                    }
-                    className="max-w-sm"
-                />
+
+                <div className="flex flex-row gap-5 items-center">
+                    <Input
+                        placeholder="Buscar paciente..."
+                        onChange={(event) =>
+                            setSorting(event.target.value)
+                        }
+                        className="w-full"
+                    />
 
 
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button variant="outline" className="ml-auto">
-                            Todos <ChevronDown />
-                        </Button>
-                    </DropdownMenuTrigger>
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button variant="outline" className="ml-auto">
+                                Todos <ChevronDown />
+                            </Button>
+                        </DropdownMenuTrigger>
 
-                    <DropdownMenuContent align="end">
-                        {filterOptions.map((opt, index) => (
-                            <DropdownMenuCheckboxItem
-                                key={index}
-                                className={"capitalize"}
-                                checked={opt.visible}
-                                onCheckedChange={() => {
-                                    const updated = filterOptions.map((item, i) => ({
-                                        ...item,
-                                        visible: i === index
-                                    }))
+                        <DropdownMenuContent align="end">
+                            {filterOptions.map((opt, index) => (
+                                <DropdownMenuCheckboxItem
+                                    key={index}
+                                    className={"capitalize"}
+                                    checked={opt.visible}
+                                    onCheckedChange={() => {
+                                        const updated = filterOptions.map((item, i) => ({
+                                            ...item,
+                                            visible: i === index
+                                        }))
 
-                                    setFilterOptions(updated)
-                                }
-                                }
-                            >
-                                {opt.estado}
-                            </DropdownMenuCheckboxItem>
-                        ))}
-                    </DropdownMenuContent>
-
-
-
-                </DropdownMenu>
+                                        setFilterOptions(updated)
+                                    }
+                                    }
+                                >
+                                    {opt.estado}
+                                </DropdownMenuCheckboxItem>
+                            ))}
+                        </DropdownMenuContent>
 
 
 
-                <Button>
-                    <Funnel /> Mas filtros
-                </Button>
+                    </DropdownMenu>
 
+
+
+                    <Button>
+                        <Funnel /> Mas filtros
+                    </Button>
+                </div>
             </div>
 
             <Tabs defaultValue="lista">
@@ -187,7 +189,7 @@ export const MisPacientes = () => {
                                 </TableRow>
                             </TableHeader>
 
-                            <TableBody>
+                            <TableBody className="items-center">
                                 {filtrarPacientes.map((item, index) => (
                                     <TableRow key={index}>
                                         <TableCell className={'flex flex-col'}>
@@ -240,62 +242,91 @@ export const MisPacientes = () => {
                     </div>
                 </TabsContent>
 
-                <TabsContent value="tarjetas" className="grid grid-cols-3">
-                    {data.map((item, index) => (
-                        <div className="p-4">
+                <TabsContent value="tarjetas" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {filtrarPacientes.map((item, index) => (
 
-                            <Card className="w-[442px] items-left p-4">
-                                <div className="flex flex-row gap-3">
+                        <Card className="w-full max-w-md">
+                            <CardHeader>
+                                <CardTitle className="flex flex-row space-x-3 items-center">
+
                                     <Avatar className='size-12'>
                                         <AvatarImage src='https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-5.png' alt='Hallie Richards' />
                                         <AvatarFallback className="text-blue-600 mb-2">HR</AvatarFallback>
                                     </Avatar>
 
                                     <div>
-                                        <h1>{item.nombre}</h1>
-                                        <span>{item.edad} años • {item.sexo}</span>
+                                        <h2>{item.nombre}</h2>
+                                        <p className="text-sm text-muted-foreground">{item.edad} años • {item.sexo}</p>
                                     </div>
 
-                                </div>
+                                </CardTitle>
+                            </CardHeader>
 
-                                <div className="flex flex-row gap-30">
+                            <CardContent className="flex flex-col gap-3">
+
+                                <div className="flex flex-row justify-between">
+
                                     <div className="flex flex-row items-center gap-2">
                                         <Activity />
                                         <div>
                                             <p className="text-xs text-muted-foreground">Condicion:</p>
-                                            <h1>{item.condicion}</h1>
+                                            <p className="text-sm">{item.condicion}</p>
                                         </div>
                                     </div>
                                     <div className="flex flex-row items-center gap-2">
                                         <Calendar />
                                         <div>
                                             <p className="text-xs text-muted-foreground">Última visita:</p>
-                                            <h1>{item.ultimaVisita}</h1>
+                                            <p className="text-sm">{item.ultimaVisita}</p>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div className="flex flex-row gap-20 items-center">
+                                <div className="flex flex-row justify-between items-center gap-2 w-full">
                                     <Badge
                                         className={`px-2 py-1 text-xs ${item.estado === "En tratamiento" ? 'bg-blue-100 text-blue-600'
                                             : item.estado === 'Activo' ? 'bg-green-100 text-green-600' : 'bg-yellow-100 text-yellow-600'
-                                            }`}
-                                    >{item.estado}</Badge>
+                                            }`}>
+                                        {item.estado}
+                                    </Badge>
 
-                                    <div className="flex flex-row gap-4">
-                                        <Button>
-                                            <Eye /> Ver perfil
-                                        </Button>
-                                        <Button>
+                                    <div className="flex flex-row gap-3">
+
+                                        <Dialog>
+                                            <DialogTrigger asChild>
+                                                <Button variant="outline" size="sm" onClick={() => setSelected(item)}>
+                                                    <Eye /> Ver perfil
+                                                </Button>
+                                            </DialogTrigger>
+                                            <DialogContent className="max-w-md">
+                                                <h3 className="text-lg font-semibold mb-2">Detalle del registro</h3>
+                                                {selected && (
+                                                    <ul className="text-sm space-y-1">
+                                                        <li><strong>Nombre:</strong> {selected.nombre}</li>
+                                                        <li><strong>Edad:</strong> {selected.edad}</li>
+                                                        <li><strong>Condicion:</strong> {selected.condicion}</li>
+                                                        <li><strong>Ultima visita:</strong> {selected.ultimaVisita}</li>
+                                                        <li><strong>Estado:</strong> {selected.estado}</li>
+                                                    </ul>
+                                                )}
+                                            </DialogContent>
+                                        </Dialog>
+
+
+
+
+
+                                        <Button variant="outline" size="sm">
                                             <FileText /> Expediente
                                         </Button>
                                     </div>
 
                                 </div>
 
-                            </Card>
+                            </CardContent>
 
-                        </div>
+                        </Card>
+
                     ))}
                 </TabsContent>
 
