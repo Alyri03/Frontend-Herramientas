@@ -103,7 +103,7 @@ export const MisPacientes = () => {
 
             <div>
 
-                <Link className="inline-flex items-center text-blue-600 mb-2" href="">
+                <Link className="inline-flex items-center text-blue-600 mb-2" to="/intranet/medico">
                     <ArrowLeft /> Volver al dashboard
                 </Link>
                 <h1 className="scroll-m-20 text-4xl font-semibold tracking-tight lg:text-3xl">

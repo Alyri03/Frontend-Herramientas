@@ -23,6 +23,7 @@ import IntranetLayout from '@/pages/Intranet/IntranetLayout.jsx';
 import InicioPaciente from '@/pages/Intranet/paciente/InicioPaciente.jsx';
 import HistorialPaciente from '@/pages/Intranet/paciente/HistorialPaciente';
 import { MisPacientes } from '../pages/Intranet/medico/Pacientes';
+import InicioMedico from '../pages/Intranet/medico/InicioMedico';
 
 const AppRoutes = () => {
   return (
@@ -42,12 +43,15 @@ const AppRoutes = () => {
 
       {/* 🔒 Intranet protegida */}
       <Route path="/intranet" element={<IntranetLayout />}>
+        {/* Paciente */}
         <Route index element={<InicioPaciente />} />
         <Route path="paciente" element={<InicioPaciente />} />
         <Route path="paciente/citas" element={<h1>Citas</h1>} />
         <Route path="paciente/historial" element={<HistorialPaciente/>} />
         <Route path="paciente/perfil" element={<h1>Perfil</h1>} />
 
+        {/* Médico */}
+        <Route path="medico" element={<InicioMedico/>} />
         <Route path="medico/pacientes" element={<MisPacientes/>} />
 
 
