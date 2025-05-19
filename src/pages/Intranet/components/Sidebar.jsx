@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { AuthContext } from "@/context/authContext";
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -20,7 +21,6 @@ import {
   LogOut,
 } from "lucide-react";
 
-// Hook para detectar si está en escritorio
 function useEsEscritorio() {
   const [esEscritorio, setEsEscritorio] = useState(window.innerWidth >= 768);
 
@@ -37,22 +37,33 @@ function useEsEscritorio() {
 
 export default function Sidebar() {
   const location = useLocation();
-  const [colapsado, setColapsado] = useState(false);
   const esEscritorio = useEsEscritorio();
+  const [colapsado, setColapsado] = useState(false);
+  const { user, logout } = useContext(AuthContext);
 
-  const navItems = [
-    { label: "Inicio", icon: <Home size={18} />, to: "/intranet/paciente" },
-    { label: "Mis citas", icon: <CalendarCheck size={18} />, to: "/intranet/paciente/citas" },
-    { label: "Historial", icon: <NotebookText size={18} />, to: "/intranet/paciente/historial" },
-    { label: "Mi Perfil", icon: <User size={18} />, to: "/intranet/paciente/perfil" },
-  ];
+  // 🧠 Rutas dinámicas según el rol
+  let navItems = [];
+
+  if (user?.role === "PACIENTE") {
+    navItems = [
+      { label: "Inicio", icon: <Home size={18} />, to: "/intranet/paciente" },
+      { label: "Mis citas", icon: <CalendarCheck size={18} />, to: "/intranet/paciente/citas" },
+      { label: "Historial", icon: <NotebookText size={18} />, to: "/intranet/paciente/historial" },
+      { label: "Mi Perfil", icon: <User size={18} />, to: "/intranet/paciente/perfil" },
+    ];
+  } else if (user?.role === "MEDICO") {
+    navItems = [
+      { label: "Inicio", icon: <Home size={18} />, to: "/intranet/medico" },
+      { label: "Mis pacientes", icon: <User size={18} />, to: "/intranet/medico/pacientes" },
+      { label: "Agenda", icon: <CalendarCheck size={18} />, to: "/intranet/medico/agenda" },
+      { label: "Perfil", icon: <User size={18} />, to: "/intranet/medico/perfil" },
+    ];
+  }
 
   const NavLinks = () => (
     <>
       <div className="flex items-center justify-between mb-4">
         {!colapsado && <h2 className="text-xl font-bold">Clínica ICA</h2>}
-
-        {/* Solo visible en escritorio */}
         <button
           onClick={() => setColapsado(!colapsado)}
           className="hidden md:inline-flex text-muted-foreground hover:text-blue-600 transition"
@@ -61,13 +72,10 @@ export default function Sidebar() {
           {colapsado ? <ChevronLast size={20} /> : <ChevronFirst size={20} />}
         </button>
       </div>
-
       {!colapsado && <Separator className="mb-4" />}
-
       <div className="space-y-2">
         {navItems.map((item) => {
           const esColapsado = colapsado && esEscritorio;
-
           return (
             <Link
               key={item.to}
@@ -91,6 +99,7 @@ export default function Sidebar() {
 
   const UserInfo = () => {
     const esColapsado = colapsado && esEscritorio;
+    const iniciales = user?.nombre?.slice(0, 2).toUpperCase() || "US";
 
     return (
       <div className="text-sm border-t pt-4">
@@ -102,17 +111,17 @@ export default function Sidebar() {
                   className="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-semibold text-xs hover:opacity-90 transition"
                   title="Opciones de usuario"
                 >
-                  LE
+                  {iniciales}
                 </button>
               </PopoverTrigger>
               <PopoverContent align="start" className="w-48 p-2">
                 <div className="mb-2">
-                  <p className="font-medium">Luis Enrique</p>
-                  <p className="text-xs text-muted-foreground">luis.enrique@email.com</p>
+                  <p className="font-medium">{user?.nombre || "Usuario"}</p>
+                  <p className="text-xs text-muted-foreground">{user?.correo}</p>
                 </div>
                 <Separator />
                 <button
-                  onClick={() => alert("Sesión cerrada 😄")}
+                  onClick={logout}
                   className="w-full text-sm text-left text-red-600 hover:bg-red-50 px-2 py-1 rounded-md transition"
                 >
                   Cerrar sesión
@@ -124,15 +133,15 @@ export default function Sidebar() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <div className="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-semibold text-xs">
-                LE
+                {iniciales}
               </div>
               <div>
-                <p className="font-medium">Luis Enrique</p>
-                <p className="text-xs text-muted-foreground">luis.enrique@email.com</p>
+                <p className="font-medium">{user?.nombre || "Usuario"}</p>
+                <p className="text-xs text-muted-foreground">{user?.correo}</p>
               </div>
             </div>
             <button
-              onClick={() => alert("Sesión cerrada 😄")}
+              onClick={logout}
               className="text-gray-400 hover:text-red-600 transition-colors duration-500"
               title="Cerrar sesión"
             >
@@ -146,7 +155,7 @@ export default function Sidebar() {
 
   return (
     <>
-      {/* 📱 Sidebar en mobile (☰) */}
+      {/* 📱 Sidebar en mobile */}
       <Sheet>
         <SheetTrigger asChild>
           <Button variant="ghost" className="md:hidden fixed top-4 left-4 z-50">

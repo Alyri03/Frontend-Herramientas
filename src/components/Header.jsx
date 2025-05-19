@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 import Logo from "@/assets/images/Logo.png";
 import { useContext, useState } from "react";
-
+import { AuthContext } from '../context/authContext';
 
 const Header = () => {
   const [menu, setMenu] = useState(false);
   const [nav, setNav] = useState(false);
-  const { user } = useContext(UserContext)
+  const { user } = useContext(AuthContext);
 
   const navItems = [
     { name: "Nosotros", href: "/nosotros" },

@@ -1,15 +1,18 @@
 import { useContext, useState } from 'react'
-import login from '../../assets/images/login.png'
-import { loginRequest } from '../../services/Login'
+import loginImg from '../../../assets/images/login.png'
+import { loginRequest } from '@/services/auth'
 import { useNavigate } from 'react-router-dom';
-import { UserContext } from '../../context/user';
+import { AuthContext } from "@/context/authContext";
+
+
 
 export const Login = () => {
 
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
-    const { setUser } = useContext(UserContext)
+    const { login } = useContext(AuthContext); 
+
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -23,7 +26,7 @@ export const Login = () => {
         try {
             const resLogin = await loginRequest(email, password);
             navigate("/")
-            setUser(resLogin)
+            login(resLogin); 
             console.log(resLogin)
         } catch (error) {
             console.error('Error del servidor')
@@ -33,13 +36,11 @@ export const Login = () => {
         }
     }
 
-
-
     return (
         <article className="flex flex-col md:flex-row items-center justify-center h-full w-full ">
 
             <div className="hidden md:block w-1/2">
-                <img src={login} className='object-contain w-full h-dvh' />
+                <img src={loginImg} className='object-contain w-full h-dvh' />
 
             </div>
 
