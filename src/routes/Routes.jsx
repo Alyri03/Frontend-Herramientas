@@ -28,8 +28,8 @@ const AppRoutes = () => {
       <Route path="/servicios" element={<PaginaServicios />} />
       <Route path="/login" element={<Login />} />
       <Route path="/registro" element={<Register />} />
-      <Route path='/detalle-especialidad' element={<DetalleEspecialidades/>}/>
-
+      <Route path="/detalle-especialidad/:id" element={<DetalleEspecialidades />} />
+      
       <Route path="/clinica-virtual" element={<ClientLayout />}>
         <Route path="inicio" element={<Inicio />} />
       </Route>

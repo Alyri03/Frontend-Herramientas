@@ -9,7 +9,7 @@ const SpecialtyGrid = ({ especialidades }) => {
           key={especialidad.id}
           className="flex justify-center items-center"
           data-aos="fade-up"
-          to={"/detalle-especialidad"}
+          to={`/detalle-especialidad/${especialidad.id}`}
           data-aos-delay={index * 50}
         >
           <CardEspecialidad

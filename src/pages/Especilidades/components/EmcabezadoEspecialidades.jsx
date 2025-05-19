@@ -23,3 +23,4 @@ export default function EncabezadoEspecialidad({ titulo, descripcion, imagenSrc 
     </div>
   )
 }
+
