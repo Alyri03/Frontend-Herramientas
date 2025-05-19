@@ -8,7 +8,7 @@ const CardMedico = ({especialidad, nombre, codigo, id}) => {
         <div className="bg-white rounded-3xl shadow-md overflow-hidden max-w-sm w-70">
             <img src={ImagenDoctorGenerica} alt="Doctor" className="w-full h-60 object-cover" />
             <div className="p-4 space-y-2">
-                <p className="bg-blue-100 rounded-full px-5 w-min h-8 flex justify-center items-center font-semibold text-sm">
+                <p className="bg-blue-100 rounded-full px-5 w-fit h-8 flex justify-center items-center font-semibold text-sm">
                     {especialidad}
                 </p>
                 <div>
