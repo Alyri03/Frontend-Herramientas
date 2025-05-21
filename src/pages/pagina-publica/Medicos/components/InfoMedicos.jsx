@@ -11,7 +11,7 @@ const InfoMedicos = ({ medicoss }) => {
                         especialidad={doctores.nombreEspecialidad}
                         nombre={doctores.nombreMedico}
                         codigo={doctores.numeroColegiatura != null ? doctores.numeroColegiatura : doctores.numeroRNE }
-                        id={doctores.id}
+                        id={doctores.medicoId}
                     />
                 ))}
             </div>
