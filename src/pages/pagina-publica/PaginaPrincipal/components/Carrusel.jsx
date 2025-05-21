@@ -17,9 +17,7 @@ const Carrusel = () => {
     if (swiperRef.current) swiperRef.current.slideNext();
   };
 
-  const imagen =
-    'https://images.pexels.com/photos/4260643/pexels-photo-4260643.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1';
-
+  
   const slides = [
     {
       titulo: 'Conéctate desde cualquier lugar.',

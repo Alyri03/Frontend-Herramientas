@@ -1,23 +1,29 @@
 import { useEffect, useState } from "react";
-import Preefooter from "../../components/Preefooter"
+import Preefooter from "@/components/Preefooter"
 import InfoMedicos from "./components/InfoMedicos"
+import Spinner from "@/components/Spinner";
 import ReservaBusqueda from "./components/ReservaBusqueda"
-import axios from 'axios'
-import { medicoEspecialidad } from "../../services/equipoMedico";
-
+import { medicoEspecialidad } from "../../../services/equipoMedicoService";
 const EquipoMedico = () => {
     const [buscarMedicos, setBuscarMedicos] = useState("");
 
+    const [loading, setLoading] = useState(true);
     const [medicos, setMedicos] = useState([]);
-
     useEffect(() => {
         const obtenerMedicos = async () => {
-            const data = await medicoEspecialidad();
-            setMedicos(data);
-        }
+            setLoading(true);
+            try {
+                const data = await medicoEspecialidad();
+                setMedicos(data);
+            } catch (error) {
+                console.error("Error cargando médicos", error);
+            } finally {
+                setLoading(false);
+            }
+        };
 
         obtenerMedicos();
-    }, [])
+    }, []);
 
     const filtrarMedicos = medicos.filter((medico) => {
         return (
@@ -31,11 +37,18 @@ const EquipoMedico = () => {
         setBuscarMedicos(term)
     }
 
-    return (<>
-        <ReservaBusqueda onSearch={busqueda} />
-        <InfoMedicos medicoss={filtrarMedicos} />
-        <Preefooter />
-    </>)
+    return (
+        <>
+            <ReservaBusqueda onSearch={busqueda} />
+            {loading ? (
+                <Spinner />
+            ) : (
+                <InfoMedicos medicoss={filtrarMedicos} />
+            )}
+            <Preefooter />
+        </>
+    );
+
 }
 
 export default EquipoMedico

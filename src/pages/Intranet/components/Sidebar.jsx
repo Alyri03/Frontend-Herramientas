@@ -9,6 +9,15 @@ import {
   PopoverTrigger,
   PopoverContent,
 } from "@/components/ui/popover";
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogFooter,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 
 import {
   Menu,
@@ -39,9 +48,9 @@ export default function Sidebar() {
   const location = useLocation();
   const esEscritorio = useEsEscritorio();
   const [colapsado, setColapsado] = useState(false);
+  const [mostrarDialogo, setMostrarDialogo] = useState(false);
   const { user, logout } = useContext(AuthContext);
 
-  // 🧠 Rutas dinámicas según el rol
   let navItems = [];
 
   if (user?.role === "PACIENTE") {
@@ -63,7 +72,12 @@ export default function Sidebar() {
   const NavLinks = () => (
     <>
       <div className="flex items-center justify-between mb-4">
-        {!colapsado && <h2 className="text-xl font-bold">Clínica ICA</h2>}
+        {!colapsado && (
+          <Link to="/" className="text-xl font-bold">
+            Clínica ICA
+          </Link>
+        )}
+
         <button
           onClick={() => setColapsado(!colapsado)}
           className="hidden md:inline-flex text-muted-foreground hover:text-blue-600 transition"
@@ -80,13 +94,11 @@ export default function Sidebar() {
             <Link
               key={item.to}
               to={item.to}
-              className={`group flex items-center ${
-                esColapsado ? "justify-center p-2" : "gap-3 px-3 py-2"
-              } rounded-md text-sm font-medium transition-colors ${
-                location.pathname === item.to
+              className={`group flex items-center ${esColapsado ? "justify-center p-2" : "gap-3 px-3 py-2"
+                } rounded-md text-sm font-medium transition-colors ${location.pathname === item.to
                   ? "bg-blue-100 text-blue-700"
                   : "hover:bg-muted text-muted-foreground"
-              }`}
+                }`}
             >
               {item.icon}
               {!esColapsado && item.label}
@@ -120,12 +132,13 @@ export default function Sidebar() {
                   <p className="text-xs text-muted-foreground">{user?.correo}</p>
                 </div>
                 <Separator />
-                <button
-                  onClick={logout}
-                  className="w-full text-sm text-left text-red-600 hover:bg-red-50 px-2 py-1 rounded-md transition"
+                <Button
+                  variant="ghost"
+                  onClick={() => setMostrarDialogo(true)}
+                  className="w-full text-left text-red-600 hover:bg-red-50"
                 >
                   Cerrar sesión
-                </button>
+                </Button>
               </PopoverContent>
             </Popover>
           </div>
@@ -140,13 +153,14 @@ export default function Sidebar() {
                 <p className="text-xs text-muted-foreground">{user?.correo}</p>
               </div>
             </div>
-            <button
-              onClick={logout}
-              className="text-gray-400 hover:text-red-600 transition-colors duration-500"
+            <Button
+              variant="ghost"
+              onClick={() => setMostrarDialogo(true)}
+              className="text-gray-400 hover:text-red-600"
               title="Cerrar sesión"
             >
               <LogOut size={18} />
-            </button>
+            </Button>
           </div>
         )}
       </div>
@@ -172,13 +186,38 @@ export default function Sidebar() {
 
       {/* 💻 Sidebar en escritorio */}
       <div
-        className={`hidden md:flex flex-col justify-between border-r bg-white transition-all duration-300 p-4 ${
-          colapsado ? "w-20" : "w-64"
-        }`}
+        className={`hidden md:flex flex-col justify-between border-r bg-white transition-all duration-300 p-4 ${colapsado ? "w-20" : "w-64"
+          }`}
       >
         <div><NavLinks /></div>
         <UserInfo />
       </div>
+
+      {/* 🔐 Modal de confirmación */}
+      <Dialog open={mostrarDialogo} onOpenChange={setMostrarDialogo}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>¿Cerrar sesión?</DialogTitle>
+            <DialogDescription>
+              Esta acción cerrará tu sesión actual. ¿Estás seguro?
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button variant="ghost" onClick={() => setMostrarDialogo(false)}>
+              Cancelar
+            </Button>
+            <Button
+              variant="destructive"
+              onClick={() => {
+                logout();
+                setMostrarDialogo(false);
+              }}
+            >
+              Cerrar sesión
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </>
   );
 }
