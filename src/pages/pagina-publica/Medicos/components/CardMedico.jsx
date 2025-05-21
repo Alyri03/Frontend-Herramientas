@@ -1,7 +1,7 @@
 import { faLongArrowRight } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Link } from "react-router-dom"
-import ImagenDoctorGenerica from '../../../assets/images/ImagenDoctorGenerica.jpg'
+import ImagenDoctorGenerica from "@/assets/images/ImagenDoctorGenerica.jpg"
 
 const CardMedico = ({especialidad, nombre, codigo, id}) => {
     return (

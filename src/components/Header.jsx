@@ -4,7 +4,6 @@ import { useContext, useState } from "react";
 import { AuthContext } from '../context/authContext';
 
 const Header = () => {
-  const [menu, setMenu] = useState(false);
   const [nav, setNav] = useState(false);
   const { user } = useContext(AuthContext);
 
@@ -12,14 +11,8 @@ const Header = () => {
     { name: "Nosotros", href: "/nosotros" },
     { name: "Equipo Médico", href: "/medicos-equipo" },
     { name: "Especialidades", href: "/especialidades" },
-    { name: "Contáctanos", href: "/Contactanos" },
+    { name: "Contáctanos", href: "/contactanos" },
     { name: "Servicios", href: "/servicios" },
-  ];
-
-  const dropdownItems = [
-    { name: "Centro Quirurgico", href: "#" },
-    { name: "Atencion Hospitalaria", href: "#" },
-    { name: "Laboratorio Clinico", href: "#" },
   ];
 
   return (
@@ -39,54 +32,30 @@ const Header = () => {
           {/* Navegación Desktop */}
           <div className="hidden lg:flex gap-8 text-sm font-medium text-gray-800 items-center">
             {navItems.map((item, i) => (
-              item.name === "Servicios" ? (
-                <div key={i} className="relative group">
-                  <Link
-                    to="/servicios"
-                    className="relative flex items-center gap-1 py-2 hover:text-[#2F71A1] group transition"
-                    onMouseEnter={() => setMenu(true)}
-                    onMouseLeave={() => setMenu(false)}
-                  >
-                    {item.name}
-                    <svg className="w-3 h-3" fill="none" viewBox="0 0 10 6">
-                      <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                    <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-[#2F71A1] transition-all duration-300 group-hover:w-full" />
-                  </Link>
-
-
-                  <div className={`${menu ? "block" : "hidden"} absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-100 transition-all duration-300`}>
-                    <ul className="flex flex-col py-2 text-sm text-gray-700">
-                      {dropdownItems.map((d, j) => (
-                        <li key={j}>
-                          <Link to={d.href} className="block px-4 py-2 hover:bg-gray-100 hover:text-[#2F71A1] transition">{d.name}</Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              ) : (
-                <Link
-                  key={i}
-                  to={item.href}
-                  className="relative block py-2 hover:text-[#2F71A1] transition group"
-                >
-                  {item.name}
-                  <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-[#2F71A1] transition-all duration-300 group-hover:w-full" />
-                </Link>
-              )
+              <Link
+                key={i}
+                to={item.href}
+                className="relative block py-2 hover:text-[#2F71A1] transition group"
+              >
+                {item.name}
+                <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-[#2F71A1] transition-all duration-300 group-hover:w-full" />
+              </Link>
             ))}
           </div>
 
-          {/* Botón Desktop */}
-          <div className="hidden lg:block">
-            <Link
-              to="/login"
-              className="border-[3px] border-[#2F71A1] text-[#2F71A1] px-5 py-2 rounded-full hover:bg-[#2F71A1] hover:text-white transition-all duration-300 transform hover:-translate-y-1 hover:scale-105"
-            >
-              Mi Clínica Virtual
-            </Link>
-          </div>
+          <Link
+            to={
+              user?.role === "PACIENTE"
+                ? '/intranet/paciente'
+                : user?.role === "MEDICO"
+                  ? '/intranet/medico'
+                  : '/login'
+            }
+            className="border-[3px] border-[#2F71A1] text-[#2F71A1] px-5 py-2 rounded-full hover:bg-[#2F71A1] hover:text-white transition-all duration-300 transform hover:-translate-y-1 hover:scale-105"
+          >
+            Mi Clínica Virtual
+          </Link>
+
 
           {/* Botón Menú Mobile */}
           <div className="lg:hidden">
@@ -120,7 +89,8 @@ const Header = () => {
             <ul className="flex flex-col divide-y divide-gray-200">
               {navItems.map((item, i) => (
                 <li key={i}>
-                  <Link to={item.href}
+                  <Link
+                    to={item.href}
                     className="flex justify-between items-center py-3.5 text-gray-800 text-base font-medium hover:text-[#2F71A1] transition"
                   >
                     {item.name}
@@ -133,11 +103,12 @@ const Header = () => {
             {/* Botón Mobile */}
             <div>
               <Link
-                to={user.role === "PACIENTE" 
-                  ? '/clinica-virtual' 
-                  : user.role === "MEDICO" 
-                  ? '/clinica-virtual' 
-                  : '/login'
+                to={
+                  user?.role === "PACIENTE"
+                    ? '/clinica-virtual'
+                    : user?.role === "MEDICO"
+                      ? '/clinica-virtual'
+                      : '/login'
                 }
                 className="w-full block border-[3px] border-[#2F71A1] text-[#2F71A1] text-center py-2.5 rounded-full font-semibold hover:bg-[#2F71A1] hover:text-white transition"
               >

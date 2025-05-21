@@ -9,7 +9,7 @@ const Preefooter = () => {
       {/* Central telefónica */}
       <div
         className="flex justify-between items-center flex-1 bg-yellow-50 p-4 rounded-xl shadow-sm"
-        data-aos="fade-right"
+        data-aos="fade-up"
       >
         <div className="flex flex-col">
           <span className="text-sm text-gray-700">Central telefónica</span>
@@ -28,7 +28,6 @@ const Preefooter = () => {
       <div
         className="flex justify-between items-center flex-1 bg-blue-100 p-4 rounded-xl shadow-sm"
         data-aos="fade-up"
-        data-aos-delay="100"
       >
         <div className="flex flex-col">
           <span className="text-sm text-gray-700">Ubícanos</span>
@@ -49,8 +48,7 @@ const Preefooter = () => {
       {/* Suscripción */}
       <div
         className="flex flex-col justify-between flex-1 bg-gray-50 p-4 rounded-xl shadow-sm"
-        data-aos="fade-left"
-        data-aos-delay="200"
+        data-aos="fade-up"
       >
         <span className="text-sm text-gray-700 mb-2">
           Suscríbete y entérate de nuestras <br /> novedades

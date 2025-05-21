@@ -1,4 +1,4 @@
-import CardEspecialidad from "../../../components/CardEspecialidad";
+import CardEspecialidad from "../../../../components/CardEspecialidad"
 import { Link } from "react-router-dom";
 
 const SpecialtyGrid = ({ especialidades }) => {
