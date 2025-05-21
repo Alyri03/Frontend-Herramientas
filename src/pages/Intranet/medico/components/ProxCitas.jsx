@@ -9,6 +9,16 @@ import { faBuildingUser } from '@fortawesome/free-solid-svg-icons';
 import { faFileText } from '@fortawesome/free-solid-svg-icons';
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "../../../../components/ui/dialog";
 
+import {
+    Menubar,
+    MenubarContent,
+    MenubarItem,
+    MenubarMenu,
+    MenubarSeparator,
+    MenubarShortcut,
+    MenubarTrigger,
+} from '../../../../components/ui/menubar'
+
 const ProxCitas = () => {
 
     const paciente = [
@@ -28,10 +38,18 @@ const ProxCitas = () => {
                             <p className="text-2xl">Próximas Citas</p>
                             <p className="text-gray-500 text-sm">Gestiona tus próximas citas médicas</p>
                         </div>
-                        <div className=" w-1/2 flex items-center justify-end gap-5 h-10 bg-gray-100 rounded-lg ">
-                            <button className="text-xs px-5 py-1 w-30 h-full bg-gray-300">Hoy</button>
-                            <button className="text-xs px-5 py-1 w-30 h-full bg-gray-300">Mañana</button>
-                            <button className="text-xs px-5 py-1 w-30 h-full bg-gray-300">Esta semana</button>
+                        <div className=" flex items-center justify-end gap-5 h-10 bg-gray-100 rounded-lg ">
+                           <Menubar>
+                            <MenubarMenu>
+                                <MenubarTrigger>Dia</MenubarTrigger>
+                            </MenubarMenu>
+                            <MenubarMenu>
+                                <MenubarTrigger>Semana</MenubarTrigger>
+                            </MenubarMenu>
+                            <MenubarMenu>
+                                <MenubarTrigger>Mes</MenubarTrigger>
+                            </MenubarMenu>
+                        </Menubar>
                         </div>
                     </CardTitle>
                     <Table>
@@ -54,8 +72,8 @@ const ProxCitas = () => {
                         <TableBody>
                             {paciente.map((pacientess, i) => (
                                 <TableRow key={i}>
-                                    <TableCell className={"flex items-center gap-2"}>
-                                        <FontAwesomeIcon icon={faUserCircle} className="" />
+                                    <TableCell>
+                                        <FontAwesomeIcon icon={faUserCircle} className="pr-2" />
                                         {pacientess.nombre}
                                     </TableCell>
                                     <TableCell>

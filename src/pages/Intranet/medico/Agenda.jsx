@@ -13,6 +13,15 @@ import { Link } from "react-router-dom";
 import { Popover, PopoverContent, PopoverTrigger } from "../../../components/ui/popover"
 import { Calendar } from "../../../components/ui/calendar";
 import { format } from "date-fns";
+import {
+    Menubar,
+    MenubarContent,
+    MenubarItem,
+    MenubarMenu,
+    MenubarSeparator,
+    MenubarShortcut,
+    MenubarTrigger,
+} from '../../../components/ui/menubar'
 
 
 const Agenda = () => {
@@ -71,10 +80,8 @@ const Agenda = () => {
 
 
 
-                <div className="flex flex-row gap-5 justify-between
-">
 
-                    <div>
+                    <div className="border-3 flex flex-row gap-5">
                         <Popover>
                             <PopoverTrigger asChild>
                                 <Button
@@ -138,16 +145,26 @@ const Agenda = () => {
 
 
 
-                    <div>                   
-                         
-                         
-                         
-                         <Button className={`bg-green-500 text-green-50 shadow hover:bg-green-600`}> + Nuevo Cita</Button>
+                    <div className="flex flex-row gap-5 items-center border-3">
+
+                        <Menubar>
+                            <MenubarMenu>
+                                <MenubarTrigger>Dia</MenubarTrigger>
+                            </MenubarMenu>
+                            <MenubarMenu>
+                                <MenubarTrigger>Semana</MenubarTrigger>
+                            </MenubarMenu>
+                            <MenubarMenu>
+                                <MenubarTrigger>Mes</MenubarTrigger>
+                            </MenubarMenu>
+                        </Menubar>
+
+
+                        <Button className={`bg-green-500 text-green-50 shadow hover:bg-green-600`}> + Nuevo Cita</Button>
 
 
                     </div>
                 </div>
-            </div>
         </>
     )
 }
