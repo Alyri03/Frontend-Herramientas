@@ -2,7 +2,7 @@ name: CI/CD React con Vercel
 
 on:
   push:
-    branches: [main]
+    branches: [main, develop, QA]
 
 jobs:
   deploy:
