@@ -2,7 +2,8 @@ import ImagenDoctorGenerica from '@/assets/images/ImagenDoctorGenerica.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLongArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import Preefooter from '@/components/Preefooter';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const DetalleMedico = () => {
 
