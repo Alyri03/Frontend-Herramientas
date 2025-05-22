@@ -10,9 +10,9 @@ const PacienteReciente = () => {
     const paciente = [
         { nombre: "Juan Perez", edad: "38 años", hora: "Hoy, 10:00 AM", estado: "Estable", condicion: "Hipertension" },
         { nombre: "Maria Lopez", edad: "45 años", hora: "Hoy, 11:00 AM", estado: "En tratamiento", condicion: "Hipertension" },
-        { nombre: "Carlos Sanchez", edad: "29 años", hora: "Hoy, 12:00 PM", estado: "Evaluacion", condicion: "Hipertension" },
+        { nombre: "Carlos Sanchez", edad: "29 años", hora: "Hoy, 12:00 PM", estado: "Evaluación", condicion: "Hipertension" },
         { nombre: "Ana Torres", edad: "19 años", hora: "Hoy, 01:00 PM", estado: "Estable", condicion: "Hipertension" },
-        { nombre: "Luis Garcia", edad: "23 años", hora: "Hoy, 02:00 PM", estado: "Evaluacion", condicion: "Hipertension" },
+        { nombre: "Luis Garcia", edad: "23 años", hora: "Hoy, 02:00 PM", estado: "Evaluación", condicion: "Hipertension" },
     ];
 
     return (<>
@@ -28,60 +28,50 @@ const PacienteReciente = () => {
                     </div>
                 </CardTitle>
                 <TabsContent value="recientes">
-                    {paciente.map((paciente, i) => (
-                        <div key={i} className="grid grid-cols-3 gap-4">
-                            
-                            {/* Card */}
-                            <div className="flex gap-4 mt-2">
-                                <div className="bg-gray-200 rounded-full w-16 h-16 flex items-center justify-center">
-                                    <FontAwesomeIcon icon={faUserCircle} className="w-16 h-16" />
-                                </div>
-                                <div className="flex flex-col justify-center">
-                                    <p className="font-semibold text-lg">{paciente.nombre}</p>
-                                    <p className="text-gray-500">{paciente.dia}</p>
-                                </div>
-                            </div>
-                            <hr className="border-1" />
-                            <div className="grid grid-cols-2 grid-rows-2 gap-5">
-                                <div className="flex">
-
-                                    <div className="flex flex-col">
-                                        <p className="text-sm">Hora:</p>
-                                        <p className="text-sm">{paciente.hora}</p>
+                    <div className="grid xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-2 gap-4">
+                        {paciente.map((paciente, i) => (
+                            <div key={i} className="flex flex-col transition hover:bg-blue-100 hover:border-blue-300 border-1 rounded-lg p-5 shadow-xs">
+                                <div className="flex gap-4 mt-1 pb-4">
+                                    <div className="bg-gray-200 rounded-full w-16 h-16 flex items-center justify-center">
+                                        <FontAwesomeIcon icon={faUserCircle} className="" />
+                                    </div>
+                                    <div className="flex flex-col justify-center">
+                                        <p className="font-semibold text-lg">{paciente.nombre}</p>
+                                        <p className="text-gray-500 text-lg">{paciente.edad}</p>
                                     </div>
                                 </div>
-                                <div className="flex">
-
-                                    <div className="flex flex-col">
-                                        <p className="text-sm">Estado:</p>
-                                        <div className={`w-min px-2 py-1 rounded-xl flex items-center ${paciente.estado === "Pendiente" ? "bg-yellow-100 text-yellow-600 "
-                                            : paciente.estado === "Confirmada" ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600"}`}>
-                                            <p className="text-xs">{paciente.estado}</p>
+                                <div className="grid grid-cols-2 grid-rows-2 gap-5">
+                                    <div className="flex">
+                                        <div className="flex flex-col">
+                                            <p className="text-md">Hora:</p>
+                                            <p className="text-md">{paciente.hora}</p>
                                         </div>
                                     </div>
-                                </div>
-                                <div className="flex">
-
-                                    <div className="flex flex-col">
-                                        <p className="text-sm">Ubicación:</p>
-                                        <p className="text-sm">{paciente.ubicacion}</p>
+                                    <div className="flex">
+                                        <div className="flex flex-col">
+                                            <p className="text-md">Condición:</p>
+                                            <p className="text-md">{paciente.condicion}</p>
+                                        </div>
                                     </div>
+                                    <div className="flex">
+                                        <div className="flex flex-col">
+                                            <p className="text-md">Estado:</p>
+                                            <div className={`w-min px-2 py-1 rounded-xl flex items-center whitespace-nowrap ${paciente.estado === "En tratamiento" ? "bg-blue-100 text-blue-600"
+                                                : paciente.estado === "Estable" ? "bg-green-100 text-green-600" : "bg-amber-100 text-amber-700"}`}>
+                                                <p className="text-md">{paciente.estado}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div className="flex pt-3 justify-end items-center">
+                                    <button className={'flex items-self-center text-sm border-1 border-gray-300 rounded-sm px-3 py-2 bg-white'}>Ver expediente</button>
                                 </div>
                             </div>
-                            <div className="flex">
-
-                                <div className="flex flex-col">
-                                    <p className="text-sm">Notas:</p>
-                                    <p className="text-sm">{paciente.notas}</p>
-                                </div>
-                            </div>
-
-
-
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </TabsContent>
-                <hr className="border-1 mt-1 mb-1" />
+                <hr className="border-1 mt-5 mb-3" />
                 <div className="flex items-center justify-between">
                     <p className="text-sm text-gray-500">Mostrando 5 de 20 pacientes recientes</p>
                     <div className="flex gap-2">
