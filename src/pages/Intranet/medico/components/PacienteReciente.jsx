@@ -43,26 +43,25 @@ const PacienteReciente = () => {
                                 <div className="grid grid-cols-2 grid-rows-2 gap-5">
                                     <div className="flex">
                                         <div className="flex flex-col">
-                                            <p className="text-md">Hora:</p>
+                                            <p className="text-gray-500 text-md">Ultima visita:</p>
                                             <p className="text-md">{paciente.hora}</p>
                                         </div>
                                     </div>
                                     <div className="flex">
                                         <div className="flex flex-col">
-                                            <p className="text-md">Condición:</p>
+                                            <p className="text-gray-500 text-md">Condición:</p>
                                             <p className="text-md">{paciente.condicion}</p>
                                         </div>
                                     </div>
                                     <div className="flex">
-                                        <div className="flex flex-col">
-                                            <p className="text-md">Estado:</p>
-                                            <div className={`w-min px-2 py-1 rounded-xl flex items-center whitespace-nowrap ${paciente.estado === "En tratamiento" ? "bg-blue-100 text-blue-600"
+                                        <div className="flex items-center">
+                                            <p className="text-gray-500 text-md pr-2">Estado:</p>
+                                            <div className={`w-min px-2 h-min rounded-xl flex items-center whitespace-nowrap ${paciente.estado === "En tratamiento" ? "bg-blue-100 text-blue-600"
                                                 : paciente.estado === "Estable" ? "bg-green-100 text-green-600" : "bg-amber-100 text-amber-700"}`}>
                                                 <p className="text-md">{paciente.estado}</p>
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                                 <div className="flex pt-3 justify-end items-center">
                                     <button className={'flex items-self-center text-sm border-1 border-gray-300 rounded-sm px-3 py-2 bg-white'}>Ver expediente</button>
