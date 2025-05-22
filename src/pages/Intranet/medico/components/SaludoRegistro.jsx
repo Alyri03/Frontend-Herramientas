@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const SaludoRegistro = () => {
     return (<>
-        <section className="flex flex-col gap-4 pb-5">
+        <section className="flex flex-col gap-4 pb-4">
             {/* Saludo */}
             <div className="flex flex-col gap-1">
                 <p className="text-green-600 text-sm">Bienvenido de vuelta</p>
