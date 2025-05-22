@@ -22,15 +22,21 @@ export const Login = () => {
         try {
             const resLogin = await loginRequest(email, password);
             login(resLogin);
-
             const role = resLogin?.role;
+
             if (role === "PACIENTE") {
                 navigate("/intranet/paciente");
             } else if (role === "MEDICO") {
                 navigate("/intranet/medico");
+            } else if (role === "RECEPCIONISTA") {
+                navigate("/intranet/recepcionista"); 
+            } else if (role === "ADMINISTRADOR") {
+                navigate("/intranet/admin/usuarios"); 
             } else {
                 navigate("/404");
             }
+
+
         } catch (error) {
             setError(true);
         } finally {

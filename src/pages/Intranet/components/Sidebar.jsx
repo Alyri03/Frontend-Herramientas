@@ -67,7 +67,25 @@ export default function Sidebar() {
       { label: "Agenda", icon: <CalendarCheck size={18} />, to: "/intranet/medico/agenda" },
       { label: "Perfil", icon: <User size={18} />, to: "/intranet/medico/perfil" },
     ];
+  } else if (user?.role === "RECEPCIONISTA") {
+    navItems = [
+      { label: "Inicio", icon: <Home size={18} />, to: "/intranet/recepcionista" },
+      { label: "Pacientes", icon: <User size={18} />, to: "/intranet/recepcionista/pacientes" },
+      { label: "Médicos", icon: <User size={18} />, to: "/intranet/recepcionista/medicos" },
+      { label: "Servicios", icon: <NotebookText size={18} />, to: "/intranet/recepcionista/servicios" },
+      { label: "Seguros", icon: <NotebookText size={18} />, to: "/intranet/recepcionista/seguros" },
+      { label: "Citas", icon: <CalendarCheck size={18} />, to: "/intranet/recepcionista/citas" },
+      { label: "Reportes", icon: <NotebookText size={18} />, to: "/intranet/recepcionista/reportes" },
+      { label: "Perfil", icon: <User size={18} />, to: "/intranet/recepcionista/perfil" },
+    ];
+  } else if (user?.role === "ADMINISTRADOR") {
+    navItems = [
+      { label: "Usuarios", icon: <User size={18} />, to: "/intranet/admin/usuarios" },
+      { label: "Configuración", icon: <NotebookText size={18} />, to: "/intranet/admin/configuracion" },
+    ];
   }
+
+
 
   const NavLinks = () => (
     <>

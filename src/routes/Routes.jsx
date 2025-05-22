@@ -38,7 +38,8 @@ const AppRoutes = () => {
       <Route path="/detalle-especialidad/:id" element={<DetalleEspecialidades />} />
 
       <Route path="/intranet" element={<IntranetLayout />}>
-        {/* Rutas protegidas para PACIENTE */}
+
+        {/* PACIENTE */}
         <Route element={<RutaProtegidaPorRol rolPermitido="PACIENTE" />}>
           <Route path="paciente" element={<InicioPaciente />} />
           <Route path="paciente/citas" element={<CitasPaciente />} />
@@ -46,15 +47,33 @@ const AppRoutes = () => {
           <Route path="paciente/perfil" element={<PerfilPaciente />} />
         </Route>
 
-        {/* Rutas protegidas para MÉDICO */}
+        {/* MÉDICO */}
         <Route element={<RutaProtegidaPorRol rolPermitido="MEDICO" />}>
           <Route path="medico" element={<div>Módulo médico inicio</div>} />
           <Route path="medico/agenda" element={<div>Agenda del médico</div>} />
           <Route path="medico/pacientes" element={<div>Pacientes asignados</div>} />
           <Route path="medico/perfil" element={<div>Perfil del médico</div>} />
         </Route>
-      </Route>
 
+        {/* RECEPCIONISTA */}
+        <Route element={<RutaProtegidaPorRol rolPermitido="RECEPCIONISTA" />}>
+          <Route path="recepcionista" element={<div>Inicio Recepcionista</div>} />
+          <Route path="recepcionista/pacientes" element={<div>Gestión de Pacientes</div>} />
+          <Route path="recepcionista/medicos" element={<div>Gestión de Médicos</div>} />
+          <Route path="recepcionista/servicios" element={<div>Gestión de Servicios</div>} />
+          <Route path="recepcionista/seguros" element={<div>Gestión de Seguros</div>} />
+          <Route path="recepcionista/citas" element={<div>Gestión de Citas</div>} />
+          <Route path="recepcionista/reportes" element={<div>Reportes Generales</div>} />
+          <Route path="recepcionista/perfil" element={<div>Mi Perfil Recepcionista</div>} />
+        </Route>
+
+        {/* ADMINISTRADOR */}
+        <Route element={<RutaProtegidaPorRol rolPermitido="ADMINISTRADOR" />}>
+          <Route path="admin/usuarios" element={<div>Gestión de Usuarios</div>} />
+          <Route path="admin/configuracion" element={<div>Configuración General</div>} />
+        </Route>
+
+      </Route>
 
       {/* ❌ Ruta no encontrada */}
       <Route path="/404" element={<NoDisponible />} />
