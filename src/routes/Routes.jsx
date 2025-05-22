@@ -25,6 +25,7 @@ import HistorialPaciente from '@/pages/Intranet/paciente/HistorialPaciente';
 import { MisPacientes } from '../pages/Intranet/medico/Pacientes';
 import InicioMedico from '../pages/Intranet/medico/InicioMedico';
 import Agenda from '../pages/Intranet/medico/Agenda';
+import Atencion from '../pages/Intranet/medico/Atencion';
 
 const AppRoutes = () => {
   return (
@@ -55,7 +56,7 @@ const AppRoutes = () => {
         <Route path="medico" element={<InicioMedico/>} />
         <Route path='medico/agenda' element={<Agenda/>}/>
         <Route path="medico/pacientes" element={<MisPacientes/>} />
-
+        <Route path="medico:/id" element={<Atencion/>} />
 
 
 
