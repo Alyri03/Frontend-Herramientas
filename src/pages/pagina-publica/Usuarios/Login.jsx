@@ -4,6 +4,7 @@ import { loginRequest } from '@/services/auth';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '@/context/authContext';
 import Spinner from '@/components/Spinner'; // ✅ IMPORTADO
+import { Link } from 'react-router-dom';
 
 export const Login = () => {
     const [error, setError] = useState(false);
@@ -111,9 +112,10 @@ export const Login = () => {
 
                         <p className="text-center text-sm">
                             ¿No tienes una cuenta?{' '}
-                            <a href="/registro" className="text-[#2F71A1] font-semibold">
-                                Regístrate aquí
-                            </a>
+
+                            <Link to="/registro" className="text-[#2F71A1] font-semibold">
+                                Registrate aqui
+                            </Link>
                         </p>
                     </form>
                 )}
