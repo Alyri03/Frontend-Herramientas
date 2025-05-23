@@ -29,13 +29,17 @@ const ProxCitas = () => {
                         <p className="text-2xl">Próximas Citas</p>
                         <p className="text-gray-500 text-sm">Gestiona tus próximas citas médicas</p>
                     </div>
-                    <div className="flex items-center justify-end">
-                        <TabsList className="grid w-full grid-cols-3 rounded-sm gap-1">
-                            <TabsTrigger value="citas" className="flex items-center justify-center w-30 rounded-sm">Hoy</TabsTrigger>
-                            <TabsTrigger value="citasMañana" className="flex items-center justify-center w-30 rounded-sm">Mañana</TabsTrigger>
-                            <TabsTrigger value="citasSemana" className="flex items-center justify-center w-30 rounded-sm">Esta semana</TabsTrigger>
-                        </TabsList>
-                    </div>
+                <div className="flex items-center justify-end w-full">
+                    <TabsList className="grid w-full grid-cols-1 sm:grid-cols-3 gap-2 rounded-sm bg-transparent p-0">
+                       <TabsTrigger value="citas" className="w-full text-center py-2 px-4 text-sm sm:text-base rounded-sm overflow-hidden whitespace-nowrap truncate transition-all duration-200 hover:bg-blue-100 data-[state=active]:bg-blue-500 data-[state=active]:text-white">
+                       Hoy</TabsTrigger>
+                       <TabsTrigger value="citasMañana" className="w-full text-center py-2 px-4 text-sm sm:text-base rounded-sm overflow-hidden whitespace-nowrap truncate transition-all duration-200 hover:bg-blue-100 data-[state=active]:bg-blue-500 data-[state=active]:text-white">
+                       Mañana</TabsTrigger>
+                       <TabsTrigger value="citasSemana" className="w-full text-center py-2 px-4 text-sm sm:text-base rounded-sm overflow-hidden whitespace-nowrap truncate transition-all duration-200 hover:bg-blue-100 data-[state=active]:bg-blue-500 data-[state=active]:text-white">
+                       Esta semana
+                       </TabsTrigger>
+                    </TabsList>
+                </div>
                 </CardTitle>
                 <TabsContent value="citas" className="flex flex-col gap-4">
                     <Table>

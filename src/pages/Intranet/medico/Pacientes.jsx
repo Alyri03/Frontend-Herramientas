@@ -241,97 +241,119 @@ export const MisPacientes = () => {
                         </Table>
                     </div>
                 </TabsContent>
-
-                <TabsContent value="tarjetas" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {filtrarPacientes.map((item, index) => (
-
-                        <Card className="w-full max-w-md">
-                            <CardHeader>
-                                <CardTitle className="flex flex-row space-x-3 items-center">
-
-                                    <Avatar className='size-12'>
-                                        <AvatarImage src='https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-5.png' alt='Hallie Richards' />
-                                        <AvatarFallback className="text-blue-600 mb-2">HR</AvatarFallback>
-                                    </Avatar>
-
-                                    <div>
-                                        <h2>{item.nombre}</h2>
-                                        <p className="text-sm text-muted-foreground">{item.edad} años • {item.sexo}</p>
-                                    </div>
-
-                                </CardTitle>
-                            </CardHeader>
-
-                            <CardContent className="flex flex-col gap-3">
-
-                                <div className="flex flex-row justify-between">
-
-                                    <div className="flex flex-row items-center gap-2">
-                                        <Activity />
-                                        <div>
-                                            <p className="text-xs text-muted-foreground">Condicion:</p>
-                                            <p className="text-sm">{item.condicion}</p>
+                <div className="px-4 sm:px-6 lg:px-8">
+                    <TabsContent value="tarjetas" className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+                        {filtrarPacientes.map((item, index) => (
+                            <Card key={index} className="w-full">
+                                <CardHeader>
+                                    <CardTitle className="flex flex-row space-x-3 items-center">
+                                        <Avatar className="size-12">
+                                            <AvatarImage src="https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-5.png" alt="Hallie Richards" />
+                                            <AvatarFallback className="text-blue-600 mb-2">HR</AvatarFallback>
+                                        </Avatar>
+                                        <div className="min-w-0">
+                                            <h2 className="truncate">{item.nombre}</h2>
+                                            <p className="text-sm text-muted-foreground truncate">{item.edad} años • {item.sexo}</p>
+                                        </div>
+                                    </CardTitle>
+                                </CardHeader>
+                                <CardContent className="flex flex-col gap-3">
+                                    <div className="flex flex-row justify-between flex-wrap gap-3">
+                                        <div className="flex flex-row items-center gap-2 min-w-[45%]">
+                                            <Activity />
+                                            <div>
+                                                <p className="text-xs text-muted-foreground">Condición:</p>
+                                                <p className="text-sm">{item.condicion}</p>
+                                            </div>
+                                        </div>
+                                        <div className="flex flex-row items-center gap-2 min-w-[45%]">
+                                            <Calendar />
+                                            <div>
+                                                <p className="text-xs text-muted-foreground">Última visita:</p>
+                                                <p className="text-sm">{item.ultimaVisita}</p>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className="flex flex-row items-center gap-2">
-                                        <Calendar />
-                                        <div>
-                                            <p className="text-xs text-muted-foreground">Última visita:</p>
-                                            <p className="text-sm">{item.ultimaVisita}</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="flex flex-row justify-between items-center gap-2 w-full">
-                                    <Badge
-                                        className={`px-2 py-1 text-xs ${item.estado === "En tratamiento" ? 'bg-blue-100 text-blue-600'
-                                            : item.estado === 'Activo' ? 'bg-green-100 text-green-600' : 'bg-yellow-100 text-yellow-600'
-                                            }`}>
-                                        {item.estado}
-                                    </Badge>
-
-                                    <div className="flex flex-row gap-3">
-
+                                    <div className="flex flex-col lg:flex-row justify-between items-center gap-2 w-full flex-wrap">
+                                        <Badge
+                                            className={`px-2 py-1 text-xs ${item.estado === "En tratamiento"
+                                                    ? "bg-blue-100 text-blue-600"
+                                                    : item.estado === "Activo"
+                                                        ? "bg-green-100 text-green-600"
+                                                        : "bg-yellow-100 text-yellow-600"
+                                                }`}>
+                                            {item.estado}
+                                        </Badge>
                                         <Dialog>
                                             <DialogTrigger asChild>
-                                                <Button variant="outline" size="sm" onClick={() => setSelected(item)}>
-                                                    <Eye /> Ver perfil
+                                                <Button variant="outline" size="sm" className="w-full sm:w-auto justify-center text-xs sm:text-sm" onClick={() => setSelected(item)}>
+                                                    <Eye className="size-3 sm:size-4 mr-1" /> Ver perfil
                                                 </Button>
                                             </DialogTrigger>
-                                            <DialogContent className="max-w-md">
-                                                <h3 className="text-lg font-semibold mb-2">Detalle del registro</h3>
-                                                {selected && (
-                                                    <ul className="text-sm space-y-1">
-                                                        <li><strong>Nombre:</strong> {selected.nombre}</li>
-                                                        <li><strong>Edad:</strong> {selected.edad}</li>
-                                                        <li><strong>Condicion:</strong> {selected.condicion}</li>
-                                                        <li><strong>Ultima visita:</strong> {selected.ultimaVisita}</li>
-                                                        <li><strong>Estado:</strong> {selected.estado}</li>
-                                                    </ul>
-                                                )}
+                                            <DialogContent className="w-[90%] sm:max-w-md p-4 sm:p-6 rounded-lg">
+                                                <div className="flex flex-col space-y-3">
+                                                    <div className="flex items-center space-x-3">
+                                                        <Avatar className="size-10">
+                                                            <AvatarImage src="https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-5.png" alt={selected?.nombre}/>
+                                                            <AvatarFallback className="text-blue-600">
+                                                                {selected?.nombre
+                                                                    ?.split(" ")
+                                                                    .map((n) => n[0])
+                                                                    .join("")}
+                                                            </AvatarFallback>
+                                                        </Avatar>
+                                                        <h3 className="text-lg font-semibold">{selected?.nombre}</h3>
+                                                    </div>
+                                                    {selected && (
+                                                        <div className="bg-slate-50 dark:bg-slate-900 rounded-md p-3">
+                                                            <ul className="text-sm space-y-2">
+                                                                <li className="flex justify-between">
+                                                                    <span className="text-muted-foreground">Edad:</span>
+                                                                    <span className="font-medium">{selected.edad} años</span>
+                                                                </li>
+                                                                <li className="flex justify-between">
+                                                                    <span className="text-muted-foreground">Sexo:</span>
+                                                                    <span className="font-medium">{selected.sexo}</span>
+                                                                </li>
+                                                                <li className="flex justify-between">
+                                                                    <span className="text-muted-foreground">Condición:</span>
+                                                                    <span className="font-medium">{selected.condicion}</span>
+                                                                </li>
+                                                                <li className="flex justify-between">
+                                                                    <span className="text-muted-foreground">Última visita:</span>
+                                                                    <span className="font-medium">{selected.ultimaVisita}</span>
+                                                                </li>
+                                                                <li className="flex justify-between">
+                                                                    <span className="text-muted-foreground">Estado:</span>
+                                                                    <span>
+                                                                        <Badge
+                                                                            className={`px-2 py-1 text-xs ${selected.estado === "En tratamiento"
+                                                                                    ? "bg-blue-100 text-blue-600"
+                                                                                    : selected.estado === "Activo"
+                                                                                        ? "bg-green-100 text-green-600"
+                                                                                        : "bg-yellow-100 text-yellow-600"
+                                                                                }`}>{selected.estado}
+                                                                        </Badge>
+                                                                    </span>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    )}
+                                                    <div className="flex justify-end pt-2">
+                                                        <Button size="sm" variant="outline" className="text-xs sm:text-sm">
+                                                            <FileText className="size-3 sm:size-4 mr-1" /> Ver expediente completo
+                                                        </Button>
+                                                    </div>
+                                                </div>
                                             </DialogContent>
                                         </Dialog>
-
-
-
-
-
-                                        <Button variant="outline" size="sm">
-                                            <FileText /> Expediente
-                                        </Button>
                                     </div>
-
-                                </div>
-
-                            </CardContent>
-
-                        </Card>
-
-                    ))}
-                </TabsContent>
-
+                                </CardContent>
+                            </Card>
+                        ))}
+                    </TabsContent>
+                </div>
             </Tabs>
-
         </div>
     )
 
