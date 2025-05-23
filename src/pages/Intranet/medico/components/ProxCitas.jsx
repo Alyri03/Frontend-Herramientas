@@ -24,22 +24,34 @@ const ProxCitas = () => {
     return (<>
         <section className="pt-4 pb-4">
             <Tabs defaultValue="citas" className=" bg-white shadow-sm border-1 rounded-lg p-6">
-                <CardTitle className="flex justify-between gap-2 pb-3">
-                    <div className="flex flex-col gap-2 w-1/2">
-                        <p className="text-2xl">Próximas Citas</p>
-                        <p className="text-gray-500 text-sm">Gestiona tus próximas citas médicas</p>
+                <CardTitle className="flex flex-col lg:flex-row justify-between gap-4 pb-4">
+                    {}
+                    <div className="flex flex-col gap-1">
+                        <p className="text-xl sm:text-2xl font-semibold">Próximas Citas</p>
+                        <p className="text-gray-500 text-sm sm:text-base">Gestiona tus próximas citas médicas</p>
                     </div>
-                <div className="flex items-center justify-end w-full">
-                    <TabsList className="grid w-full grid-cols-1 sm:grid-cols-3 gap-2 rounded-sm bg-transparent p-0">
-                       <TabsTrigger value="citas" className="w-full text-center py-2 px-4 text-sm sm:text-base rounded-sm overflow-hidden whitespace-nowrap truncate transition-all duration-200 hover:bg-blue-100 data-[state=active]:bg-blue-500 data-[state=active]:text-white">
-                       Hoy</TabsTrigger>
-                       <TabsTrigger value="citasMañana" className="w-full text-center py-2 px-4 text-sm sm:text-base rounded-sm overflow-hidden whitespace-nowrap truncate transition-all duration-200 hover:bg-blue-100 data-[state=active]:bg-blue-500 data-[state=active]:text-white">
-                       Mañana</TabsTrigger>
-                       <TabsTrigger value="citasSemana" className="w-full text-center py-2 px-4 text-sm sm:text-base rounded-sm overflow-hidden whitespace-nowrap truncate transition-all duration-200 hover:bg-blue-100 data-[state=active]:bg-blue-500 data-[state=active]:text-white">
-                       Esta semana
-                       </TabsTrigger>
-                    </TabsList>
-                </div>
+                    {}
+                    <div className="w-full lg:w-auto overflow-x-auto">
+                        <div className="flex whitespace-nowrap gap-2 min-w-max">
+                            <TabsList className="flex gap-2 bg-transparent p-0">
+                                <TabsTrigger
+                                    value="citas"
+                                    className="py-2 px-4 text-sm sm:text-base rounded-sm transition-all duration-200 hover:bg-blue-100 data-[state=active]:bg-blue-500 data-[state=active]:text-white">
+                                    Hoy
+                                </TabsTrigger>
+                                <TabsTrigger
+                                    value="citasMañana"
+                                    className="py-2 px-4 text-sm sm:text-base rounded-sm transition-all duration-200 hover:bg-blue-100 data-[state=active]:bg-blue-500 data-[state=active]:text-white">
+                                    Mañana
+                                </TabsTrigger>
+                                <TabsTrigger
+                                    value="citasSemana"
+                                    className="py-2 px-4 text-sm sm:text-base rounded-sm transition-all duration-200 hover:bg-blue-100 data-[state=active]:bg-blue-500 data-[state=active]:text-white">
+                                    Esta semana
+                                </TabsTrigger>
+                            </TabsList>
+                        </div>
+                    </div>
                 </CardTitle>
                 <TabsContent value="citas" className="flex flex-col gap-4">
                     <Table>

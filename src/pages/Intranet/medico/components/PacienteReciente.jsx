@@ -18,13 +18,16 @@ const PacienteReciente = () => {
     return (<>
         <section className="pt-4">
             <Tabs defaultValue="recientes" className="bg-white shadow-sm border-1 rounded-lg p-6">
-                <CardTitle className="flex justify-between gap-2 pb-3">
-                    <div className="flex flex-col gap-2 w-1/2">
-                        <p className="text-2xl">Pacientes recientes</p>
-                        <p className="text-gray-500 text-sm">Pacientes que has atendido recientemente</p>
+                <CardTitle className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3">
+                    {}
+                    <div className="flex flex-col gap-1 sm:w-1/2">
+                        <p className="text-xl sm:text-2xl font-semibold">Pacientes recientes</p>
+                        <p className="text-gray-500 text-sm sm:text-base">Pacientes que has atendido recientemente</p>
                     </div>
-                    <div className="flex justify-end">
-                        <Input type="text" placeholder="Buscar paciente" className="" />
+
+                    {}
+                    <div className="w-full sm:w-auto">
+                        <Input type="text" placeholder="Buscar paciente" className="w-full sm:w-[250px]"/>
                     </div>
                 </CardTitle>
                 <TabsContent value="recientes">

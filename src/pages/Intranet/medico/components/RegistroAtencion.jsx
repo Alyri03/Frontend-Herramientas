@@ -13,69 +13,60 @@ export const RegistroAtencion = () => {
     }
 
     return (
-        <>
+        <Card className="p-2">
+            <CardHeader>
+                <CardTitle className="mt-2">Registro de atención</CardTitle>
+                <CardDescription>Complete la información de la consulta actual</CardDescription>
+            </CardHeader>
 
-            <Card>
-                <CardHeader>
-                    <CardTitle>Registro de atencion</CardTitle>
-                    <CardDescription>Complete la información de la consulta actual</CardDescription>
-                </CardHeader>
-
-                <CardContent>
-                    <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-                        <div className="flex flex-row justify-center items-center">
-                            <div className="w-1/2 flex flex-col gap-3">
-                                <label htmlFor="diagnostico">
-                                    <div className="flex flex-row gap-3">
-                                        <FileText size={20} color="green" />
-                                        <span>Diagnóstico</span>
-                                    </div>
-                                </label>
-                                <Textarea className="resize-none h-[100px]" placeholder="Ingrese el diagnostico del paciente" id="diagnostico" />
-
-
-                                <label htmlFor="comentarios">
-                                    <div className="flex flex-row gap-3">
-                                        <FileText size={20} color="green" />
-                                        <span>Comentarios del médico</span>
-                                    </div>
-                                </label>
-                                <Textarea className="resize-none h-[100px]" placeholder="Ingrese comentarios adicionales" id="comentarios" />
-                            </div>
-
-
-
-                            <div className="w-1/2 p-5 flex flex-col gap-3">
-                                <label htmlFor="tratamiento">
-                                    <div className="flex flex-row gap-3">
-                                        <Pill size={20} color="green" />
-                                        <span>Tratamiento</span>
-                                    </div>
-                                </label>
-                                <Textarea className="resize-none h-[200px]" placeholder="Ingrese el tratamiento prescrito" id="tratamiento" />
-                            </div>
-                        </div>
-
-                        <div>
-                            <CardFooter className={'justify-end'}>
-                                <div className="flex gap-2">
-                                    <Button type="submit" size="lg" variant="outline" className="outline-green-600 text-green-500">
-                                        Guardar
-                                    </Button>
-
-                                    <Button size="lg" className={`bg-green-500 shadow hover:bg-green-600`}>
-                                        <CircleCheckBig />
-                                        Finalizar atención
-                                    </Button>
+            <CardContent>
+                <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+                    {}
+                    <div className="flex flex-col md:flex-row gap-6">
+                        {}
+                        <div className="flex flex-col gap-4 w-full md:w-1/2">
+                            <label htmlFor="diagnostico" className="font-medium text-gray-700">
+                                <div className="flex items-center gap-2">
+                                    <FileText size={20} className="text-green-600" />
+                                    <span>Diagnóstico</span>
                                 </div>
-                            </CardFooter>
+                            </label>
+                            <Textarea className="resize-none h-[100px]" placeholder="Ingrese el diagnóstico del paciente" id="diagnostico"/>
+                            <label htmlFor="comentarios" className="font-medium text-gray-700">
+                                <div className="flex items-center gap-2">
+                                    <FileText size={20} className="text-green-600" />
+                                    <span>Comentarios del médico</span>
+                                </div>
+                            </label>
+                            <Textarea className="resize-none h-[100px]" placeholder="Ingrese comentarios adicionales" id="comentarios"/>
                         </div>
 
-                    </form>
-                </CardContent>
+                        {/* Tratamiento */}
+                        <div className="flex flex-col gap-4 w-full md:w-1/2">
+                            <label htmlFor="tratamiento" className="font-medium text-gray-700">
+                                <div className="flex items-center gap-2">
+                                    <Pill size={20} className="text-green-600" />
+                                    <span>Tratamiento</span>
+                                </div>
+                            </label>
+                            <Textarea className="resize-none h-[236px]" placeholder="Ingrese el tratamiento prescrito" id="tratamiento"/>
+                        </div>
+                    </div>
 
-            </Card>
-
-        </>
+                    {/* Botones */}
+                    <CardFooter className="justify-end mb-2">
+                        <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+                            <Button type="submit"size="lg" variant="outline" className="border-green-500 text-green-600">
+                                Guardar
+                            </Button>
+                            <Button size="lg" className="bg-green-500 hover:bg-green-600 text-white flex items-center gap-2">
+                            <CircleCheckBig size={20} />
+                                Finalizar atención
+                            </Button>
+                        </div>
+                    </CardFooter>
+                </form>
+            </CardContent>
+        </Card>
     )
 }

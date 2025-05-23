@@ -11,10 +11,7 @@ import { AgendaTabla } from "./AgendaTabla";
 import { Calendario } from "./Calendario";
 import { Filtros } from "./Filtros";
 
-
 export const AgendaContenido = ({ paciente, filterOptions, setFilterOptions, date, setDate }) => {
-
-
     const filtrarPacientes = paciente.filter((paciente) => {
         return (
             paciente.estado.includes(
@@ -23,13 +20,9 @@ export const AgendaContenido = ({ paciente, filterOptions, setFilterOptions, dat
                     : filterOptions.find(opcion => opcion.visible === true).estado)
         );
     });
-
-
     return (
         <>
-
             <div>
-
                 <Link className="inline-flex items-center text-blue-600 mb-2" to="/intranet/medico">
                     <ArrowLeft /> Volver al dashboard
                 </Link>
@@ -41,17 +34,12 @@ export const AgendaContenido = ({ paciente, filterOptions, setFilterOptions, dat
 
             <div className="flex flex-wrap items-center gap-4 py-4 justify-between">
 
-
-
-
                 <div className="flex flex-row gap-5">
                     <Calendario date={date} setDate={setDate} />
 
                     <Filtros filterOptions={filterOptions} setFilterOptions={setFilterOptions} />
 
                 </div>
-
-
 
                 <div className="flex flex-row gap-5 items-center">
 
@@ -66,16 +54,8 @@ export const AgendaContenido = ({ paciente, filterOptions, setFilterOptions, dat
                             <MenubarTrigger>Mes</MenubarTrigger>
                         </MenubarMenu>
                     </Menubar>
-
-
                     <Button className={`bg-green-500 text-green-50 shadow hover:bg-green-600`}> + Nueva Cita</Button>
-
-
                 </div>
-
-
-
-
             </div>
 
 

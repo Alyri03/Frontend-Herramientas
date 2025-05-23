@@ -46,7 +46,7 @@ export const AgendaTabla = ({ filtrarPacientes, date }) => {
                                     {date ? (
                                         format(date, "PPP")
                                     ) : (
-                                        <span>Seleeciona una fecha</span>
+                                        <span>Selecciona una fecha</span>
                                     )}
                                     <CardDescription className="text-sm">Mostrando todas las citas</CardDescription>
                                 </div>
@@ -187,10 +187,6 @@ export const AgendaTabla = ({ filtrarPacientes, date }) => {
                                                 <p className="text-sm">{pacientess.nota}</p>
                                             </div>
                                         </div>
-
-
-
-
                                         <DialogFooter>
                                             <div className="flex gap-2 pt-3">
                                                 <DialogClose asChild>
@@ -207,11 +203,6 @@ export const AgendaTabla = ({ filtrarPacientes, date }) => {
                                         </DialogFooter>
                                     </DialogContent>
                                 </Dialog>
-
-
-
-
-
                                 {
                                     pacientess.estado === "Pendiente" &&
                                     <Button size="sm" className={`bg-green-500 text-green-50 shadow hover:bg-green-600`}>
