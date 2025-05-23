@@ -9,7 +9,7 @@ const AtencionMedica = () => {
           {}
           <div className="flex-1">
             <Link
-              className="inline-flex items-center text-blue-600 hover:text-blue-800 transition mb-2" to="/intranet/medico">
+              className="inline-flex items-center text-blue-600 hover:text-blue-800 transition mb-2" to="/intranet/medico/agenda">
               <ArrowLeft className="mr-1" /> Volver a mi agenda
             </Link>
             <h1 className="text-3xl md:text-4xl font-semibold tracking-tight mb-2">

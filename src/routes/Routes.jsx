@@ -56,7 +56,7 @@ const AppRoutes = () => {
         <Route path="medico" element={<InicioMedico/>} />
         <Route path='medico/agenda' element={<Agenda/>}/>
         <Route path="medico/pacientes" element={<MisPacientes/>} />
-        <Route path="medico:/id" element={<Atencion/>} />
+        <Route path="medico/:id" element={<Atencion/>} />
 
 
 

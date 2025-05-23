@@ -1,7 +1,10 @@
 import { Eye, FileText, Pill, User } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const DatosHistorial = () => {
+
+    const { id } = useParams()
+
     return (
         <section className="pb-4 px-4 md:px-6 lg:px-8">
             <div className="flex flex-col lg:flex-row justify-between gap-7">
@@ -14,7 +17,7 @@ const DatosHistorial = () => {
                         <div className="flex flex-col justify-center">
                             <p className="text-white text-sm sm:text-md font-semibold">Luis Enrique Martínez</p>
                             <p className="text-white text-xs sm:text-sm">38 años • Masculino</p>
-                            <p className="text-white text-xs sm:text-sm">ID:</p>
+                            <p className="text-white text-xs sm:text-sm">ID: {id}</p>
                         </div>
                     </div>
                     <div className="flex flex-col w-full p-4">

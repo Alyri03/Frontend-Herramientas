@@ -9,6 +9,7 @@ import { CalendarPlus, CircleCheckBig, Clock, Eye, FileText, MapPin, User } from
 import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Link } from "react-router-dom";
 
 
 export const AgendaTabla = ({ filtrarPacientes, date }) => {
@@ -194,9 +195,11 @@ export const AgendaTabla = ({ filtrarPacientes, date }) => {
                                                 </DialogClose>
                                                 {
                                                     pacientess.estado === "Pendiente" &&
-                                                    <Button size="sm" className={`bg-green-500 shadow hover:bg-green-600`}>
-                                                        <CircleCheckBig />
-                                                        Atender
+                                                    <Button asChild size="sm" className={`bg-green-500 shadow hover:bg-green-600`}>
+                                                        <Link to={`/intranet/medico/${pacientess.id}`}>
+                                                            <CircleCheckBig />
+                                                            Atender
+                                                        </Link>
                                                     </Button>
                                                 }
                                             </div>
@@ -205,9 +208,11 @@ export const AgendaTabla = ({ filtrarPacientes, date }) => {
                                 </Dialog>
                                 {
                                     pacientess.estado === "Pendiente" &&
-                                    <Button size="sm" className={`bg-green-500 text-green-50 shadow hover:bg-green-600`}>
-                                        <CircleCheckBig />
-                                        Atender
+                                    <Button asChild size="sm" className={`bg-green-500 shadow hover:bg-green-600`}>
+                                        <Link to={`/intranet/medico/${pacientess.id}`}>
+                                            <CircleCheckBig />
+                                            Atender
+                                        </Link>
                                     </Button>
                                 }
                             </TableCell>
