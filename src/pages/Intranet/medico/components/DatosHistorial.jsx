@@ -57,7 +57,7 @@ const DatosHistorial = () => {
                         </div>
                     </div>
                     <hr className="mb-2" />
-                    {/* Seccion1 */}
+                    {/* Seccion 1 */}
                     <div className="flex flex-col px-4 py-2">
                         <div className="flex justify-between w-full">
                             <div className="flex flex-col gap-1">
@@ -91,7 +91,7 @@ const DatosHistorial = () => {
                         </div>
                     </div>
                     <hr className="mb-2" />
-                    {/* Seccion2 */}
+                    {/* Seccion 2 */}
                     <div className="flex flex-col px-4 py-2">
                         <div className="flex justify-between w-full">
                             <div className="flex flex-col gap-1">
@@ -125,7 +125,7 @@ const DatosHistorial = () => {
                         </div>
                     </div>
                     <hr className="mb-2" />
-                    {/* Seccion3 */}
+                    {/* Seccion 3 */}
                     <div className="flex flex-col px-4 py-2">
                         <div className="flex justify-between w-full">
                             <div className="flex flex-col gap-1">
