@@ -2,7 +2,7 @@ name: CI/CD React con Vercel
 
 on:
   push:
-    branches: [main]
+    branches: [main, develop, QA]
 
 jobs:
   deploy:
@@ -20,8 +20,8 @@ jobs:
       - name: Instalar dependencias
         run: npm install
 
-      - name: Ejercutar pruebas
-        run: npm test -- --watchAll=false
+      - name: Ejecutar pruebas
+        run: npm run test
 
       - name: Construir aplicación
         run: npm run build
