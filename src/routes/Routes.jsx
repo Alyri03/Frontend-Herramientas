@@ -19,6 +19,7 @@ import InicioPaciente from '../pages/Intranet/paciente/InicioPaciente.jsx';
 import CitasPaciente from "../pages/Intranet/paciente/CitasPaciente.jsx"
 import HistorialPaciente from "../pages/Intranet/paciente/HistorialPaciente.jsx"
 import PerfilPaciente from "../pages/Intranet/paciente/PerfilPaciente.jsx"
+import DoctorsComponent from '../pages/Intranet/admin/Doctors.jsx';
 
 const AppRoutes = () => {
   return (
@@ -73,7 +74,10 @@ const AppRoutes = () => {
           <Route path="admin/configuracion" element={<div>Configuración General</div>} />
         </Route>
 
+        <Route path="admin/doctores" element={<DoctorsComponent/>} />
+
       </Route>
+
 
       {/* ❌ Ruta no encontrada */}
       <Route path="/404" element={<NoDisponible />} />
