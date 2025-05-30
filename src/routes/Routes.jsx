@@ -30,6 +30,7 @@ import { MisPacientes } from '@/pages/Intranet/medico/Pacientes';
 import InicioMedico from '@/pages/Intranet/medico/InicioMedico';
 import Agenda from '@/pages/Intranet/medico/Agenda';
 import Atencion from '@/pages/Intranet/medico/Atencion';
+import { Citas } from '../pages/Intranet/admin/Citas';
 
 const AppRoutes = () => {
   return (
@@ -81,6 +82,7 @@ const AppRoutes = () => {
         <Route element={<RutaProtegidaPorRol rolPermitido="ADMINISTRADOR" />}>
           <Route path="admin/usuarios" element={<div>Gestión de Usuarios</div>} />
           <Route path="admin/configuracion" element={<div>Configuración General</div>} />
+          <Route path='admin/citas' element={<Citas />} />
         </Route>
       </Route>
 
