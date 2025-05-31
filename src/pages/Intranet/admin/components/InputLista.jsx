@@ -291,6 +291,7 @@ const InputListaComponent = () => {
                                                         <FontAwesomeIcon icon={faPenToSquare} className="h-4 w-4" />
                                                     </button>
                                                 </DialogTrigger>
+                                                {/* Modal editar */}
                                                 {/* <DialogContent className="sm:max-w-[425px]">
                                                     <DialogHeader>
                                                         <DialogTitle>Detalles de la Cita</DialogTitle>
