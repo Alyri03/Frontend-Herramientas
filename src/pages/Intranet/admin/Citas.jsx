@@ -38,13 +38,15 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 import { Button } from '@/components/ui/button'
-import { Calendar, ChevronDown, CircleCheckBig, Clock, Funnel, Save, SquarePen } from "lucide-react"
+import { Calendar, ChevronDown, CircleCheckBig, Clock, Funnel, Plus, Save, SquarePen } from "lucide-react"
 import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 
 import { Input } from "@/components/ui/input"
 import { useEffect, useState } from "react"
 import { Calendario } from "../medico/components/Calendario"
 import { Link } from "react-router-dom";
+import { AgregarCita } from "./components/AgregarCita";
+import { EditarCita } from "./components/EditarCita";
 
 const filtros = [
     {
@@ -60,9 +62,11 @@ const filtros = [
 
 const citas = [
     {
-        hora: "09:00 AM", paciente: "John Smith	", doctor: "Dr. Sarah Wilson", tipo: "Consulta General", duracion: "30 min", estado: "Confirmado"
+        fecha: "2024-01-25", doctorId: "D001", pacienteId: "P001"
+        ,hora: "09:00 AM", paciente: "John Smith	", doctor: "Dr. Sarah Wilson", tipo: "Consulta General", duracion: "30 min", estado: "Confirmado"
     },
     {
+        fecha: "2024-01-25", doctorId: "D002",pacienteId: "P002",
         hora: "10:30 AM", paciente: "Emma Johnson", doctor: "Dr. Michael Brown", tipo: "Seguimiento", duracion: "60 min", estado: "En progreso"
 
     }
@@ -79,7 +83,7 @@ const tiposCitas = [
 
 const estados = [
     {
-        estado: "Confirmada"
+        estado: "Confirmado"
     },
     {
         estado: "En progreso"
@@ -125,42 +129,19 @@ export const Citas = () => {
     const [to, setTo] = useState(null)
     const [loading, setLoading] = useState(false)
     const [cita, setCita] = useState(null)
-    const [formData, setFormData] = useState({
-        paciente: "",
-        doctor: "",
-        fecha: "",
-        tiempo: "",
-        tipo: "",
-        duracion: "",
-        estado: "",
-        notas: "",
-        razon: ""
-    })
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        setLoading(true)
-        console.log(formData)
-    }
 
-    useEffect(() => {
-        if (cita) {
-            setFormData({
-                paciente: cita.paciente,
-                doctor: cita.doctor,
-                fecha: cita.fecha,
-                tiempo: cita.hora?.replace(" AM", "").replace(" PM", "") || "",
-                tipo: cita.tipo,
-                duracion: cita.duracion?.replace(" min", "") || "",
-                estado: cita.estado,
-                notas: "",
-                razon: ""
-            })
-        }
-    }, [cita])
+  
+    
 
     return (
         <main className="flex flex-col gap-6">
+
+            <div className="flex items-center justify-between">
+                <h2 className="text-3xl font-bold">Citas</h2>
+                <AgregarCita tiempos={tiempos} tiposCitas={tiposCitas} loading={loading} setLoading={setLoading} />
+            </div>
+
 
             <div className="flex flex-row gap-6">
 
@@ -291,218 +272,42 @@ export const Citas = () => {
                         </TableRow>
                     </TableHeader>
                     <TableBody className={'items-center text-center'}>
-                        {citas.map((pacientess, i) => (
+                        {citas.map((appointment, i) => (
                             <TableRow key={i}>
                                 <TableCell >
-                                    {pacientess.hora}
+                                    {appointment.hora}
 
                                 </TableCell>
 
                                 <TableCell>
 
-                                    {pacientess.paciente}
+                                    {appointment.paciente}
 
                                 </TableCell>
 
                                 <TableCell>
-                                    {pacientess.doctor}
+                                    {appointment.doctor}
                                 </TableCell>
 
 
                                 <TableCell>
-                                    {pacientess.tipo}
+                                    {appointment.tipo}
                                 </TableCell>
                                 <TableCell>
-                                    {pacientess.duracion}
+                                    {appointment.duracion}
                                 </TableCell>
 
                                 <TableCell>
-                                    <Badge className={`px-2 py-1 text-xs  ${pacientess.estado === "Pendiente" ? "bg-yellow-100 text-yellow-600 "
-                                        : pacientess.estado === "Confirmada" ? "bg-blue-100 text-blue-600"
-                                            : pacientess.estado === "Cancelada" ? "bg-red-100 text-red-600"
-                                                : "bg-green-100 text-green-600"}`}>{pacientess.estado}</Badge>
+                                    <Badge className={`px-2 py-1 text-xs  ${appointment.estado === "Pendiente" ? "bg-yellow-100 text-yellow-600 "
+                                        : appointment.estado === "Confirmada" ? "bg-blue-100 text-blue-600"
+                                            : appointment.estado === "Cancelada" ? "bg-red-100 text-red-600"
+                                                : "bg-green-100 text-green-600"}`}>{appointment.estado}</Badge>
 
                                 </TableCell>
 
                                 <TableCell className={'flex flex-row justify-center gap-3 p-4'}>
 
-                                    <Dialog>
-                                        <DialogTrigger asChild>
-                                            <Button onClick={() => setCita(pacientess)} variant="secondary" size="sm">
-                                                <SquarePen />
-                                            </Button>
-                                        </DialogTrigger>
-                                        <DialogContent className="sm:max-w-xl">
-
-                                            <DialogHeader>
-                                                <DialogTitle>Editar cita</DialogTitle>
-                                                <DialogDescription>
-                                                    Información completa de la cita médica.
-                                                </DialogDescription>
-                                            </DialogHeader>
-
-                                            <form onSubmit={handleSubmit}>
-                                                <div className="flex flex-col gap-6 w-full">
-
-                                                    <div className="flex flex-row gap-3 w-full">
-                                                        <div className="flex flex-col gap-3 w-full">
-                                                            <Label htmlFor="paciente">Paciente *</Label>
-                                                            <Input name="paciente"
-                                                                onChange={(e) => setFormData({ ...formData, paciente: e.target.value })}
-                                                                value={formData.paciente} required />
-                                                        </div>
-
-                                                        <div className="flex flex-col gap-3 w-full">
-                                                            <Label htmlFor="doctor">Doctor *</Label>
-                                                            <Input name="doctor"
-                                                                onChange={(e) => setFormData({ ...formData, doctor: e.target.value })}
-                                                                value={formData.doctor}
-                                                                required />
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="flex flex-row gap-3 w-full">
-                                                        <div className="flex flex-col gap-3 w-full">
-                                                            <Label htmlFor="fecha">Fecha *</Label>
-                                                            <Input
-                                                                type="date"
-                                                                value={formData.fecha}
-                                                                onChange={(e) => setFormData({ ...formData, fecha: e.target.value })}
-                                                                required />
-                                                        </div>
-
-                                                        <div className="flex flex-col gap-3 w-full">
-                                                            <Label htmlFor="tiempo">Hora *</Label>
-                                                            <Select
-                                                                value={formData.tiempo}
-                                                                onChange={(e) => setFormData({ ...formData, tiempo: e.target.value })}
-                                                                required>
-                                                                <SelectTrigger>
-                                                                    <SelectValue placeholder="Seleccionar hora" />
-                                                                </SelectTrigger>
-                                                                <SelectContent>
-                                                                    {
-                                                                        tiempos.map((tiempo, index) => (
-                                                                            <SelectItem key={index} value={tiempo}>{tiempo}</SelectItem>
-                                                                        ))
-                                                                    }
-                                                                </SelectContent>
-                                                            </Select>
-                                                        </div>
-                                                    </div>
-
-
-                                                    <div className="flex flex-row gap-3">
-
-                                                        <div className="flex flex-col gap-3 w-full">
-                                                            <Label htmlFor="tipo">Tipo de cita *</Label>
-                                                            <Select
-                                                                value={formData.tipo}
-                                                                onChange={(e) => setFormData({ ...formData, tipo: e.target.value })}
-                                                                required>
-                                                                <SelectTrigger>
-                                                                    <SelectValue placeholder="Seleccionar tipo" />
-                                                                </SelectTrigger>
-                                                                <SelectContent>
-                                                                    {
-                                                                        tiposCitas.map((tipo, index) => (
-                                                                            <SelectItem key={index} value={tipo}>{tipo}</SelectItem>
-                                                                        ))
-                                                                    }
-                                                                </SelectContent>
-                                                            </Select>
-                                                        </div>
-
-                                                        <div className="flex flex-col gap-3 w-full">
-                                                            <Label htmlFor="duracion">Duracion (minutos) *</Label>
-                                                            <Select
-                                                                value={formData.duracion}
-                                                                onChange={(e) => setFormData({ ...formData, duracion: e.target.value })}
-                                                                required>
-                                                                <SelectTrigger>
-                                                                    <SelectValue placeholder="Seleccionar tipo" />
-                                                                </SelectTrigger>
-                                                                <SelectContent>
-                                                                    <SelectItem value="15">15 minutos</SelectItem>
-                                                                    <SelectItem value="30">30 minutos</SelectItem>
-                                                                    <SelectItem value="45">45 minutos</SelectItem>
-                                                                    <SelectItem value="60">1 hora</SelectItem>
-                                                                    <SelectItem value="90">1.5 horas</SelectItem>
-                                                                </SelectContent>
-                                                            </Select>
-                                                        </div>
-                                                    </div>
-
-
-
-                                                    <div className="flex flex-col gap-3 w-full">
-                                                        <Label htmlFor="estado">Estado de la cita</Label>
-                                                        <Select
-                                                            value={formData.estado}
-                                                            onChange={(e) => setFormData({ ...formData, estado: e.target.value })}
-                                                            required>
-                                                            <SelectTrigger className="w-full">
-                                                                <SelectValue placeholder={`${formData.estado}`} />
-                                                            </SelectTrigger>
-                                                            <SelectContent>
-                                                                <SelectGroup>
-                                                                    {
-                                                                        estados.map((estado, index) => (
-                                                                            <SelectItem key={index}>{estado.estado}</SelectItem>
-                                                                        ))
-                                                                    }
-                                                                </SelectGroup>
-                                                            </SelectContent>
-                                                        </Select>
-                                                    </div>
-
-                                                    <div className="flex flex-col gap-3">
-
-                                                        <Label htmlFor="razon">Motivo de la consulta</Label>
-
-                                                        <Textarea
-                                                            className="resize-none"
-                                                            placeholder="Motivo de la consulta...."
-                                                            onChange={(e) => setFormData({ ...formData, razon: e.target.value })}
-                                                            value={formData.razon}
-                                                            required />
-
-                                                    </div>
-
-                                                    <div className="flex flex-col gap-3">
-
-                                                        <Label htmlFor="notas">Notas adicionales</Label>
-
-                                                        <Textarea
-                                                            value={formData.notas}
-                                                            className="resize-none"
-                                                            onChange={(e) => setFormData({ ...formData, notas: e.target.value })}
-                                                            placeholder="Notas de la cita médica...."
-                                                            required />
-
-                                                    </div>
-
-                                                </div>
-                                            </form>
-
-
-
-                                            <DialogFooter>
-                                                <div className="flex gap-2 pt-3">
-                                                    <DialogClose asChild>
-                                                        <Button disabled={loading} size="sm" className={`bg-gray-500 shadow hover:bg-gray-600`}>Cerrar</Button>
-                                                    </DialogClose>
-
-                                                    <Button asChild size="sm" disabled={loading}>
-                                                        <Link>
-                                                            <Save />
-                                                            {loading ? "Guardando...." : "Guardar cambios"}
-                                                        </Link>
-                                                    </Button>
-                                                </div>
-                                            </DialogFooter>
-                                        </DialogContent>
-                                    </Dialog>
+                                    <EditarCita cita={cita} setCita={setCita} loading={loading} setLoading={setLoading} appointment={appointment} tiempos={tiempos} tiposCitas={tiposCitas} estados={estados}/>
                                 </TableCell>
 
                             </TableRow>
