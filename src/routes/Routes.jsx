@@ -31,6 +31,7 @@ import InicioMedico from '@/pages/Intranet/medico/InicioMedico';
 import Agenda from '@/pages/Intranet/medico/Agenda';
 import Atencion from '@/pages/Intranet/medico/Atencion';
 import { Citas } from '../pages/Intranet/admin/Citas';
+import Doctors from '../pages/Intranet/admin/Doctors';
 
 const AppRoutes = () => {
   return (
@@ -83,6 +84,7 @@ const AppRoutes = () => {
           <Route path="admin/usuarios" element={<div>Gestión de Usuarios</div>} />
           <Route path="admin/configuracion" element={<div>Configuración General</div>} />
           <Route path='admin/citas' element={<Citas />} />
+          <Route path='admin/doctores' element={<Doctors />} />
         </Route>
       </Route>
 
