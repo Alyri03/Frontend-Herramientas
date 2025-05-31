@@ -35,7 +35,7 @@ export const AgendaContenido = ({ paciente, filterOptions, setFilterOptions, dat
             <div className="flex flex-wrap items-center gap-4 py-4 justify-between">
 
                 <div className="flex flex-row gap-5">
-                    <Calendario date={date} setDate={setDate} />
+                    <Calendario date={date} setDate={setDate} title={"Selecciona una fecha"}/>
 
                     <Filtros filterOptions={filterOptions} setFilterOptions={setFilterOptions} />
 

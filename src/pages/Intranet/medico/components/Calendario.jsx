@@ -4,7 +4,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { CalendarIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-export const Calendario = ({date, setDate}) => {
+export const Calendario = ({date, setDate, title}) => {
     return (
         <Popover>
             <PopoverTrigger asChild>
@@ -15,7 +15,7 @@ export const Calendario = ({date, setDate}) => {
                     {date ? (
                         format(date, "PPP")
                     ) : (
-                        <span>Seleeciona una fecha</span>
+                        <span>{title}</span>
                     )}
                     <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                 </Button>
