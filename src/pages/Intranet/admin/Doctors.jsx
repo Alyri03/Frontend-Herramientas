@@ -1,8 +1,10 @@
-import DoctorRegistro from "./components/DoctorRegistro";
+import DoctorRegistroComponent from "./components/DoctorRegistro";
+import InputListaComponent from "./components/InputLista";
 
 const Doctors = () => {
     return(<>
-        <DoctorRegistro />
+        <DoctorRegistroComponent />
+        <InputListaComponent />
     </>)
 }
 

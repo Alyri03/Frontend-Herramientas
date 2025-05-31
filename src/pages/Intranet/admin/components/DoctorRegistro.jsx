@@ -1,6 +1,6 @@
 import { BriefcaseMedical, HeartPulse, Syringe, UserPlus, UserRoundCheck } from "lucide-react";
 
-const DoctorRegistro = () => { 
+const DoctorRegistroComponent = () => { 
     return(<>
         <section className="flex flex-col gap-4 pb-4">
             {/* Nombre y botón */}
@@ -66,4 +66,4 @@ const DoctorRegistro = () => {
     </>)
 }
 
-export default DoctorRegistro;
+export default DoctorRegistroComponent;
