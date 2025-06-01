@@ -31,6 +31,9 @@ import InicioMedico from '@/pages/Intranet/medico/InicioMedico';
 import Agenda from '@/pages/Intranet/medico/Agenda';
 import Atencion from '@/pages/Intranet/medico/Atencion';
 
+// Recepcionista
+import InicioRecepcionista from '@/pages/Intranet/recepcionista/InicioRecepcionista.jsx';
+
 const AppRoutes = () => {
   return (
     <Routes>
@@ -67,7 +70,7 @@ const AppRoutes = () => {
 
         {/* RECEPCIONISTA */}
         <Route element={<RutaProtegidaPorRol rolPermitido="RECEPCIONISTA" />}>
-          <Route path="recepcionista" element={<div>Inicio Recepcionista</div>} />
+          <Route path="recepcionista" element={<InicioRecepcionista />} />
           <Route path="recepcionista/pacientes" element={<div>Gestión de Pacientes</div>} />
           <Route path="recepcionista/medicos" element={<div>Gestión de Médicos</div>} />
           <Route path="recepcionista/servicios" element={<div>Gestión de Servicios</div>} />
