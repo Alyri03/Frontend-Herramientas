@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import Logo from "@/assets/images/Logo.png";
 import { useContext, useState } from "react";
-import { AuthContext } from '../context/authContext';
+import { AuthContext } from "../context/authContext";
 
 const Header = () => {
   const [nav, setNav] = useState(false);
@@ -25,7 +25,11 @@ const Header = () => {
           <div className="flex items-center gap-2">
             <div className="w-1 h-12 bg-[#1B669A] rounded-sm hidden sm:block" />
             <Link to="/" className="flex items-center">
-              <img src={Logo} alt="Logo" className="h-14 sm:h-16 w-auto max-w-[200px] object-contain" />
+              <img
+                src={Logo}
+                alt="Logo"
+                className="h-14 sm:h-16 w-auto max-w-[200px] object-contain"
+              />
             </Link>
           </div>
 
@@ -43,28 +47,47 @@ const Header = () => {
             ))}
           </div>
 
-          <Link
-            to={
-              user?.role === "PACIENTE"
-                ? '/intranet/paciente'
-                : user?.role === "MEDICO"
-                  ? '/intranet/medico'
-                  : '/login'
-            }
-            className="border-[3px] border-[#2F71A1] text-[#2F71A1] px-5 py-2 rounded-full hover:bg-[#2F71A1] hover:text-white transition-all duration-300 transform hover:-translate-y-1 hover:scale-105"
-          >
-            Mi Clínica Virtual
-          </Link>
-
+          <div className="hidden lg:block">
+            <Link
+              to={
+                user?.role === "PACIENTE"
+                  ? "/intranet/paciente"
+                  : user?.role === "MEDICO"
+                  ? "/intranet/medico"
+                  : "/login"
+              }
+              className="border-[3px] border-[#2F71A1] text-[#2F71A1] px-5 py-2 rounded-full hover:bg-[#2F71A1] hover:text-white transition-all duration-300 transform hover:-translate-y-1 hover:scale-105"
+            >
+              Mi Clínica Virtual
+            </Link>
+          </div>
 
           {/* Botón Menú Mobile */}
           <div className="lg:hidden">
-            <button onClick={() => setNav(!nav)} className="text-gray-600 focus:outline-none">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <button
+              onClick={() => setNav(!nav)}
+              className="text-gray-600 focus:outline-none"
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
                 {nav ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
                 )}
               </svg>
             </button>
@@ -78,9 +101,16 @@ const Header = () => {
             <div className="flex items-center justify-between">
               <Link to="/" className="flex items-center gap-2">
                 <div className="w-1 h-10 bg-[#1B669A] rounded-sm" />
-                <img src={Logo} alt="Logo" className="h-14 w-auto max-w-[180px] object-contain" />
+                <img
+                  src={Logo}
+                  alt="Logo"
+                  className="h-14 w-auto max-w-[180px] object-contain"
+                />
               </Link>
-              <button onClick={() => setNav(!nav)} className="w-8 h-8 text-2xl text-gray-600 flex items-center justify-center focus:outline-none">
+              <button
+                onClick={() => setNav(!nav)}
+                className="w-8 h-8 text-2xl text-gray-600 flex items-center justify-center focus:outline-none"
+              >
                 &times;
               </button>
             </div>
@@ -91,6 +121,7 @@ const Header = () => {
                 <li key={i}>
                   <Link
                     to={item.href}
+                    onClick={() => setNav(false)}
                     className="flex justify-between items-center py-3.5 text-gray-800 text-base font-medium hover:text-[#2F71A1] transition"
                   >
                     {item.name}
@@ -105,10 +136,10 @@ const Header = () => {
               <Link
                 to={
                   user?.role === "PACIENTE"
-                    ? '/clinica-virtual'
+                    ? "/clinica-virtual"
                     : user?.role === "MEDICO"
-                      ? '/clinica-virtual'
-                      : '/login'
+                    ? "/clinica-virtual"
+                    : "/login"
                 }
                 className="w-full block border-[3px] border-[#2F71A1] text-[#2F71A1] text-center py-2.5 rounded-full font-semibold hover:bg-[#2F71A1] hover:text-white transition"
               >

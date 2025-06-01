@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -57,8 +56,6 @@ export const AgendaContenido = ({ paciente, filterOptions, setFilterOptions, dat
                     <Button className={`bg-green-500 text-green-50 shadow hover:bg-green-600`}> + Nueva Cita</Button>
                 </div>
             </div>
-
-
             <AgendaTabla filtrarPacientes={filtrarPacientes} date={date} />
         </>
     )
