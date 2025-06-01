@@ -52,6 +52,7 @@ const iconMap = {
 const EspecialidadesCarrusel = () => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
+  const swiperRef = useRef(null);
   const navigate = useNavigate();
 
   const [especialidades, setEspecialidades] = useState([]);
@@ -71,10 +72,16 @@ const EspecialidadesCarrusel = () => {
       .catch((err) => {
         console.error('Error al cargar especialidades', err);
       });
+  }, []);
 
-    setTimeout(() => {
-      window.dispatchEvent(new Event('resize'));
-    }, 100);
+  useEffect(() => {
+    const handleResize = () => {
+      if (swiperRef.current) {
+        swiperRef.current.update();
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   return (
@@ -96,16 +103,19 @@ const EspecialidadesCarrusel = () => {
           modules={[Navigation, Grid]}
           navigation={{ prevEl: prevRef.current, nextEl: nextRef.current }}
           onSwiper={(swiper) => {
+            swiperRef.current = swiper;
+
             setTimeout(() => {
               swiper.params.navigation.prevEl = prevRef.current;
               swiper.params.navigation.nextEl = nextRef.current;
               swiper.navigation.destroy();
               swiper.navigation.init();
               swiper.navigation.update();
+              swiper.update();
               setIsBeginning(swiper.isBeginning);
               setIsEnd(swiper.isEnd);
               setProgress(swiper.progress);
-            });
+            }, 0);
           }}
           onSlideChange={(swiper) => {
             setIsBeginning(swiper.isBeginning);
@@ -153,8 +163,8 @@ const EspecialidadesCarrusel = () => {
               disabled={isBeginning}
               className={`flex h-9 w-9 items-center justify-center rounded-full transition ${isBeginning
                 ? 'bg-gray-400 cursor-not-allowed'
-                : 'bg-[#E7EAEE] hover:bg-[#d3d6db]'
-                }`}
+                : 'bg-[#E7EAEE] hover:bg-[#d3d6db]'}`
+              }
             >
               <FontAwesomeIcon icon={faChevronLeft} className="text-[#4B5563]" />
             </button>
@@ -163,8 +173,8 @@ const EspecialidadesCarrusel = () => {
               disabled={isEnd}
               className={`flex h-9 w-9 items-center justify-center rounded-full transition ${isEnd
                 ? 'bg-gray-400 cursor-not-allowed'
-                : 'bg-[#E7EAEE] hover:bg-[#d3d6db]'
-                }`}
+                : 'bg-[#E7EAEE] hover:bg-[#d3d6db]'}`
+              }
             >
               <FontAwesomeIcon icon={faChevronRight} className="text-[#4B5563]" />
             </button>
