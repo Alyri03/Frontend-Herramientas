@@ -156,7 +156,6 @@ const ProxCitas = () => {
                                                         <DialogClose asChild>
                                                             <button className={'flex items-self-center text-sm border-1 rounded-sm px-3 py-2'}>Cerrar</button>
                                                         </DialogClose>
-                                                        <button className={'flex items-self-center text-sm border-1 rounded-sm px-3 py-2 bg-green-500 text-white'}>Reprogramar</button>
                                                     </div>
                                                 </DialogFooter>
                                             </DialogContent>
@@ -277,7 +276,6 @@ const ProxCitas = () => {
                                                         <DialogClose asChild>
                                                             <button className={'flex items-self-center text-sm border-1 rounded-sm px-3 py-2'}>Cerrar</button>
                                                         </DialogClose>
-                                                        <button className={'flex items-self-center text-sm border-1 rounded-sm px-3 py-2 bg-green-500 text-white'}>Reprogramar</button>
                                                     </div>
                                                 </DialogFooter>
                                             </DialogContent>
@@ -398,7 +396,6 @@ const ProxCitas = () => {
                                                         <DialogClose asChild>
                                                             <button className={'flex items-self-center text-sm border-1 rounded-sm px-3 py-2'}>Cerrar</button>
                                                         </DialogClose>
-                                                        <button className={'flex items-self-center text-sm border-1 rounded-sm px-3 py-2 bg-green-500 text-white'}>Reprogramar</button>
                                                     </div>
                                                 </DialogFooter>
                                             </DialogContent>
