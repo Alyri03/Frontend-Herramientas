@@ -54,7 +54,6 @@ export const AgendaContenido = ({ paciente, filterOptions, setFilterOptions, dat
                             <MenubarTrigger>Mes</MenubarTrigger>
                         </MenubarMenu>
                     </Menubar>
-                    <Button className={`bg-green-500 text-green-50 shadow hover:bg-green-600`}> + Nueva Cita</Button>
                 </div>
             </div>
 
