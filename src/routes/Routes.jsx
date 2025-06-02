@@ -33,6 +33,7 @@ import Atencion from '@/pages/Intranet/medico/Atencion';
 import { Citas } from '../pages/Intranet/admin/Citas';
 import Doctors from '../pages/Intranet/admin/Doctors';
 import Dashboard from '../pages/Intranet/admin/Dashboard';
+import Pacientes from '../pages/Intranet/admin/Pacientes';
 
 const AppRoutes = () => {
   return (
@@ -83,6 +84,7 @@ const AppRoutes = () => {
         {/* ADMINISTRADOR */}
         <Route element={<RutaProtegidaPorRol rolPermitido="ADMINISTRADOR" />}>
           <Route path='admin/Dashboard' element={<Dashboard />} />
+          <Route path='admin/paciente' element={<Pacientes />} />
           <Route path="admin/usuarios" element={<div>Gestión de Usuarios</div>} />
           <Route path="admin/configuracion" element={<div>Configuración General</div>} />
           <Route path='admin/citas' element={<Citas />} />
