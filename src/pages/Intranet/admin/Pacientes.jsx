@@ -97,7 +97,7 @@ export default function Pacientes() {
     <div className="p-6 max-w-full mx-auto bg-white">
       <div className="flex flex-col space-y-6">
         {/* Encabezado */}
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
           <h1 className="text-3xl font-bold">Pacientes</h1>
           <button onClick={() => setMostrarModalAñadir(true)} className="bg-black text-white px-4 py-2 rounded-md flex items-center space-x-2 hover:bg-gray-800 transition-colors">
             <FontAwesomeIcon icon={faPlus}/>
