@@ -49,7 +49,7 @@ export const AgregarCita = ({ tiempos, tiposCitas, loading, setLoading }) => {
                 <DialogHeader>
                     <DialogTitle>Programar Nueva Cita</DialogTitle>
                 </DialogHeader>
-                <form className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-4">
                     <div className="grid grid-cols-2 gap-4">
                         <div>
                             <Label>Paciente</Label>
@@ -90,7 +90,11 @@ export const AgregarCita = ({ tiempos, tiposCitas, loading, setLoading }) => {
                     <div className="grid grid-cols-2 gap-4">
                         <div>
                             <Label>Fecha</Label>
-                            <Input type="date" required />
+                            <Input
+                                type="date"
+                                value={formData.fecha}
+                                onChange={(e) => setFormData({ ...formData, fecha: e.target.value })}
+                                required />
                         </div>
                         <div>
                             <Label>Hora</Label>
@@ -136,7 +140,7 @@ export const AgregarCita = ({ tiempos, tiposCitas, loading, setLoading }) => {
                             <Label>Duracion (minutos)</Label>
                             <Select
                                 value={formData.duracion}
-                                onValueChange={(value) => setFormData({ ...formData, duracion: value})}
+                                onValueChange={(value) => setFormData({ ...formData, duracion: value })}
                                 required>
                                 <SelectTrigger>
                                     <SelectValue placeholder="Seleccionar tipo" />
@@ -155,7 +159,7 @@ export const AgregarCita = ({ tiempos, tiposCitas, loading, setLoading }) => {
                     <div>
                         <Label>Notas</Label>
                         <Textarea
-                            onChange={(e) => setFormData({...formData, notas: e.target.value})}
+                            onChange={(e) => setFormData({ ...formData, notas: e.target.value })}
                             placeholder="Motivo de la consulta, sintomas, etc"
                             rows={3}
                         />
@@ -164,7 +168,7 @@ export const AgregarCita = ({ tiempos, tiposCitas, loading, setLoading }) => {
                     <div className="flex justify-end space-x-2 pt-4">
                         <DialogClose asChild>
                             <Button
-                                disabled={loading} 
+                                disabled={loading}
                                 size="sm" className={`bg-gray-500 shadow hover:bg-gray-600`}>Cerrar</Button>
                         </DialogClose>
                         <Button type="submit">Programar cita</Button>

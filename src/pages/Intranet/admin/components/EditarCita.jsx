@@ -1,6 +1,6 @@
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from '@/components/ui/button'
-import { Calendar, ChevronDown, CircleCheckBig, Clock, Funnel, Plus, Save, SquarePen } from "lucide-react"
+import { Save, SquarePen } from "lucide-react"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 
@@ -9,12 +9,12 @@ import {
     SelectContent,
     SelectGroup,
     SelectItem,
-    SelectLabel,
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
 import { useState, useEffect } from "react";
+import { format, parse } from "date-fns";
 
 export const EditarCita = ({cita, setCita, loading, setLoading, appointment, tiempos, tiposCitas, estados}) => {
 
@@ -23,7 +23,7 @@ export const EditarCita = ({cita, setCita, loading, setLoading, appointment, tie
             setFormData({
                 pacienteId: cita.pacienteId,
                 doctorId: cita.doctorId,
-                fecha: cita.fecha,
+                fecha: format(parse(cita.fecha, "dd-MM-yyyy", new Date()), "yyyy-MM-dd"),
                 tiempo: cita.hora?.replace(" AM", "").replace(" PM", "") || "",
                 tipo: cita.tipo,
                 duracion: cita.duracion?.replace(" min", "") || "",
@@ -119,7 +119,7 @@ export const EditarCita = ({cita, setCita, loading, setLoading, appointment, tie
                                 <Input
                                     type="date"
                                     value={formData.fecha}
-                                    onChange={(value) => setFormData({ ...formData, fecha: value })}
+                                    onChange={(e) => setFormData({ ...formData, fecha: e.target.value })}
                                     required />
                             </div>
 
