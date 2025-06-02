@@ -1,43 +1,114 @@
-import { Calendar, Clock, DollarSign, Eye, File, FileText, Funnel, Gem, Mail, Phone, Search } from "lucide-react";
+import { Calendar, Clock, DollarSign, Eye, FileText, Funnel, Gem, Mail, Phone, Save, Search, SquarePen, UserRoundPlus, X } from "lucide-react";
 import { Tabs, TabsContent } from "@radix-ui/react-tabs"
 import { CardTitle } from "../../../../components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../../../components/ui/table";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClock } from '@fortawesome/free-solid-svg-icons';
-import { faLocationPin } from '@fortawesome/free-solid-svg-icons';
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
-import { faBuildingUser } from '@fortawesome/free-solid-svg-icons';
-import { faFileText } from '@fortawesome/free-solid-svg-icons';
-import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "../../../../components/ui/dialog";
-import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { Dialog, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "../../../../components/ui/dialog";
+import { Input } from "../../../../components/ui/input";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "../../../../components/ui/select"
+import { Popover, PopoverContent, PopoverTrigger } from "../../../../components/ui/popover"
+import { Button } from "../../../../components/ui/button"
+import { Avatar, AvatarFallback, AvatarImage } from "../../../../components/ui/avatar"
+import { useState } from "react";
 
 const InputListaComponent = () => {
 
+    const [buscarDoctor, setBuscarDoctor] = useState("");
+
     const doctores = [
-        { nombreDoc: "Juan Perez", num: "D001", especialidad: "Cardiologia", horario: "Lun-Vie, 9:00-17:00", estado: "Disponible", pacientes: "145", ubicacion: "Consultorio 1", telefono: "(555) 123-4567", correo: "dr.wilson@cliniccare.com", exp: "8 años", calificacion: "4.8", consultas: "1247", proxDispo: "Hoy 3:00 PM", monto: "150" },
-        { nombreDoc: "Maria Lopez", num: "D002", especialidad: "Pediatria", horario: "Lun-Jue, 8:00-16:00", estado: "En consulta", pacientes: "145", ubicacion: "Consultorio 2", telefono: "(555) 123-4567", correo: "dr.wilson@cliniccare.com", exp: "7 años", calificacion: "4.8", consultas: "1154", proxDispo: "Hoy 7:00 PM", monto: "75" },
-        { nombreDoc: "Carlos Sanchez", num: "D003", especialidad: "Dermatologia", horario: "Lun-Jue, 8:00-17:00", estado: "Disponible", pacientes: "145", ubicacion: "Consultorio 3", telefono: "(555) 123-4567", correo: "dr.wilson@cliniccare.com", exp: "3 años", calificacion: "4.8", consultas: "320", proxDispo: "Mañana 9:00 AM", monto: "80" },
-        { nombreDoc: "Ana Torres", num: "D004", especialidad: "Neurologia", horario: "Lun-Jue, 8:00-16:00", estado: "Ausente", pacientes: "145", ubicacion: "Consultorio 4", telefono: "(555) 123-4567", correo: "dr.wilson@cliniccare.com", exp: "5 años", calificacion: "4.8", consultas: "583", proxDispo: "Mañana 1:00 PM", monto: "125" },
-        { nombreDoc: "Luis Garcia", num: "D005", especialidad: "Oftalmologia", horario: "Lun-Jue, 8:00-16:00", estado: "En consulta", pacientes: "145", ubicacion: "Consultorio 5", telefono: "(555) 123-4567", correo: "dr.wilson@cliniccare.com", exp: "6 años", calificacion: "4.8", consultas: "823", proxDispo: "Hoy 4:00 PM", monto: "90" },
+        { nombreDoc: "Juan", apellidoDoc: "Perez", genero: "Masculino", num: "D001", especialidad: "Cardiologia", horario: "Lun-Vie, 9:00-17:00", estado: "Disponible", pacientes: "145", ubicacion: "Consultorio 1", telefono: "(555) 123-4567", correo: "dr.wilson@cliniccare.com", exp: "8", calificacion: "4.8", consultas: "1247", proxDispo: "Hoy 3:00 PM", monto: "150" },
+        { nombreDoc: "Maria", apellidoDoc: "Lopez", genero: "Femenino", num: "D002", especialidad: "Pediatria", horario: "Lun-Jue, 8:00-16:00", estado: "En consulta", pacientes: "145", ubicacion: "Consultorio 2", telefono: "(555) 123-4567", correo: "dr.wilson@cliniccare.com", exp: "7", calificacion: "4.8", consultas: "1154", proxDispo: "Hoy 7:00 PM", monto: "75" },
+        { nombreDoc: "Carlos", apellidoDoc: "Sanchez", genero: "Masculino", num: "D003", especialidad: "Dermatologia", horario: "Lun-Jue, 8:00-17:00", estado: "Disponible", pacientes: "145", ubicacion: "Consultorio 3", telefono: "(555) 123-4567", correo: "dr.wilson@cliniccare.com", exp: "3", calificacion: "4.8", consultas: "320", proxDispo: "Mañana 9:00 AM", monto: "80" },
+        { nombreDoc: "Ana", apellidoDoc: "Torres", genero: "Femenino", num: "D004", especialidad: "Neurologia", horario: "Lun-Jue, 8:00-16:00", estado: "Ausente", pacientes: "145", ubicacion: "Consultorio 4", telefono: "(555) 123-4567", correo: "dr.wilson@cliniccare.com", exp: "5", calificacion: "4.8", consultas: "583", proxDispo: "Mañana 1:00 PM", monto: "125" },
+        { nombreDoc: "Luis", apellidoDoc: "Garcia", genero: "Masculino", num: "D005", especialidad: "Oftalmologia", horario: "Lun-Jue, 8:00-16:00", estado: "En consulta", pacientes: "145", ubicacion: "Consultorio 5", telefono: "(555) 123-4567", correo: "dr.wilson@cliniccare.com", exp: "6", calificacion: "4.8", consultas: "823", proxDispo: "Hoy 4:00 PM", monto: "90" },
     ];
 
+    const filtrarDoctor = doctores.filter((doctors) => {
+        return(
+            doctors.nombreDoc.toLowerCase().includes(buscarDoctor.toLowerCase())
+            || doctors.apellidoDoc.toLowerCase().includes(buscarDoctor.toLowerCase())
+            || doctors.especialidad.toLowerCase().includes(buscarDoctor.toLowerCase())
+        )
+    })
+
     return (<>
-        <section className="pt-3">
+        <section className="pt-3 flex flex-col gap-6">
+
             {/* Input y Filtro */}
-            <div className="flex justify-between items-center gap-4 mb-4 bg-white p-4 rounded-md shadow-sm">
+            <div className="flex justify-between items-center gap-4 bg-white p-4 rounded-md shadow-sm" >
                 <div className="flex items-center justify-center py-2 w-full border rounded-md gap-2">
                     <div className="flex justify-center items-center pl-3 h-7 w-7">
                         <Search className="text-gray-400" />
                     </div>
-                    <input type="text" placeholder="Buscar por nombre o especialidad..." className="w-full focus:outline-none bg-transparent text-sm" />
+                    <input value={buscarDoctor} onChange={(doc) => setBuscarDoctor(doc.target.value)} type="text" placeholder="Buscar por nombre o especialidad..." className="w-full focus:outline-none bg-transparent text-sm"/>
                 </div>
-                <button className="flex bg-white hover:bg-gray-100 gap-2 border px-4 py-2">
-                    <Funnel />
-                    <p>Filtros</p>
-                </button>
+                <Popover>
+                    <PopoverTrigger asChild className="flex bg-white hover:bg-gray-100 gap-2 border h-11 w-max">
+                        <Button variant="outline">
+                            <Funnel />
+                            <p>Filtros</p>
+                        </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-80 items-start" side="bottom" align="end">
+                        <div className="flex flex-col gap-4" >
+                            <p className="text-md font-semibold">Filtros Avanzados</p>
+                            {/* Estado */}
+                            <div className="flex flex-col gap-1">
+                                <p className="sm">Estado</p>
+                                <Select defaultValue="allCategoria">
+                                    <SelectTrigger className="w-full">
+                                        <SelectValue placeholder="Todas las categorias" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectGroup>
+                                            <SelectItem value="allCategoria">Todas las categorias</SelectItem>
+                                            <SelectItem value="Disponible">Disponible</SelectItem>
+                                            <SelectItem value="En consulta">En consulta</SelectItem>
+                                            <SelectItem value="Ausente">Ausente</SelectItem>
+                                        </SelectGroup>
+                                    </SelectContent>
+                                </Select>
+                            </div>
+                            {/* Especialidad */}
+                            <div className="flex flex-col gap-1">
+                                <p className="sm">Especialidad</p>
+                                <Select defaultValue="allEspecialidad">
+                                    <SelectTrigger className="w-full">
+                                        <SelectValue placeholder="Todas las categorias" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectGroup>
+                                            <SelectItem value="allEspecialidad">Todas las especialidades</SelectItem>
+                                            <SelectItem value="Cardiología">Cardiología</SelectItem>
+                                            <SelectItem value="Pediatría">Pediatría</SelectItem>
+                                            <SelectItem value="Dermatología">Dermatología</SelectItem>
+                                            <SelectItem value="Neurología">Neurología</SelectItem>
+                                            <SelectItem value="Oftalmología">Oftalmología</SelectItem>
+                                        </SelectGroup>
+                                    </SelectContent>
+                                </Select>
+                            </div>
+                            {/* Género */}
+                            <div className="flex flex-col gap-1">
+                                <p className="sm">Género</p>
+                                <Select defaultValue="allGenero">
+                                    <SelectTrigger className="w-full">
+                                        <SelectValue placeholder="Todas las categorias" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectGroup>
+                                            <SelectItem value="allGenero">Todas los géneros</SelectItem>
+                                            <SelectItem value="Masculino">Masculino</SelectItem>
+                                            <SelectItem value="Femenino">Femenino</SelectItem>
+                                        </SelectGroup>
+                                    </SelectContent>
+                                </Select>
+                            </div>
+                        </div>
+                    </PopoverContent>
+                </Popover>
             </div>
             {/* Lista de doctores */}
-            <div>
+            <div className="w-full h-full">
                 <Tabs defaultValue="doctores" className=" bg-white shadow-sm border-1 rounded-lg p-6">
                     <CardTitle className="flex flex-col lg:flex-row justify-between gap-4 pb-4">
                         { }
@@ -74,12 +145,15 @@ const InputListaComponent = () => {
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
-                                {doctores.map((doctoress, i) => (
-                                    <TableRow key={i}>
-                                        <TableCell className={"flex items-center gap-2"}>
-                                            <FontAwesomeIcon icon={faUserCircle} className="pr-2" />
+                                {filtrarDoctor.map((doctoress, i) => (
+                                    <TableRow key={i} className={"h-min"}>
+                                        <TableCell className={"flex gap-2"}>
+                                            <Avatar className={"flex justify-center self-center-safe"}>
+                                                <AvatarImage src="https://img.freepik.com/vector-premium/icono-medico-vector-avatar-perfil-persona-medico-masculino-estetoscopio-consulta_435942-978.jpg" alt="@shadcn" />
+                                                <AvatarFallback>DC</AvatarFallback>
+                                            </Avatar>
                                             <div className="flex flex-col">
-                                                <div>{doctoress.nombreDoc}</div>
+                                                <div>{doctoress.nombreDoc} {doctoress.apellidoDoc}</div>
                                                 <div>{doctoress.num}</div>
                                             </div>
                                         </TableCell>
@@ -87,7 +161,7 @@ const InputListaComponent = () => {
                                             {doctoress.especialidad}
                                         </TableCell>
                                         <TableCell>
-                                            <div className="flex flex-col">
+                                            <div className="flex flex-col gap-1">
                                                 <div className="flex items-center gap-1">
                                                     <Phone className="h-4 w-4" />
                                                     <p>{doctoress.telefono}</p>
@@ -113,26 +187,29 @@ const InputListaComponent = () => {
                                                 {doctoress.estado}
                                             </div>
                                         </TableCell>
-                                        <TableCell className={'flex gap-1 items-center justify-center'}>
+                                        <TableCell className={'flex gap-3 items-center justify-center'}>
                                             <Dialog>
                                                 <DialogTrigger asChild>
-                                                    <button variant="outline" className={'flex text-sm transition hover:bg-gray-100 px-2 py-2'}>
-                                                        <Eye className="h-4 w-4 font-extrabold" />
+                                                    <button variant="outline" className={'flex text-sm transition hover:bg-gray-100 h-max'}>
+                                                        <Eye className="h-[90%] w-[90%]" />
                                                     </button>
                                                 </DialogTrigger>
                                                 <DialogContent className="sm:max-w-[800px] max-h-[90vh] overflow-y-auto">
                                                     <DialogHeader>
-                                                        <DialogTitle>Perfil del Doctor</DialogTitle>
+                                                        <DialogTitle className={"text-xl font-semibold"}>Perfil del Doctor</DialogTitle>
                                                     </DialogHeader>
                                                     <div className="flex border-1 gap-4 rounded-md p-4">
                                                         <div className="bg-gray-200 rounded-full w-16 h-16 flex items-center justify-center">
-                                                            <FontAwesomeIcon icon={faUserCircle} className="w-16 h-16" />
+                                                            <Avatar className={"h-full w-full"}>
+                                                                <AvatarImage src="https://img.freepik.com/vector-premium/icono-medico-vector-avatar-perfil-persona-medico-masculino-estetoscopio-consulta_435942-978.jpg" alt="@shadcn" />
+                                                                <AvatarFallback>DC</AvatarFallback>
+                                                            </Avatar>
                                                         </div>
                                                         <div className="flex flex-col w-full justify-center">
                                                             <div className="flex flex-col w-full justify-center">
                                                                 <div className="flex items-center justify-between w-full">
                                                                     <div className="flex w-full">
-                                                                        <p className="font-semibold text-lg">{doctoress.nombreDoc}</p>
+                                                                        <p className="font-semibold text-lg">{doctoress.nombreDoc} {doctoress.apellidoDoc}</p>
                                                                     </div>
                                                                     <div className={`w-min text-sm px-2 py-1 rounded-xl flex items-center whitespace-nowrap ${doctoress.estado === "Disponible" ? "bg-black text-white"
                                                                         : doctoress.estado === "En consulta" ? "bg-gray-100 text-black" : "bg-red-600 text-white"}`}>
@@ -148,7 +225,7 @@ const InputListaComponent = () => {
                                                                     <p className="text-sm">Pacientes</p>
                                                                 </div>
                                                                 <div className="flex flex-col items-center">
-                                                                    <p className="text-lg text-green-600 font-semibold">{doctoress.exp}</p>
+                                                                    <p className="text-lg text-green-600 font-semibold">{doctoress.exp} años</p>
                                                                     <p className="text-sm">Experiencia</p>
                                                                 </div>
                                                                 <div className="flex flex-col items-center">
@@ -222,8 +299,11 @@ const InputListaComponent = () => {
                                                         </div>
                                                         <div className="flex border-1 rounded-md p-4 w-full">
                                                             <div className="flex items-center gap-2 w-full">
-                                                                <div className="bg-gray-200 rounded-full w-12 h-12 flex items-center justify-center">
-                                                                    <FontAwesomeIcon icon={faUserCircle} className="w-full h-full" />
+                                                                <div className="rounded-full w-12 h-12 flex items-center justify-center">
+                                                                    <Avatar className={"h-full w-full"}>
+                                                                        <AvatarImage src={UserRoundPlus} alt="@shadcn" />
+                                                                        <AvatarFallback>PC</AvatarFallback>
+                                                                    </Avatar>
                                                                 </div>
                                                                 <div className="flex flex-col">
                                                                     <p>Jhon Smith</p>
@@ -241,7 +321,10 @@ const InputListaComponent = () => {
                                                         <div className="flex border-1 rounded-md p-4 w-full">
                                                             <div className="flex items-center gap-2 w-full">
                                                                 <div className="bg-gray-200 rounded-full w-12 h-12 flex items-center justify-center">
-                                                                    <FontAwesomeIcon icon={faUserCircle} className="w-full h-full" />
+                                                                    <Avatar className={"h-full w-full"}>
+                                                                        <AvatarImage src={UserRoundPlus} alt="@shadcn" />
+                                                                        <AvatarFallback>PC</AvatarFallback>
+                                                                    </Avatar>
                                                                 </div>
                                                                 <div className="flex flex-col">
                                                                     <p>Jhon Smith</p>
@@ -259,7 +342,10 @@ const InputListaComponent = () => {
                                                         <div className="flex border-1 rounded-md p-4 w-full">
                                                             <div className="flex items-center gap-2 w-full">
                                                                 <div className="bg-gray-200 rounded-full w-12 h-12 flex items-center justify-center">
-                                                                    <FontAwesomeIcon icon={faUserCircle} className="w-full h-full" />
+                                                                    <Avatar className={"h-full w-full"}>
+                                                                        <AvatarImage src={UserRoundPlus} alt="@shadcn" />
+                                                                        <AvatarFallback>PC</AvatarFallback>
+                                                                    </Avatar>
                                                                 </div>
                                                                 <div className="flex flex-col">
                                                                     <p>Jhon Smith</p>
@@ -280,85 +366,124 @@ const InputListaComponent = () => {
                                                             <DialogClose asChild>
                                                                 <button className={'flex items-self-center text-sm border-1 rounded-sm px-3 py-2'}>Cerrar</button>
                                                             </DialogClose>
-                                                            <button className={'flex items-self-center text-sm border-1 rounded-sm px-3 py-2 bg-green-500 text-white'}>Reprogramar</button>
+                                                            <button className={'flex items-center gap-1 text-sm border-1 rounded-sm px-3 py-2 bg-black text-white'}>
+                                                                <Calendar className="h-4 w-4" />
+                                                                <p>Ver Horario</p>
+                                                            </button>
                                                         </div>
                                                     </DialogFooter>
                                                 </DialogContent>
                                             </Dialog>
                                             <Dialog>
                                                 <DialogTrigger asChild>
-                                                    <button variant="secundary" className={'flex text-sm transition hover:bg-gray-100 px-2 py-2'}>
-                                                        <FontAwesomeIcon icon={faPenToSquare} className="h-4 w-4" />
+                                                    <button variant="secundary" className={'flex text-sm transition hover:bg-gray-100 h-max'}>
+                                                        <SquarePen className="h-[90%] w-[90%]"/>
                                                     </button>
                                                 </DialogTrigger>
                                                 {/* Modal editar */}
-                                                {/* <DialogContent className="sm:max-w-[425px]">
+                                                <DialogContent className="sm:max-w-[800px] max-h-[90vh] overflow-y-auto">
                                                     <DialogHeader>
-                                                        <DialogTitle>Detalles de la Cita</DialogTitle>
-                                                        <DialogDescription>
-                                                            Información completa de la cita médica.
-                                                        </DialogDescription>
+                                                        <DialogTitle className={"text-xl font-semibold"}>Editar Doctor - {doctoress.nombreDoc} {doctoress.apellidoDoc}</DialogTitle>
                                                     </DialogHeader>
-                                                    <div className="flex gap-4 mt-2">
-                                                        <div className="bg-gray-200 rounded-full w-16 h-16 flex items-center justify-center">
-                                                            <FontAwesomeIcon icon={faUserCircle} className="w-16 h-16" />
-                                                        </div>
-                                                        <div className="flex flex-col justify-center">
-                                                            <p className="font-semibold text-lg">{doctoress.nombre}</p>
-                                                            <p className="text-gray-500">{doctoress.dia}</p>
-                                                        </div>
-                                                    </div>
-                                                    <hr className="border-1" />
-                                                    <div className="grid grid-cols-2 grid-rows-2 gap-5">
-                                                        <div className="flex">
-                                                            <div>
-                                                                <FontAwesomeIcon icon={faClock} className="pr-2 text-sm" />
-                                                            </div>
-                                                            <div className="flex flex-col">
-                                                                <p className="text-sm">Hora:</p>
-                                                                <p className="text-sm">{doctoress.hora}</p>
-                                                            </div>
-                                                        </div>
-                                                        <div className="flex">
-                                                            <div>
-                                                                <FontAwesomeIcon icon={faBuildingUser} className="pr-2 text-sm" />
-                                                            </div>
-                                                            <div className="flex flex-col">
-                                                                <p className="text-sm">Estado:</p>
-                                                                <div className={`w-min px-2 py-1 rounded-xl flex items-center ${doctoress.estado === "Pendiente" ? "bg-yellow-100 text-yellow-600 "
-                                                                    : doctoress.estado === "Confirmada" ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600"}`}>
-                                                                    <p className="text-xs">{doctoress.estado}</p>
+                                                    <div className="flex flex-col mt-2">
+                                                        {/* Info Personal */}
+                                                        <div className="flex flex-col gap-3">
+                                                            <p className="text-xl font-semibold">Información Personal</p>
+                                                            <div className="grid grid-cols-2 grid-rows-2 gap-5">
+                                                                <div className="flex flex-col w-full gap-1">
+                                                                    <p className="text-md">Nombre *</p>
+                                                                    <Input type="text" defaultValue={`${doctoress.nombreDoc}`} className="w-full" />
+                                                                </div>
+                                                                <div className="flex flex-col w-full gap-1">
+                                                                    <p>Apellido *</p>
+                                                                    <Input type="text" defaultValue={`${doctoress.apellidoDoc}`} className="w-full" />
+                                                                </div>
+                                                                <div className="flex flex-col w-full gap-1">
+                                                                    <p>Genero *</p>
+                                                                    <Select defaultValue={doctoress.genero}>
+                                                                        <SelectTrigger className="w-full">
+                                                                            <SelectValue placeholder="Selecciona género" />
+                                                                        </SelectTrigger>
+                                                                        <SelectContent>
+                                                                            <SelectGroup>
+                                                                                <SelectItem value="Masculino">Masculino</SelectItem>
+                                                                                <SelectItem value="Femenino">Femenino</SelectItem>
+                                                                                <SelectItem value="otro">Otro</SelectItem>
+                                                                            </SelectGroup>
+                                                                        </SelectContent>
+                                                                    </Select>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div className="flex">
-                                                            <div>
-                                                                <FontAwesomeIcon icon={faLocationPin} className="pr-2 text-sm" />
-                                                            </div>
-                                                            <div className="flex flex-col">
-                                                                <p className="text-sm">Ubicación:</p>
-                                                                <p className="text-sm">{doctoress.ubicacion}</p>
+                                                        <hr className="border-0.5 mt-5 mb-5" />
+                                                        {/* Info Profesional */}
+                                                        <div className="flex flex-col gap-3">
+                                                            <p className="text-xl font-semibold">Información Profesional</p>
+                                                            <div className="grid grid-cols-2 grid-rows-2 gap-5">
+                                                                <div className="flex flex-col w-full gap-1">
+                                                                    <p className="text-md">Especialidad *</p>
+                                                                    <Input type="text" defaultValue={`${doctoress.especialidad}`} className="w-full" />
+                                                                </div>
+                                                                <div className="flex flex-col w-full gap-1">
+                                                                    <p>Número de Licencia *</p>
+                                                                    <Input type="text" defaultValue={`LIC-${doctoress.num}`} className="w-full" />
+                                                                </div>
+                                                                <div className="flex flex-col w-full gap-1">
+                                                                    <p>Años de Experiencia *</p>
+                                                                    <Input type="text" defaultValue={`${doctoress.exp}`} className="w-full" />
+                                                                </div>
+                                                                <div className="flex flex-col w-full gap-1">
+                                                                    <p>Tarifa de Consulta ($) *</p>
+                                                                    <Input type="text" defaultValue={`${doctoress.monto}`} className="w-full" />
+                                                                </div>
+                                                                <div className="flex flex-col w-full gap-1">
+                                                                    <p>Genero *</p>
+                                                                    <Select defaultValue={doctoress.estado}>
+                                                                        <SelectTrigger className="w-full">
+                                                                            <SelectValue placeholder="Selecciona un estado" />
+                                                                        </SelectTrigger>
+                                                                        <SelectContent>
+                                                                            <SelectGroup>
+                                                                                <SelectItem value="Disponible">Disponible</SelectItem>
+                                                                                <SelectItem value="En consulta">En consulta</SelectItem>
+                                                                                <SelectItem value="Ausente">Ausente</SelectItem>
+                                                                            </SelectGroup>
+                                                                        </SelectContent>
+                                                                    </Select>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div className="flex">
-                                                        <div>
-                                                            <FontAwesomeIcon icon={faFileText} className="pr-2 text-sm" />
-                                                        </div>
-                                                        <div className="flex flex-col">
-                                                            <p className="text-sm">Notas:</p>
-                                                            <p className="text-sm">{doctoress.notas}</p>
+                                                        <hr className="border-0.5 mt-5 mb-5" />
+                                                        {/* Info Contacto */}
+                                                        <div className="flex flex-col gap-3">
+                                                            <p className="text-xl font-semibold">Información de Contacto</p>
+                                                            <div className="grid grid-cols-2 grid-rows-1 gap-5">
+                                                                <div className="flex flex-col w-full gap-1">
+                                                                    <p className="text-md">Teléfono *</p>
+                                                                    <Input type="text" defaultValue={`${doctoress.telefono}`} className="w-full" />
+                                                                </div>
+                                                                <div className="flex flex-col w-full gap-1">
+                                                                    <p className="text-md">Email *</p>
+                                                                    <Input type="text" defaultValue={`${doctoress.correo}`} className="w-full" />
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <DialogFooter>
                                                         <div className="flex gap-2 pt-3">
                                                             <DialogClose asChild>
-                                                                <button className={'flex items-self-center text-sm border-1 rounded-sm px-3 py-2'}>Cerrar</button>
+                                                                <button className={'flex justify-center gap-1 items-center text-sm border-1 rounded-sm px-3 py-2'}>
+                                                                    <X className="h-4 w-4" />
+                                                                    <p>Cancelar</p>
+                                                                </button>
                                                             </DialogClose>
-                                                            <button className={'flex items-self-center text-sm border-1 rounded-sm px-3 py-2 bg-green-500 text-white'}>Reprogramar</button>
+                                                            <button className={'flex justify-center gap-1 items-center text-sm border-1 rounded-sm px-3 py-2 bg-green-500 text-white'}>
+                                                                <Save className="h-4 w-4" />
+                                                                <p>Guardar</p>
+                                                            </button>
                                                         </div>
                                                     </DialogFooter>
-                                                </DialogContent> */}
+                                                </DialogContent>
                                             </Dialog>
                                         </TableCell>
                                     </TableRow>
@@ -368,7 +493,7 @@ const InputListaComponent = () => {
                     </TabsContent>
                 </Tabs>
             </div>
-        </section>
+        </section >
     </>)
 }
 export default InputListaComponent;
