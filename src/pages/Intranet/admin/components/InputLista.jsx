@@ -210,13 +210,13 @@ const InputListaComponent = () => {
                                                         <DialogTitle className={"text-xl font-semibold"}>Perfil del Doctor</DialogTitle>
                                                     </DialogHeader>
                                                     <div className="flex border-1 gap-4 rounded-md p-4">
-                                                        <div className="bg-gray-200 rounded-full w-16 h-16 flex items-center justify-center">
+                                                        <div className="bg-gray-200 rounded-full w-16 h-16 md:flex items-center justify-center hidden sm:block">
                                                             <Avatar className={"h-full w-full"}>
                                                                 <AvatarImage src="https://img.freepik.com/vector-premium/icono-medico-vector-avatar-perfil-persona-medico-masculino-estetoscopio-consulta_435942-978.jpg" alt="@shadcn" />
                                                                 <AvatarFallback>DC</AvatarFallback>
                                                             </Avatar>
                                                         </div>
-                                                        <div className="flex flex-col w-full justify-center">
+                                                        <div className="flex flex-col w-full justify-center items-center">
                                                             <div className="flex flex-col w-full justify-center">
                                                                 <div className="flex items-center justify-between w-full">
                                                                     <div className="flex w-full">
@@ -230,7 +230,7 @@ const InputListaComponent = () => {
                                                                 <p className="text-md">{doctoress.especialidad}</p>
                                                                 <p className="text-sm text-gray-500">ID: {doctoress.num}</p>
                                                             </div>
-                                                            <div className="sm:flex sm:justify-center justify-items-start grid grid-cols-2 grid-rows-2 sm:gap-15 gap-5 pt-4">
+                                                            <div className="flex flex-wrap justify-between items-center sm:gap-15 gap-2 pt-4 w-full">
                                                                 <div className="flex flex-col items-center">
                                                                     <p className="text-lg text-blue-600 font-semibold">{doctoress.pacientes}</p>
                                                                     <p className="text-sm">Pacientes</p>
@@ -379,7 +379,7 @@ const InputListaComponent = () => {
                                                         </div>
                                                     </div>
                                                     <DialogFooter>
-                                                        <div className="flex gap-2 pt-3">
+                                                        <div className="flex justify-end gap-2 pt-3">
                                                             <DialogClose asChild>
                                                                 <button className={'flex items-self-center text-sm border-1 rounded-sm bg-white hover:bg-gray-200 px-3 py-2'}>Cerrar</button>
                                                             </DialogClose>
