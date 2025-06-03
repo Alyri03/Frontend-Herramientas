@@ -115,7 +115,7 @@ const DoctorRegistroComponent = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pt-3">
                 {/* Total doctores */}
                 <div className="flex items-center gap-4 bg-white shadow-sm border rounded-lg p-4 min-w-[220px]">
-                    <div className="w-12 h-12 rounded-full text-blue-600 bg-blue-100 flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-full text-green-600 bg-green-100 flex items-center justify-center">
                         <BriefcaseMedical />
                     </div>
                     <div className="flex flex-col text-lg gap-0.5">
@@ -127,7 +127,7 @@ const DoctorRegistroComponent = () => {
 
                 {/* Disponibles */}
                 <div className="flex items-center gap-4 bg-white shadow-sm border rounded-lg p-4 min-w-[220px]">
-                    <div className="w-12 h-12 rounded-full text-green-600 bg-green-100 flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-full text-blue-600 bg-blue-100 flex items-center justify-center">
                         <UserRoundCheck />
                     </div>
                     <div className="flex flex-col text-lg gap-0.5">
@@ -151,7 +151,7 @@ const DoctorRegistroComponent = () => {
 
                 {/* Especialidades */}
                 <div className="flex items-center gap-4 bg-white shadow-sm border rounded-lg p-4 min-w-[220px]">
-                    <div className="w-12 h-12 rounded-full text-red-600 bg-red-100 flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-full text-purple-600 bg-purple-100 flex items-center justify-center">
                         <Syringe />
                     </div>
                     <div className="flex flex-col text-lg gap-0.5">

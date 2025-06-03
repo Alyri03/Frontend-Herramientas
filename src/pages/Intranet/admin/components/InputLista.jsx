@@ -191,8 +191,8 @@ const InputListaComponent = () => {
                                             </div>
                                         </TableCell>
                                         <TableCell>
-                                            <div className={`w-min px-2 py-1 rounded-xl flex items-center whitespace-nowrap ${doctoress.estado === "Disponible" ? "bg-black text-white"
-                                                : doctoress.estado === "En consulta" ? "bg-gray-100 text-black" : "bg-red-600 text-white"}`}>
+                                            <div className={`w-min px-2 py-1 rounded-xl flex items-center whitespace-nowrap ${doctoress.estado === "Disponible" ? "bg-blue-100 text-blue-600"
+                                                : doctoress.estado === "En consulta" ? "bg-yellow-100 text-yellow-600 " : "bg-red-100 text-red-600"}`}>
                                                 {doctoress.estado}
                                             </div>
                                         </TableCell>
@@ -222,8 +222,8 @@ const InputListaComponent = () => {
                                                                     <div className="flex w-full">
                                                                         <p className="font-semibold text-lg">{doctoress.nombreDoc} {doctoress.apellidoDoc}</p>
                                                                     </div>
-                                                                    <div className={`w-min sm:text-sm text-xs px-2 py-1 rounded-xl flex items-center whitespace-nowrap ${doctoress.estado === "Disponible" ? "bg-black text-white"
-                                                                        : doctoress.estado === "En consulta" ? "bg-gray-100 text-black" : "bg-red-600 text-white"}`}>
+                                                                    <div className={`w-min sm:text-sm text-xs px-2 py-1 rounded-xl flex items-center whitespace-nowrap ${doctoress.estado === "Disponible" ? "bg-blue-100 text-blue-600"
+                                                                        : doctoress.estado === "En consulta" ? "bg-yellow-100 text-yellow-600 " : "bg-red-100 text-red-600"}`}>
                                                                         {doctoress.estado}
                                                                     </div>
                                                                 </div>

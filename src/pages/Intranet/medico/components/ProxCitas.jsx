@@ -10,6 +10,8 @@ import { faFileText } from '@fortawesome/free-solid-svg-icons';
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "../../../../components/ui/dialog";
 import { Link } from "react-router-dom";
 import { TabsList, TabsTrigger } from "../../../../components/ui/tabs";
+import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
+import { UserRoundPlus } from "lucide-react";
 
 const ProxCitas = () => {
 
@@ -25,12 +27,12 @@ const ProxCitas = () => {
         <section className="pt-4 pb-4">
             <Tabs defaultValue="citas" className=" bg-white shadow-sm border-1 rounded-lg p-6">
                 <CardTitle className="flex flex-col lg:flex-row justify-between gap-4 pb-4">
-                    {}
+                    { }
                     <div className="flex flex-col gap-1">
                         <p className="text-xl sm:text-2xl font-semibold">Próximas Citas</p>
                         <p className="text-gray-500 text-sm sm:text-base">Gestiona tus próximas citas médicas</p>
                     </div>
-                    {}
+                    { }
                     <div className="w-full lg:w-auto overflow-x-auto">
                         <div className="flex whitespace-nowrap gap-2 min-w-max">
                             <TabsList className="flex gap-2 bg-transparent p-0">
@@ -75,8 +77,17 @@ const ProxCitas = () => {
                             {paciente.map((pacientess, i) => (
                                 <TableRow key={i}>
                                     <TableCell>
-                                        <FontAwesomeIcon icon={faUserCircle} className="pr-2" />
-                                        {pacientess.nombre}
+                                        <div className="flex gap-2 items-center">
+                                            <div className="bg-gray-200 rounded-full w-8 h-8 flex items-center justify-center">
+                                                <Avatar className={"h-full w-full flex justify-center items-center"}>
+                                                    <AvatarImage src={UserRoundPlus} alt="@shadcn" />
+                                                    <AvatarFallback>PC</AvatarFallback>
+                                                </Avatar>
+                                            </div>
+                                            <div className="flex flex-col w-auto">
+                                                <p>{pacientess.nombre}</p>
+                                            </div>
+                                        </div>
                                     </TableCell>
                                     <TableCell>
                                         <FontAwesomeIcon icon={faClock} className="pr-2" />
@@ -84,7 +95,7 @@ const ProxCitas = () => {
                                     </TableCell>
                                     <TableCell>
                                         <div className={`w-min px-2 py-1 rounded-xl flex items-center ${pacientess.estado === "Pendiente" ? "bg-yellow-100 text-yellow-600 "
-                                            : pacientess.estado === "Confirmada" ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600"}`}>
+                                            : pacientess.estado === "Confirmada" ? "bg-blue-100 text-blue-600" : "bg-red-100 text-red-600"}`}>
                                             {pacientess.estado}
                                         </div>
                                     </TableCell>
@@ -127,7 +138,7 @@ const ProxCitas = () => {
                                                         <div className="flex flex-col">
                                                             <p className="text-sm">Estado:</p>
                                                             <div className={`w-min px-2 py-1 rounded-xl flex items-center ${pacientess.estado === "Pendiente" ? "bg-yellow-100 text-yellow-600 "
-                                                                : pacientess.estado === "Confirmada" ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600"}`}>
+                                                                : pacientess.estado === "Confirmada" ? "bg-blue-100 text-blue-600" : "bg-red-100 text-red-600"}`}>
                                                                 <p className="text-xs">{pacientess.estado}</p>
                                                             </div>
                                                         </div>
@@ -195,8 +206,17 @@ const ProxCitas = () => {
                             {paciente.map((pacientess, i) => (
                                 <TableRow key={i}>
                                     <TableCell>
-                                        <FontAwesomeIcon icon={faUserCircle} className="pr-2" />
-                                        {pacientess.nombre}
+                                        <div className="flex gap-2 items-center">
+                                            <div className="bg-gray-200 rounded-full w-8 h-8 flex items-center justify-center">
+                                                <Avatar className={"h-full w-full flex justify-center items-center"}>
+                                                    <AvatarImage src={UserRoundPlus} alt="@shadcn" />
+                                                    <AvatarFallback>PC</AvatarFallback>
+                                                </Avatar>
+                                            </div>
+                                            <div className="flex flex-col w-auto">
+                                                <p>{pacientess.nombre}</p>
+                                            </div>
+                                        </div>
                                     </TableCell>
                                     <TableCell>
                                         <FontAwesomeIcon icon={faClock} className="pr-2" />
@@ -204,7 +224,7 @@ const ProxCitas = () => {
                                     </TableCell>
                                     <TableCell>
                                         <div className={`w-min px-2 py-1 rounded-xl flex items-center ${pacientess.estado === "Pendiente" ? "bg-yellow-100 text-yellow-600 "
-                                            : pacientess.estado === "Confirmada" ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600"}`}>
+                                            : pacientess.estado === "Confirmada" ? "bg-blue-100 text-blue-600" : "bg-red-100 text-red-600"}`}>
                                             {pacientess.estado}
                                         </div>
                                     </TableCell>
@@ -247,7 +267,7 @@ const ProxCitas = () => {
                                                         <div className="flex flex-col">
                                                             <p className="text-sm">Estado:</p>
                                                             <div className={`w-min px-2 py-1 rounded-xl flex items-center ${pacientess.estado === "Pendiente" ? "bg-yellow-100 text-yellow-600 "
-                                                                : pacientess.estado === "Confirmada" ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600"}`}>
+                                                                : pacientess.estado === "Confirmada" ? "bg-blue-100 text-blue-600" : "bg-red-100 text-red-600"}`}>
                                                                 <p className="text-xs">{pacientess.estado}</p>
                                                             </div>
                                                         </div>
@@ -315,8 +335,17 @@ const ProxCitas = () => {
                             {paciente.map((pacientess, i) => (
                                 <TableRow key={i}>
                                     <TableCell>
-                                        <FontAwesomeIcon icon={faUserCircle} className="pr-2" />
-                                        {pacientess.nombre}
+                                        <div className="flex gap-2 items-center">
+                                            <div className="bg-gray-200 rounded-full w-8 h-8 flex items-center justify-center">
+                                                <Avatar className={"h-full w-full flex justify-center items-center"}>
+                                                    <AvatarImage src={UserRoundPlus} alt="@shadcn" />
+                                                    <AvatarFallback>PC</AvatarFallback>
+                                                </Avatar>
+                                            </div>
+                                            <div className="flex flex-col w-auto">
+                                                <p>{pacientess.nombre}</p>
+                                            </div>
+                                        </div>
                                     </TableCell>
                                     <TableCell>
                                         <FontAwesomeIcon icon={faClock} className="pr-2" />
@@ -324,7 +353,7 @@ const ProxCitas = () => {
                                     </TableCell>
                                     <TableCell>
                                         <div className={`w-min px-2 py-1 rounded-xl flex items-center ${pacientess.estado === "Pendiente" ? "bg-yellow-100 text-yellow-600 "
-                                            : pacientess.estado === "Confirmada" ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600"}`}>
+                                            : pacientess.estado === "Confirmada" ? "bg-blue-100 text-blue-600" : "bg-red-100 text-red-600"}`}>
                                             {pacientess.estado}
                                         </div>
                                     </TableCell>
@@ -367,7 +396,7 @@ const ProxCitas = () => {
                                                         <div className="flex flex-col">
                                                             <p className="text-sm">Estado:</p>
                                                             <div className={`w-min px-2 py-1 rounded-xl flex items-center ${pacientess.estado === "Pendiente" ? "bg-yellow-100 text-yellow-600 "
-                                                                : pacientess.estado === "Confirmada" ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600"}`}>
+                                                                : pacientess.estado === "Confirmada" ? "bg-blue-100 text-blue-600" : "bg-red-100 text-red-600"}`}>
                                                                 <p className="text-xs">{pacientess.estado}</p>
                                                             </div>
                                                         </div>
