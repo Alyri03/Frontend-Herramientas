@@ -24,7 +24,7 @@ export function AuthProvider({ children }) {
         try {
             await logoutRequest();
         } catch (e) {
-            console.warn("No se pudo cerrar sesión en el servidor");
+            console.warn("No se pudo cerrar sesión en el servidor", e);
         }
 
         setUser(null);
