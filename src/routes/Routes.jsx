@@ -82,7 +82,7 @@ const AppRoutes = () => {
         </Route>
 
         {/* ADMINISTRADOR */}
-        <Route element={<RutaProtegidaPorRol rolPermitido="ADMINISTRADOR" />}>
+        <Route element={<RutaProtegidaPorRol rolPermitido="ADMIN" />}>
           <Route path='admin/Dashboard' element={<Dashboard />} />
           <Route path='admin/paciente' element={<Pacientes />} />
           <Route path="admin/usuarios" element={<div>Gestión de Usuarios</div>} />

@@ -137,8 +137,18 @@ export default function Sidebar() {
         to: "/intranet/recepcionista/perfil",
       },
     ];
-  } else if (user?.role === "ADMINISTRADOR") {
+  } else if (user?.role === "ADMIN") {
     navItems = [
+      {
+        label: "Dashboard",
+        icon: <Home size={18} />,
+        to: "/intranet/admin/Dashboard",
+      },
+      {
+        label: "Pacientes",
+        icon: <User size={18} />,
+        to: "/intranet/admin/paciente",
+      },
       {
         label: "Usuarios",
         icon: <User size={18} />,
@@ -148,6 +158,16 @@ export default function Sidebar() {
         label: "Configuración",
         icon: <NotebookText size={18} />,
         to: "/intranet/admin/configuracion",
+      },
+      {
+        label: "Citas",
+        icon: <CalendarCheck size={18} />,
+        to: "/intranet/admin/citas",
+      },
+      {
+        label: "Doctores",
+        icon: <User size={18} />,
+        to: "/intranet/admin/doctores",
       },
     ];
   }

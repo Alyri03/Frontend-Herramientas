@@ -26,7 +26,7 @@ export const Login = () => {
         PACIENTE: "/intranet/paciente",
         MEDICO: "/intranet/medico",
         RECEPCIONISTA: "/intranet/recepcionista",
-        ADMINISTRADOR: "/intranet/admin/usuarios",
+        ADMIN: "/intranet/admin/Dashboard",
       };
       navigate(rutasPorRol[user.role] || "/404");
     }
@@ -67,7 +67,7 @@ export const Login = () => {
         PACIENTE: "/intranet/paciente",
         MEDICO: "/intranet/medico",
         RECEPCIONISTA: "/intranet/recepcionista",
-        ADMINISTRADOR: "/intranet/admin/usuarios",
+        ADMINISTRADOR: "/intranet/admin/Dashboard",
       };
 
       navigate(rutasPorRol[resLogin?.role] || "/404");
