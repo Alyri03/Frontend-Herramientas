@@ -34,7 +34,7 @@ export const AgendaContenido = ({ paciente, filterOptions, setFilterOptions, dat
             <div className="flex flex-wrap items-center gap-4 py-4 justify-between">
 
                 <div className="flex flex-row gap-5">
-                    <Calendario date={date} setDate={setDate} />
+                    <Calendario date={date} setDate={setDate} title={"Selecciona una fecha"}/>
 
                     <Filtros filterOptions={filterOptions} setFilterOptions={setFilterOptions} />
 
@@ -53,7 +53,6 @@ export const AgendaContenido = ({ paciente, filterOptions, setFilterOptions, dat
                             <MenubarTrigger>Mes</MenubarTrigger>
                         </MenubarMenu>
                     </Menubar>
-                    <Button className={`bg-green-500 text-green-50 shadow hover:bg-green-600`}> + Nueva Cita</Button>
                 </div>
             </div>
             <AgendaTabla filtrarPacientes={filtrarPacientes} date={date} />

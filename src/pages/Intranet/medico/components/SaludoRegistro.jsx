@@ -14,7 +14,7 @@ const SaludoRegistro = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-3">
                 {/* Pacientes */}
                 <div className="flex items-center gap-4 bg-white shadow-sm border rounded-lg p-4 min-w-[220px]">
-                    <div className="w-12 h-12 rounded-full text-blue-600 bg-blue-100 flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-full text-green-600 bg-green-100 flex items-center justify-center">
                         <Users />
                     </div>
                     <div className="flex flex-col text-lg">
@@ -25,7 +25,7 @@ const SaludoRegistro = () => {
 
                 {/* Citas */}
                 <div className="flex items-center gap-4 bg-white shadow-sm border rounded-lg p-4 min-w-[220px]">
-                    <div className="w-12 h-12 rounded-full text-green-600 bg-green-100 flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-full text-blue-600 bg-blue-100 flex items-center justify-center">
                         <Calendar />
                     </div>
                     <div className="flex flex-col text-lg">
