@@ -51,7 +51,6 @@ export default function DetalleEspecialidades() {
                 <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">
                     Los especialistas en {especialidad.nombre?.toLowerCase()}
                 </h2>
-
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     {medicos.map((medico) => (
                         <CardMedico
