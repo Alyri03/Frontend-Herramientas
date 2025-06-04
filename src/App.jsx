@@ -10,18 +10,24 @@ import Footer from '@/components/Footer';
 const Layout = () => {
   const location = useLocation();
 
-  const noHeaderNoFooter = [
-    '*',
+  const noHeader = [
     '/login',
     '/registro',
     '/intranet',
   ].some((path) => location.pathname.startsWith(path)) || location.pathname === '/404';
 
+  const noFooter = [
+    '/login',
+    '/registro',
+    '/intranet',
+    '/detalle-medico',
+  ].some((path) => location.pathname.startsWith(path)) || location.pathname === '/404';
+
   return (
     <>
-      {!noHeaderNoFooter && <Header />}
+      {!noHeader && <Header />}
       <AppRoutes />
-      {!noHeaderNoFooter && <Footer />}
+      {!noFooter && <Footer />}
     </>
   );
 };

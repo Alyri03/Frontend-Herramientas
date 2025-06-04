@@ -1,54 +1,58 @@
 import { useEffect, useState } from "react";
-import Preefooter from "@/components/Preefooter"
-import InfoMedicos from "./components/InfoMedicos"
+import Preefooter from "@/components/Preefooter";
+import InfoMedicos from "./components/InfoMedicos";
 import Spinner from "@/components/Spinner";
-import ReservaBusqueda from "./components/ReservaBusqueda"
-import { medicoEspecialidad } from "../../../services/equipoMedicoService";
+import ReservaBusqueda from "./components/ReservaBusqueda";
+import { medicoEspecialidad, obtenerTodosLosMedicos } from "@/services/equipoMedicoService";
+
 const EquipoMedico = () => {
-    const [buscarMedicos, setBuscarMedicos] = useState("");
+  const [buscarMedicos, setBuscarMedicos] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [medicosFusionados, setMedicosFusionados] = useState([]);
 
-    const [loading, setLoading] = useState(true);
-    const [medicos, setMedicos] = useState([]);
-    useEffect(() => {
-        const obtenerMedicos = async () => {
-            setLoading(true);
-            try {
-                const data = await medicoEspecialidad();
-                setMedicos(data);
-            } catch (error) {
-                console.error("Error cargando médicos", error);
-            } finally {
-                setLoading(false);
-            }
-        };
+  useEffect(() => {
+    const obtenerDatos = async () => {
+      setLoading(true);
+      try {
+        const [especialidades, medicos] = await Promise.all([
+          medicoEspecialidad(),
+          obtenerTodosLosMedicos(),
+        ]);
 
-        obtenerMedicos();
-    }, []);
+        // Fusionamos los datos por ID
+        const fusionados = especialidades.map((esp) => {
+          const medico = medicos.find((m) => m.id === esp.medicoId);
+          return {
+            ...esp,
+            imagen: medico?.imagen || "", // si no hay imagen, queda vacío
+          };
+        });
 
-    const filtrarMedicos = medicos.filter((medico) => {
-        return (
-            medico.nombreMedico.toLowerCase().includes(buscarMedicos.toLowerCase())
-            || medico.nombreEspecialidad.toLowerCase().includes(buscarMedicos.toLowerCase())
-        );
-    });
+        setMedicosFusionados(fusionados);
+      } catch (error) {
+        console.error("Error al fusionar datos médicos:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
+    obtenerDatos();
+  }, []);
 
-    const busqueda = (term) => {
-        setBuscarMedicos(term)
-    }
-
+  const filtrarMedicos = medicosFusionados.filter((medico) => {
     return (
-        <>
-            <ReservaBusqueda onSearch={busqueda} />
-            {loading ? (
-                <Spinner />
-            ) : (
-                <InfoMedicos medicoss={filtrarMedicos} />
-            )}
-            <Preefooter />
-        </>
+      medico.nombreMedico.toLowerCase().includes(buscarMedicos.toLowerCase()) ||
+      medico.nombreEspecialidad.toLowerCase().includes(buscarMedicos.toLowerCase())
     );
+  });
 
-}
+  return (
+    <>
+      <ReservaBusqueda onSearch={setBuscarMedicos} />
+      {loading ? <Spinner /> : <InfoMedicos medicoss={filtrarMedicos} />}
+      <Preefooter />
+    </>
+  );
+};
 
-export default EquipoMedico
+export default EquipoMedico;
