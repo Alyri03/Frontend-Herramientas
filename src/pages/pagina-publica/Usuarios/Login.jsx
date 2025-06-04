@@ -162,6 +162,15 @@ export const Login = () => {
                 Regístrate aquí
               </Link>
             </p>
+
+            <div className="text-center mt-4">
+              <Link
+                to="/"
+                className="text-[#2F71A1] font-semibold hover:underline text-sm"
+              >
+                ← Volver al inicio
+              </Link>
+            </div>
           </form>
         )}
       </div>
