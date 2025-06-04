@@ -99,10 +99,6 @@ export default function Pacientes() {
         {/* Encabezado */}
         <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
           <h1 className="text-3xl font-bold">Pacientes</h1>
-          <button onClick={() => setMostrarModalAñadir(true)} className="bg-black text-white px-4 py-2 rounded-md flex items-center space-x-2 hover:bg-gray-800 transition-colors">
-            <FontAwesomeIcon icon={faPlus}/>
-            <span>Añadir Paciente</span>
-          </button>
         </div>
 
         {/* Búsqueda y Filtros */}
@@ -155,13 +151,6 @@ export default function Pacientes() {
             }}/>
         </div>
 
-        {/* Botón Programar Cita */}
-        <div>
-          <button onClick={() => setMostrarModalCita(true)} className="bg-black text-white px-6 py-3 rounded-md flex items-center space-x-2 hover:bg-gray-800 transition-colors">
-            <FontAwesomeIcon icon={faCalendarPlus} />
-            <span>Programar Cita</span>
-          </button>
-        </div>
       </div>
       {/* Modales */}
       {mostrarModalDetalle && pacienteSeleccionado && (

@@ -114,7 +114,6 @@ export const MisPacientes = () => {
 
             <div className="flex flex-wrap items-center gap-4 py-4 justify-between">
 
-                <Button className={`bg-green-500 text-green-50 shadow hover:bg-green-600`}> + Nuevo paciente</Button>
 
 
                 <div className="flex flex-row gap-5 items-center">
@@ -161,9 +160,6 @@ export const MisPacientes = () => {
 
 
 
-                    <Button>
-                        <Funnel /> Mas filtros
-                    </Button>
                 </div>
             </div>
 
