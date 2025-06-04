@@ -1,6 +1,6 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "@/context/authContext";
-import { informacionPaciente } from "@/services/pacienteService";
+import { usePaciente } from "../hooks/usePaciente";
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -15,26 +15,23 @@ import { faFlask, faHeadset } from "@fortawesome/free-solid-svg-icons";
 
 export default function InicioPaciente() {
   const { user } = useContext(AuthContext);
-  const [paciente, setPaciente] = useState(null);
-
-  useEffect(() => {
-    const fetchPaciente = async () => {
-      try {
-        if (user?.usuarioId) {
-          const data = await informacionPaciente(user.usuarioId);
-          setPaciente(data);
-        }
-      } catch (error) {
-        console.error("Error al obtener info del paciente:", error);
-      }
-    };
-
-    fetchPaciente();
-  }, [user]);
+  const { paciente } = usePaciente(user?.usuarioId);
 
   const citas = [
-    { nombre: "Dra. María Rodríguez", especialidad: "Cardiología", fecha: "Lunes, 24 de Abril", hora: "10:30 AM", estado: "Confirmada" },
-    { nombre: "Dr. Carlos Mendoza", especialidad: "Medicina General", fecha: "Miércoles, 26 de Abril", hora: "3:15 PM", estado: "Confirmada" }
+    {
+      nombre: "Dra. María Rodríguez",
+      especialidad: "Cardiología",
+      fecha: "Lunes, 24 de Abril",
+      hora: "10:30 AM",
+      estado: "Confirmada",
+    },
+    {
+      nombre: "Dr. Carlos Mendoza",
+      especialidad: "Medicina General",
+      fecha: "Miércoles, 26 de Abril",
+      hora: "3:15 PM",
+      estado: "Confirmada",
+    },
   ];
 
   const tarjetas = [
@@ -47,7 +44,7 @@ export default function InicioPaciente() {
       colorFondoIcono: "bg-blue-100",
       colorFondoCirculo: "bg-blue-50",
       imagen: resultadosImg,
-      botonVariant: "default"
+      botonVariant: "default",
     },
     {
       titulo: "Canales de atención",
@@ -58,12 +55,13 @@ export default function InicioPaciente() {
       colorFondoIcono: "bg-yellow-100",
       colorFondoCirculo: "bg-yellow-50",
       imagen: soporteImg,
-      botonVariant: "outline"
-    }
+      botonVariant: "outline",
+    },
   ];
 
   return (
     <main className="space-y-8">
+      {/* Bienvenida */}
       <section>
         <Card as="article" className="flex flex-col md:flex-row justify-between items-center p-6 md:p-8 rounded-2xl shadow-sm w-full">
           <div className="space-y-3 max-w-xl w-full">
@@ -91,6 +89,7 @@ export default function InicioPaciente() {
         </Card>
       </section>
 
+      {/* Tarjetas informativas */}
       <section className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full" aria-label="Sección informativa">
         {tarjetas.map((item, i) => (
           <Card key={i} as="article" className="flex flex-col md:flex-row justify-between items-center gap-4 p-6 rounded-2xl shadow-sm">
@@ -112,6 +111,7 @@ export default function InicioPaciente() {
         ))}
       </section>
 
+      {/* Citas */}
       <section className="md:col-span-2 space-y-2" aria-labelledby="proximas-citas">
         <header className="flex justify-between items-center px-1 md:px-0">
           <h2 id="proximas-citas" className="text-lg font-semibold">Próximas citas</h2>

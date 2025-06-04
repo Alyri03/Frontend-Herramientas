@@ -1,25 +1,45 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import loginImg from "../../../assets/images/login.png";
-import { loginRequest } from "@/services/auth";
-import { useNavigate } from "react-router-dom";
-import { AuthContext } from "@/context/authContext";
 import Spinner from "@/components/Spinner";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { validarEmailCompleto } from "@/lib/validations";
+import { AuthContext } from "@/context/authContext";
+import { useLogin } from "@/hooks/useLogin";
 
 export const Login = () => {
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [recordar, setRecordar] = useState(false);
-  const [erroresCampos, setErroresCampos] = useState({
-    email: "",
-    password: "",
-  });
+  const [erroresCampos, setErroresCampos] = useState({ email: "", password: "" });
+  const [mostrarError, setMostrarError] = useState(false);
 
   const navigate = useNavigate();
   const { login, user } = useContext(AuthContext);
 
-  // ✅ Si ya está logueado, redirige automáticamente
+  // Hook de login
+  const {
+    mutate: iniciarSesion,
+    isPending: cargando,
+    reset,
+  } = useLogin({
+    onSuccess: (resLogin) => {
+      login(resLogin);
+      const storage = recordar ? localStorage : sessionStorage;
+      storage.setItem("authUser", JSON.stringify(resLogin));
+
+      const rutasPorRol = {
+        PACIENTE: "/intranet/paciente",
+        MEDICO: "/intranet/medico",
+        RECEPCIONISTA: "/intranet/recepcionista",
+        ADMINISTRADOR: "/intranet/admin/Dashboard",
+      };
+
+      navigate(rutasPorRol[resLogin?.role] || "/404");
+    },
+    onError: () => {
+      setMostrarError(true);
+    },
+  });
+
+  // Redirección automática si ya está logueado
   useEffect(() => {
     if (user && user.role) {
       const rutasPorRol = {
@@ -32,10 +52,10 @@ export const Login = () => {
     }
   }, [user]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setError(false);
-    setLoading(true);
+    reset();
+    setMostrarError(false);
 
     const email = e.target.email.value.trim();
     const password = e.target.password.value.trim();
@@ -51,32 +71,9 @@ export const Login = () => {
     setErroresCampos(nuevosErrores);
 
     const hayErrores = Object.values(nuevosErrores).some((e) => e !== "");
-    if (hayErrores) {
-      setLoading(false);
-      return;
-    }
+    if (hayErrores) return;
 
-    try {
-      const resLogin = await loginRequest(email, password);
-      login(resLogin);
-
-      const storage = recordar ? localStorage : sessionStorage;
-      storage.setItem("authUser", JSON.stringify(resLogin));
-
-      const rutasPorRol = {
-        PACIENTE: "/intranet/paciente",
-        MEDICO: "/intranet/medico",
-        RECEPCIONISTA: "/intranet/recepcionista",
-        ADMINISTRADOR: "/intranet/admin/Dashboard",
-      };
-
-      navigate(rutasPorRol[resLogin?.role] || "/404");
-    } catch (error) {
-      console.error("Error en el inicio de sesión:", error);
-      setError(true);
-    } finally {
-      setLoading(false);
-    }
+    iniciarSesion({ email, password });
   };
 
   return (
@@ -92,7 +89,7 @@ export const Login = () => {
       </div>
 
       <div className="flex w-full md:w-[50%] items-center justify-center px-4 sm:px-12 min-h-screen">
-        {loading ? (
+        {cargando ? (
           <Spinner size={10} />
         ) : (
           <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-6">
@@ -129,7 +126,7 @@ export const Login = () => {
               )}
             </div>
 
-            {error && (
+            {mostrarError && (
               <p className="text-red-500 text-sm">* Credenciales incorrectas</p>
             )}
 

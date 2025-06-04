@@ -1,7 +1,18 @@
-import { useContext, useEffect, useState } from "react";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { useContext, useState } from "react";
+import { AuthContext } from "@/context/authContext";
+import { usePaciente } from "../hooks/usePaciente";
+
+import {
+  Avatar,
+  AvatarFallback,
+} from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import {
   Tooltip,
@@ -9,6 +20,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+
 import {
   UserRound,
   PencilLine,
@@ -21,14 +33,16 @@ import {
   Syringe,
   Info,
 } from "lucide-react";
-import { informacionPaciente } from "@/services/pacienteService";
-import { AuthContext } from "@/context/authContext";
 
 const PerfilPaciente = () => {
   const { user } = useContext(AuthContext);
-  const [datosPaciente, setDatosPaciente] = useState(null);
+  const {
+    paciente: datosPaciente,
+    actualizarCampo,
+    restaurarDatosOriginales,
+  } = usePaciente(user?.usuarioId);
+
   const [editarPersonales, setEditarPersonales] = useState(false);
-  const [editarMedicos, setEditarMedicos] = useState(false);
 
   const formatearGrupoSanguineo = (valor) => {
     if (!valor) return "";
@@ -37,29 +51,6 @@ const PerfilPaciente = () => {
       .replace("NEGATIVO", "-")
       .replace("_", " ");
   };
-
-  useEffect(() => {
-    if (!user?.usuarioId) return;
-    const fetchData = async () => {
-      try {
-        const data = await informacionPaciente(user.usuarioId);
-        setDatosPaciente({
-          nombres: data.nombres,
-          apellidos: data.apellidos,
-          correo: data.usuario?.correo,
-          fechaNacimiento: data.fechaNacimiento,
-          sexo: data.sexo,
-          nacionalidad: data.nacionalidad,
-          direccion: data.direccion,
-          grupoSanguineo: data.tipoSangre,
-          documento: data.numeroIdentificacion,
-        });
-      } catch (error) {
-        console.error("Error al obtener datos del paciente", error);
-      }
-    };
-    fetchData();
-  }, [user]);
 
   const descripciones = {
     nombres: "Nombre completo del paciente.",
@@ -85,11 +76,7 @@ const PerfilPaciente = () => {
 
   const renderizarEtiquetaConTooltip = ({ id, icono, etiqueta }) => (
     <div className="flex items-center gap-2">
-      <div
-        className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium ${obtenerColorEtiqueta(
-          id
-        )}`}
-      >
+      <div className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium ${obtenerColorEtiqueta(id)}`}>
         {icono}
         <span>{etiqueta}</span>
       </div>
@@ -107,70 +94,26 @@ const PerfilPaciente = () => {
   );
 
   if (!datosPaciente) {
-    return (
-      <p className="text-center py-10">Cargando información del perfil...</p>
-    );
+    return <p className="text-center py-10">Cargando información del perfil...</p>;
   }
 
   const campos = {
     personales: [
-      {
-        id: "nombres",
-        etiqueta: "Nombres",
-        icono: <UserRound className="w-3.5 h-3.5" />,
-        editable: true,
-      },
-      {
-        id: "apellidos",
-        etiqueta: "Apellidos",
-        icono: <UserRound className="w-3.5 h-3.5" />,
-        editable: true,
-      },
-      {
-        id: "correo",
-        etiqueta: "Correo",
-        icono: <Mail className="w-3.5 h-3.5" />,
-        editable: true,
-      },
-      {
-        id: "fechaNacimiento",
-        etiqueta: "Fecha de nacimiento",
-        icono: <Calendar className="w-3.5 h-3.5" />,
-        editable: false,
-      },
-      {
-        id: "sexo",
-        etiqueta: "Sexo",
-        icono: <UserRound className="w-3.5 h-3.5" />,
-        editable: false,
-      },
-      {
-        id: "nacionalidad",
-        etiqueta: "Nacionalidad",
-        icono: <Flag className="w-3.5 h-3.5" />,
-        editable: false,
-      },
-      {
-        id: "direccion",
-        etiqueta: "Dirección",
-        icono: <MapPin className="w-3.5 h-3.5" />,
-        editable: true,
-      },
+      { id: "nombres", etiqueta: "Nombres", icono: <UserRound className="w-3.5 h-3.5" />, editable: false },
+      { id: "apellidos", etiqueta: "Apellidos", icono: <UserRound className="w-3.5 h-3.5" />, editable: false },
+      { id: "correo", etiqueta: "Correo", icono: <Mail className="w-3.5 h-3.5" />, editable: true },
+      { id: "fechaNacimiento", etiqueta: "Fecha de nacimiento", icono: <Calendar className="w-3.5 h-3.5" />, editable: false },
+      { id: "sexo", etiqueta: "Sexo", icono: <UserRound className="w-3.5 h-3.5" />, editable: false },
+      { id: "nacionalidad", etiqueta: "Nacionalidad", icono: <Flag className="w-3.5 h-3.5" />, editable: false },
+      { id: "direccion", etiqueta: "Dirección", icono: <MapPin className="w-3.5 h-3.5" />, editable: true },
     ],
     medicos: [
-      {
-        id: "grupoSanguineo",
-        etiqueta: "Grupo sanguíneo",
-        icono: <Syringe className="w-3.5 h-3.5" />,
-        editable: false,
-      },
+      { id: "grupoSanguineo", etiqueta: "Grupo sanguíneo", icono: <Syringe className="w-3.5 h-3.5" />, editable: false },
     ],
   };
 
   const getIniciales = () => {
-    return `${datosPaciente.nombres?.[0] ?? ""}${
-      datosPaciente.apellidos?.[0] ?? ""
-    }`.toUpperCase();
+    return `${datosPaciente.nombres?.[0] ?? ""}${datosPaciente.apellidos?.[0] ?? ""}`.toUpperCase();
   };
 
   return (
@@ -197,19 +140,11 @@ const PerfilPaciente = () => {
       <section>
         <Tabs defaultValue="personales" className="w-full">
           <TabsList className="flex w-max gap-2 mb-4">
-            <TabsTrigger
-              value="personales"
-              className="flex items-center gap-2 whitespace-nowrap"
-            >
-              <UserRound className="h-4 w-4 text-muted-foreground" /> Datos
-              personales
+            <TabsTrigger value="personales" className="flex items-center gap-2 whitespace-nowrap">
+              <UserRound className="h-4 w-4 text-muted-foreground" /> Datos personales
             </TabsTrigger>
-            <TabsTrigger
-              value="medicos"
-              className="flex items-center gap-2 whitespace-nowrap"
-            >
-              <FlaskConical className="h-4 w-4 text-muted-foreground" />{" "}
-              Información médica
+            <TabsTrigger value="medicos" className="flex items-center gap-2 whitespace-nowrap">
+              <FlaskConical className="h-4 w-4 text-muted-foreground" /> Información médica
             </TabsTrigger>
           </TabsList>
 
@@ -217,16 +152,17 @@ const PerfilPaciente = () => {
             <article className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-8">
               {campos.personales.map((campo) => (
                 <div key={campo.id} className="space-y-2">
-                  {renderizarEtiquetaConTooltip({
-                    id: campo.id,
-                    icono: campo.icono,
-                    etiqueta: campo.etiqueta,
-                  })}
+                  {renderizarEtiquetaConTooltip(campo)}
                   <Input
                     id={campo.id}
-                    type={campo.type || "text"}
-                    defaultValue={datosPaciente[campo.id]}
+                    type="text"
+                    value={datosPaciente[campo.id] || ""}
                     readOnly={!editarPersonales || campo.editable === false}
+                    onChange={(e) =>
+                      editarPersonales && campo.editable
+                        ? actualizarCampo(campo.id, e.target.value)
+                        : null
+                    }
                     className="text-sm"
                   />
                 </div>
@@ -237,7 +173,10 @@ const PerfilPaciente = () => {
                 <>
                   <Button
                     variant="outline"
-                    onClick={() => setEditarPersonales(false)}
+                    onClick={() => {
+                      restaurarDatosOriginales();
+                      setEditarPersonales(false);
+                    }}
                   >
                     Cancelar
                   </Button>
@@ -246,10 +185,7 @@ const PerfilPaciente = () => {
                   </Button>
                 </>
               ) : (
-                <Button
-                  variant="outline"
-                  onClick={() => setEditarPersonales(true)}
-                >
+                <Button variant="outline" onClick={() => setEditarPersonales(true)}>
                   <PencilLine className="w-4 h-4 mr-2" /> Editar
                 </Button>
               )}
@@ -260,11 +196,7 @@ const PerfilPaciente = () => {
             <article className="grid md:grid-cols-2 gap-6">
               {campos.medicos.map((campo) => (
                 <div key={campo.id} className="space-y-2">
-                  {renderizarEtiquetaConTooltip({
-                    id: campo.id,
-                    icono: campo.icono,
-                    etiqueta: campo.etiqueta,
-                  })}
+                  {renderizarEtiquetaConTooltip(campo)}
                   <Input
                     value={formatearGrupoSanguineo(datosPaciente[campo.id])}
                     readOnly
@@ -273,28 +205,6 @@ const PerfilPaciente = () => {
                 </div>
               ))}
             </article>
-            <footer className="flex justify-end mt-10 gap-4">
-              {editarMedicos ? (
-                <>
-                  <Button
-                    variant="outline"
-                    onClick={() => setEditarMedicos(false)}
-                  >
-                    Cancelar
-                  </Button>
-                  <Button>
-                    <Save className="w-4 h-4 mr-2" /> Guardar
-                  </Button>
-                </>
-              ) : (
-                <Button
-                  variant="outline"
-                  onClick={() => setEditarMedicos(true)}
-                >
-                  <PencilLine className="w-4 h-4 mr-2" /> Editar
-                </Button>
-              )}
-            </footer>
           </TabsContent>
         </Tabs>
       </section>
