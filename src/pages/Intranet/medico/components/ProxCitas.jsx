@@ -34,25 +34,7 @@ const ProxCitas = () => {
                     </div>
                     { }
                     <div className="w-full lg:w-auto overflow-x-auto">
-                        <div className="flex whitespace-nowrap gap-2 min-w-max">
-                            <TabsList className="flex gap-2 bg-transparent p-0">
-                                <TabsTrigger
-                                    value="citas"
-                                    className="py-2 px-4 text-sm sm:text-base rounded-sm transition-all duration-200 hover:bg-blue-100 data-[state=active]:bg-blue-500 data-[state=active]:text-white">
-                                    Hoy
-                                </TabsTrigger>
-                                <TabsTrigger
-                                    value="citasMañana"
-                                    className="py-2 px-4 text-sm sm:text-base rounded-sm transition-all duration-200 hover:bg-blue-100 data-[state=active]:bg-blue-500 data-[state=active]:text-white">
-                                    Mañana
-                                </TabsTrigger>
-                                <TabsTrigger
-                                    value="citasSemana"
-                                    className="py-2 px-4 text-sm sm:text-base rounded-sm transition-all duration-200 hover:bg-blue-100 data-[state=active]:bg-blue-500 data-[state=active]:text-white">
-                                    Esta semana
-                                </TabsTrigger>
-                            </TabsList>
-                        </div>
+                        
                     </div>
                 </CardTitle>
                 <TabsContent value="citas" className="flex flex-col gap-4">

@@ -40,20 +40,7 @@ export const AgendaContenido = ({ paciente, filterOptions, setFilterOptions, dat
 
                 </div>
 
-                <div className="flex flex-row gap-5 items-center">
-
-                    <Menubar>
-                        <MenubarMenu>
-                            <MenubarTrigger>Dia</MenubarTrigger>
-                        </MenubarMenu>
-                        <MenubarMenu>
-                            <MenubarTrigger>Semana</MenubarTrigger>
-                        </MenubarMenu>
-                        <MenubarMenu>
-                            <MenubarTrigger>Mes</MenubarTrigger>
-                        </MenubarMenu>
-                    </Menubar>
-                </div>
+                
             </div>
             <AgendaTabla filtrarPacientes={filtrarPacientes} date={date} />
         </>
