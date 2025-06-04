@@ -3,7 +3,6 @@ import { useParams, Link } from "react-router-dom";
 import { obtenerMedicoPorId } from "@/services/equipoMedicoService";
 import ImagenDoctorGenerica from "@/assets/images/ImagenDoctorGenerica.jpg";
 import Spinner from "@/components/Spinner";
-import Preefooter from "@/components/Preefooter";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLongArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { obtenerEspecialidadPorMedico } from "@/services/equipoMedicoService";

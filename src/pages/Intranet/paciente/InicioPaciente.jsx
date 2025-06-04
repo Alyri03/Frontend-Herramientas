@@ -1,3 +1,7 @@
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "@/context/authContext";
+import { informacionPaciente } from "@/services/pacienteService";
+
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import ItemsCita from "../components/ItemsCita";
@@ -10,17 +14,51 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFlask, faHeadset } from "@fortawesome/free-solid-svg-icons";
 
 export default function InicioPaciente() {
+  const { user } = useContext(AuthContext);
+  const [paciente, setPaciente] = useState(null);
+
+  useEffect(() => {
+    const fetchPaciente = async () => {
+      try {
+        if (user?.usuarioId) {
+          const data = await informacionPaciente(user.usuarioId);
+          setPaciente(data);
+        }
+      } catch (error) {
+        console.error("Error al obtener info del paciente:", error);
+      }
+    };
+
+    fetchPaciente();
+  }, [user]);
+
   const citas = [
     { nombre: "Dra. María Rodríguez", especialidad: "Cardiología", fecha: "Lunes, 24 de Abril", hora: "10:30 AM", estado: "Confirmada" },
     { nombre: "Dr. Carlos Mendoza", especialidad: "Medicina General", fecha: "Miércoles, 26 de Abril", hora: "3:15 PM", estado: "Confirmada" }
   ];
 
   const tarjetas = [
-    { titulo: "Conoce tus resultados", descripcion: "Accede a tus resultados de laboratorio de forma segura", boton: "Ver resultados", icono: faFlask, colorTexto: "text-blue-600",
-       colorFondoIcono: "bg-blue-100", colorFondoCirculo: "bg-blue-50", imagen: resultadosImg, botonVariant: "default" }, 
     {
-    titulo: "Canales de atención", descripcion: "Contacta con nuestro equipo de soporte 24/7", boton: "Contactar", icono: faHeadset, colorTexto: "text-yellow-600",
-     colorFondoIcono: "bg-yellow-100", colorFondoCirculo: "bg-yellow-50", imagen: soporteImg, botonVariant: "outline"
+      titulo: "Conoce tus resultados",
+      descripcion: "Accede a tus resultados de laboratorio de forma segura",
+      boton: "Ver resultados",
+      icono: faFlask,
+      colorTexto: "text-blue-600",
+      colorFondoIcono: "bg-blue-100",
+      colorFondoCirculo: "bg-blue-50",
+      imagen: resultadosImg,
+      botonVariant: "default"
+    },
+    {
+      titulo: "Canales de atención",
+      descripcion: "Contacta con nuestro equipo de soporte 24/7",
+      boton: "Contactar",
+      icono: faHeadset,
+      colorTexto: "text-yellow-600",
+      colorFondoIcono: "bg-yellow-100",
+      colorFondoCirculo: "bg-yellow-50",
+      imagen: soporteImg,
+      botonVariant: "outline"
     }
   ];
 
@@ -33,7 +71,9 @@ export default function InicioPaciente() {
               Bienvenido de vuelta
             </span>
             <header>
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold my-4">Hola, Luis Enrique</h1>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold my-4">
+                Hola, {paciente?.nombres || "Paciente"}
+              </h1>
             </header>
             <p className="text-sm sm:text-base md:text-lg text-muted-foreground">
               Bienvenido a tu clínica virtual. Agenda tu cita médica de manera rápida y sencilla.

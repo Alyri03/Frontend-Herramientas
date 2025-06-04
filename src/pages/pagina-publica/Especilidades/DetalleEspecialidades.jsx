@@ -1,11 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-
-import { obtenerEspecialidadPorId } from "@/services/especialidadesService";
-import {
-  obtenerMedicosPorEspecialidad,
-  obtenerTodosLosMedicos,
-} from "@/services/equipoMedicoService";
+import { useDatosEspecialidades } from "@/hooks/useDatosEspecialidades";
 
 import EncabezadoEspecialidad from "./components/EmcabezadoEspecialidades";
 import CardMedico from "../Medicos/components/CardMedico";
@@ -14,43 +8,15 @@ import Spinner from "@/components/Spinner";
 
 export default function DetalleEspecialidades() {
   const { id } = useParams();
-  const [especialidad, setEspecialidad] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [medicos, setMedicos] = useState([]);
+  const {
+    especialidad,
+    medicos,
+    cargandoDetalle,
+    errorDetalle,
+  } = useDatosEspecialidades(id);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const dataEspecialidad = await obtenerEspecialidadPorId(id);
-        setEspecialidad(dataEspecialidad);
-
-        const dataMedicosEspecialidad = await obtenerMedicosPorEspecialidad(id);
-        const todosLosMedicos = await obtenerTodosLosMedicos();
-
-        // Asociar la imagen desde el listado completo
-        const medicosConImagen = dataMedicosEspecialidad.map((medicoEsp) => {
-          const medicoCompleto = todosLosMedicos.find(
-            (m) => m.id === medicoEsp.medicoId
-          );
-          return {
-            ...medicoEsp,
-            imagen: medicoCompleto?.imagen || null,
-          };
-        });
-
-        setMedicos(medicosConImagen);
-      } catch (error) {
-        console.error("Error al obtener datos:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [id]);
-
-  if (loading) return <Spinner />;
-  if (!especialidad) {
+  if (cargandoDetalle) return <Spinner />;
+  if (!especialidad || errorDetalle) {
     return (
       <p className="text-center text-red-500 py-10">
         Especialidad no encontrada
