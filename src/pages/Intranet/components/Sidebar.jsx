@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from "react";
+import { usePaciente } from "../hooks/usePaciente";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "@/context/authContext";
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
@@ -138,40 +139,39 @@ export default function Sidebar() {
       },
     ];
   } else if (user?.role === "ADMIN") {
-  navItems = [
-    {
-      label: "Dashboard",
-      icon: <Home size={18} />,
-      to: "/intranet/admin/Dashboard",
-    },
-    {
-      label: "Pacientes",
-      icon: <User size={18} />,
-      to: "/intranet/admin/paciente",
-    },
-    {
-      label: "Usuarios",
-      icon: <User size={18} />,
-      to: "/intranet/admin/usuarios",
-    },
-    {
-      label: "Configuración",
-      icon: <NotebookText size={18} />,
-      to: "/intranet/admin/configuracion",
-    },
-    {
-      label: "Citas",
-      icon: <CalendarCheck size={18} />,
-      to: "/intranet/admin/citas",
-    },
-    {
-      label: "Doctores",
-      icon: <User size={18} />,
-      to: "/intranet/admin/doctores",
-    },
-  ];
-}
-
+    navItems = [
+      {
+        label: "Dashboard",
+        icon: <Home size={18} />,
+        to: "/intranet/admin/Dashboard",
+      },
+      {
+        label: "Pacientes",
+        icon: <User size={18} />,
+        to: "/intranet/admin/paciente",
+      },
+      {
+        label: "Usuarios",
+        icon: <User size={18} />,
+        to: "/intranet/admin/usuarios",
+      },
+      {
+        label: "Configuración",
+        icon: <NotebookText size={18} />,
+        to: "/intranet/admin/configuracion",
+      },
+      {
+        label: "Citas",
+        icon: <CalendarCheck size={18} />,
+        to: "/intranet/admin/citas",
+      },
+      {
+        label: "Doctores",
+        icon: <User size={18} />,
+        to: "/intranet/admin/doctores",
+      },
+    ];
+  }
 
   const cerrarSesion = async () => {
     setLoadingLogout(true);
@@ -233,7 +233,16 @@ export default function Sidebar() {
 
   const UserInfo = () => {
     const esColapsado = colapsado && esEscritorio;
-    const iniciales = user?.nombre?.slice(0, 2).toUpperCase() || "US";
+    const { paciente } = usePaciente(user?.usuarioId);
+
+    const iniciales = paciente?.nombres
+      ? paciente.nombres.slice(0, 2).toUpperCase()
+      : "US";
+
+    const mostrarNombre =
+      user?.role === "PACIENTE" && paciente
+        ? `${paciente.nombres}`
+        : "Usuario";
 
     return (
       <div className="text-sm border-t pt-4">
@@ -250,7 +259,7 @@ export default function Sidebar() {
               </PopoverTrigger>
               <PopoverContent align="start" className="w-48 p-2">
                 <div className="mb-2">
-                  <p className="font-medium">{user?.nombre || "Usuario"}</p>
+                  <p className="font-medium">{mostrarNombre}</p>
                   <p className="text-xs text-muted-foreground">
                     {user?.correo}
                   </p>
@@ -273,7 +282,7 @@ export default function Sidebar() {
                 {iniciales}
               </div>
               <div>
-                <p className="font-medium">{user?.nombre || "Usuario"}</p>
+                <p className="font-medium">{mostrarNombre}</p>
                 <p className="text-xs text-muted-foreground">{user?.correo}</p>
               </div>
             </div>

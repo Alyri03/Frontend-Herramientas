@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Grid } from 'swiper/modules';
 import { useNavigate } from 'react-router-dom';
@@ -11,71 +11,31 @@ import {
   faStar,
   faChevronLeft,
   faChevronRight,
-  faHeartPulse,
-  faBrain,
-  faUserDoctor,
-  faChild,
-  faUserNurse,
-  faLungs,
-  faStethoscope,
-  faHospitalUser,
-  faBone,
-  faVenusMars,
-  faEye,
-  faNotesMedical,
-  faHeadSideVirus,
-  faAppleAlt,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { obtenerEspecialidades } from '@/services/especialidadesService';
+import { useDatosEspecialidades } from '@/hooks/useDatosEspecialidades';
 import CardEspecialidad from '@/components/CardEspecialidad';
-
-const iconMap = {
-  "Medicina General": faStethoscope,
-  "Traumatología": faBone,
-  "Pediatría": faChild,
-  "Urología": faHospitalUser,
-  "Ginecología y Obstetricia": faVenusMars,
-  "Cirugía General": faUserDoctor,
-  "Neurología": faBrain,
-  "Neurocirugía": faBrain,
-  "Medicina Física": faUserNurse,
-  "Medicina Interna": faNotesMedical,
-  "Cardiología": faHeartPulse,
-  "Flebología": faLungs,
-  "Gastroenterología": faStethoscope,
-  "Otorrinolaringología": faEye,
-  "Nutrición": faAppleAlt,
-  "Psicología": faHeadSideVirus,
-};
+import Spinner from '@/components/Spinner';
 
 const EspecialidadesCarrusel = () => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   const navigate = useNavigate();
 
-  const [especialidades, setEspecialidades] = useState([]);
+  const {
+    especialidades,
+    cargandoEspecialidades,
+    errorEspecialidades,
+  } = useDatosEspecialidades();
+
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
   const [progress, setProgress] = useState(0);
 
-  useEffect(() => {
-    obtenerEspecialidades()
-      .then((data) => {
-        const conIconos = data.map((esp) => ({
-          ...esp,
-          icono: iconMap[esp.nombre] || faStethoscope,
-        }));
-        setEspecialidades(conIconos);
-      })
-      .catch((err) => {
-        console.error('Error al cargar especialidades', err);
-      });
-
-    setTimeout(() => {
-      window.dispatchEvent(new Event('resize'));
-    }, 100);
-  }, []);
+  if (cargandoEspecialidades) return <Spinner />;
+  if (errorEspecialidades) {
+    return <p className="text-center text-red-500">Error al cargar especialidades.</p>;
+  }
 
   return (
     <div className="flex justify-center bg-[#f7f8fa] px-4 py-10">
@@ -153,8 +113,7 @@ const EspecialidadesCarrusel = () => {
               disabled={isBeginning}
               className={`flex h-9 w-9 items-center justify-center rounded-full transition ${isBeginning
                 ? 'bg-gray-400 cursor-not-allowed'
-                : 'bg-[#E7EAEE] hover:bg-[#d3d6db]'
-                }`}
+                : 'bg-[#E7EAEE] hover:bg-[#d3d6db]'}`}
             >
               <FontAwesomeIcon icon={faChevronLeft} className="text-[#4B5563]" />
             </button>
@@ -163,8 +122,7 @@ const EspecialidadesCarrusel = () => {
               disabled={isEnd}
               className={`flex h-9 w-9 items-center justify-center rounded-full transition ${isEnd
                 ? 'bg-gray-400 cursor-not-allowed'
-                : 'bg-[#E7EAEE] hover:bg-[#d3d6db]'
-                }`}
+                : 'bg-[#E7EAEE] hover:bg-[#d3d6db]'}`}
             >
               <FontAwesomeIcon icon={faChevronRight} className="text-[#4B5563]" />
             </button>
