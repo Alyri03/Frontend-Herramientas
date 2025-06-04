@@ -55,6 +55,13 @@ export default function Sidebar() {
   const [loadingLogout, setLoadingLogout] = useState(false);
   const { user, logout } = useContext(AuthContext);
 
+  const esRutaActiva = (ruta) => {
+    if (ruta === "/intranet/paciente") {
+      return location.pathname === ruta;
+    }
+    return location.pathname.startsWith(ruta);
+  };
+
   let navItems = [];
 
   if (user?.role === "PACIENTE") {
@@ -217,7 +224,7 @@ export default function Sidebar() {
               className={`group flex items-center ${
                 esColapsado ? "justify-center p-2" : "gap-3 px-3 py-2"
               } rounded-md text-sm font-medium transition-colors ${
-                location.pathname === item.to
+                esRutaActiva(item.to)
                   ? "bg-blue-100 text-blue-700"
                   : "hover:bg-muted text-muted-foreground"
               }`}
@@ -240,9 +247,7 @@ export default function Sidebar() {
       : "US";
 
     const mostrarNombre =
-      user?.role === "PACIENTE" && paciente
-        ? `${paciente.nombres}`
-        : "Usuario";
+      user?.role === "PACIENTE" && paciente ? `${paciente.nombres}` : "Usuario";
 
     return (
       <div className="text-sm border-t pt-4">
@@ -325,7 +330,7 @@ export default function Sidebar() {
       </Sheet>
 
       <div
-        className={`hidden md:flex flex-col justify-between border-r bg-white transition-all duration-300 p-4 ${
+        className={`hidden md:flex flex-col justify-between border-r bg-white transition-all duration-300 p-4 h-screen ${
           colapsado ? "w-20" : "w-64"
         }`}
       >

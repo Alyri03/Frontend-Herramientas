@@ -24,6 +24,7 @@ import InicioPaciente from '@/pages/Intranet/paciente/InicioPaciente.jsx';
 import CitasPaciente from '@/pages/Intranet/paciente/CitasPaciente.jsx';
 import HistorialPaciente from '@/pages/Intranet/paciente/HistorialPaciente.jsx';
 import PerfilPaciente from '@/pages/Intranet/paciente/PerfilPaciente.jsx';
+import CrearCita from '@/pages/Intranet/paciente/CrearCita.jsx'; 
 
 // Médico
 import { MisPacientes } from '@/pages/Intranet/medico/Pacientes';
@@ -57,6 +58,7 @@ const AppRoutes = () => {
           <Route index element={<InicioPaciente />} />
           <Route path="paciente" element={<InicioPaciente />} />
           <Route path="paciente/citas" element={<CitasPaciente />} />
+          <Route path="paciente/citas/nueva" element={<CrearCita />} /> 
           <Route path="paciente/historial" element={<HistorialPaciente />} />
           <Route path="paciente/perfil" element={<PerfilPaciente />} />
         </Route>
