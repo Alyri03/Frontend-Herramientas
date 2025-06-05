@@ -36,6 +36,13 @@ import Doctors from '../pages/Intranet/admin/Doctors';
 import Dashboard from '../pages/Intranet/admin/Dashboard';
 import Pacientes from '../pages/Intranet/admin/Pacientes';
 
+// Recepcionista
+import InicioRecepcionista from '@/pages/Intranet/recepcionista/InicioRecepcionista.jsx';
+import MedicosRecepcionista from '@/pages/Intranet/recepcionista/MedicosRecepcionista.jsx';
+import PacientesRecepcionista from '@/pages/Intranet/recepcionista/PacientesRecepcionista.jsx';
+import ServiciosRecepcionista from '@/pages/Intranet/recepcionista/ServiciosRecepcionista.jsx';
+import SegurosRecepcionista from '@/pages/Intranet/recepcionista/SegurosRecepcionista.jsx';
+
 const AppRoutes = () => {
   return (
     <Routes>
@@ -73,11 +80,11 @@ const AppRoutes = () => {
 
         {/* RECEPCIONISTA */}
         <Route element={<RutaProtegidaPorRol rolPermitido="RECEPCIONISTA" />}>
-          <Route path="recepcionista" element={<div>Inicio Recepcionista</div>} />
-          <Route path="recepcionista/pacientes" element={<div>Gestión de Pacientes</div>} />
-          <Route path="recepcionista/medicos" element={<div>Gestión de Médicos</div>} />
-          <Route path="recepcionista/servicios" element={<div>Gestión de Servicios</div>} />
-          <Route path="recepcionista/seguros" element={<div>Gestión de Seguros</div>} />
+          <Route path="recepcionista" element={<InicioRecepcionista />} />
+          <Route path="recepcionista/pacientes" element={<PacientesRecepcionista />} />
+          <Route path="recepcionista/medicos" element={<MedicosRecepcionista />} />
+          <Route path="recepcionista/servicios" element={<ServiciosRecepcionista />} />
+          <Route path="recepcionista/seguros" element={<SegurosRecepcionista />} />
           <Route path="recepcionista/citas" element={<div>Gestión de Citas</div>} />
           <Route path="recepcionista/reportes" element={<div>Reportes Generales</div>} />
           <Route path="recepcionista/perfil" element={<div>Mi Perfil Recepcionista</div>} />
