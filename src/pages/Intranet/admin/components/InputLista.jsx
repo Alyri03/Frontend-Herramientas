@@ -145,9 +145,9 @@ const InputListaComponent = () => {
                                     <TableHead className={"text-gray-500"}>
                                         Horario
                                     </TableHead>
-                                    <TableHead className={"text-gray-500"}>
+                                    {/* <TableHead className={"text-gray-500"}>
                                         Estado
-                                    </TableHead>
+                                    </TableHead> */}
                                     <TableHead className={'text-gray-500 text-center'}>
                                         Acciones
                                     </TableHead>
@@ -190,12 +190,12 @@ const InputListaComponent = () => {
                                                 <p>{doctoress.horario}</p>
                                             </div>
                                         </TableCell>
-                                        <TableCell>
+                                        {/* <TableCell>
                                             <div className={`w-min px-2 py-1 rounded-xl flex items-center whitespace-nowrap ${doctoress.estado === "Disponible" ? "bg-blue-100 text-blue-600"
                                                 : doctoress.estado === "En consulta" ? "bg-yellow-100 text-yellow-600 " : "bg-red-100 text-red-600"}`}>
                                                 {doctoress.estado}
                                             </div>
-                                        </TableCell>
+                                        </TableCell> */}
                                         <TableCell className={'flex gap-3 items-center justify-center'}>
                                             {/* Perfil del Doctor */}
                                             <Dialog>
@@ -222,10 +222,10 @@ const InputListaComponent = () => {
                                                                     <div className="flex w-full">
                                                                         <p className="font-semibold text-lg">{doctoress.nombreDoc} {doctoress.apellidoDoc}</p>
                                                                     </div>
-                                                                    <div className={`w-min sm:text-sm text-xs px-2 py-1 rounded-xl flex items-center whitespace-nowrap ${doctoress.estado === "Disponible" ? "bg-blue-100 text-blue-600"
+                                                                    {/* <div className={`w-min sm:text-sm text-xs px-2 py-1 rounded-xl flex items-center whitespace-nowrap ${doctoress.estado === "Disponible" ? "bg-blue-100 text-blue-600"
                                                                         : doctoress.estado === "En consulta" ? "bg-yellow-100 text-yellow-600 " : "bg-red-100 text-red-600"}`}>
                                                                         {doctoress.estado}
-                                                                    </div>
+                                                                    </div> */}
                                                                 </div>
                                                                 <p className="text-md">{doctoress.especialidad}</p>
                                                                 <p className="text-sm text-gray-500">ID: {doctoress.num}</p>
