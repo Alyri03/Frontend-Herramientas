@@ -1,7 +1,7 @@
 import { Calendar, Clock, DollarSign, Eye, FileText, Funnel, Gem, Mail, Phone, Save, Search, SquarePen, UserRoundPlus, X } from "lucide-react";
 import { Tabs, TabsContent } from "@radix-ui/react-tabs"
 import { CardTitle } from "../../../../components/ui/card";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../../../components/ui/table";
+import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "../../../../components/ui/table";
 import { Dialog, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "../../../../components/ui/dialog";
 import { Input } from "../../../../components/ui/input";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "../../../../components/ui/select"
@@ -9,6 +9,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "../../../../components/
 import { Button } from "../../../../components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "../../../../components/ui/avatar"
 import { useState } from "react";
+import UseDoctorLista from "../../../../hooks/useDoctorsLista";
 
 const InputListaComponent = () => {
 
@@ -16,17 +17,19 @@ const InputListaComponent = () => {
     const [estados, setEstados] = useState("allCategoria");
     const [especialidadD, setEspecialidadD] = useState("allEspecialidad");
     const [generoD, setGeneroD] = useState("allGenero");
+    const { data: doctores, isLoading, isError, error } = UseDoctorLista();
+    if (isLoading) return <p>Cargando médicos...</p>;
+    if (isError) return <p>Error: {error.message}</p>;
 
+    // const doctores = [
+    //     { nombreDoc: "Juan", apellidoDoc: "Perez", genero: "Masculino", num: "D001", especialidad: "Cardiología", horario: "Lun-Vie, 9:00-17:00", estado: "Disponible", pacientes: "145", ubicacion: "Consultorio 1", telefono: "(555) 123-4567", correo: "dr.wilson@cliniccare.com", exp: "8", calificacion: "4.8", consultas: "1247", proxDispo: "Hoy 3:00 PM", monto: "150" },
+    //     { nombreDoc: "Maria", apellidoDoc: "Lopez", genero: "Femenino", num: "D002", especialidad: "Pediatría", horario: "Lun-Jue, 8:00-16:00", estado: "En consulta", pacientes: "145", ubicacion: "Consultorio 2", telefono: "(555) 123-4567", correo: "dr.wilson@cliniccare.com", exp: "7", calificacion: "4.8", consultas: "1154", proxDispo: "Hoy 7:00 PM", monto: "75" },
+    //     { nombreDoc: "Carlos", apellidoDoc: "Sanchez", genero: "Masculino", num: "D003", especialidad: "Dermatología", horario: "Lun-Jue, 8:00-17:00", estado: "Disponible", pacientes: "145", ubicacion: "Consultorio 3", telefono: "(555) 123-4567", correo: "dr.wilson@cliniccare.com", exp: "3", calificacion: "4.8", consultas: "320", proxDispo: "Mañana 9:00 AM", monto: "80" },
+    //     { nombreDoc: "Ana", apellidoDoc: "Torres", genero: "Femenino", num: "D004", especialidad: "Neurología", horario: "Lun-Jue, 8:00-16:00", estado: "Ausente", pacientes: "145", ubicacion: "Consultorio 4", telefono: "(555) 123-4567", correo: "dr.wilson@cliniccare.com", exp: "5", calificacion: "4.8", consultas: "583", proxDispo: "Mañana 1:00 PM", monto: "125" },
+    //     { nombreDoc: "Luis", apellidoDoc: "Garcia", genero: "Masculino", num: "D005", especialidad: "Oftalmología", horario: "Lun-Jue, 8:00-16:00", estado: "En consulta", pacientes: "145", ubicacion: "Consultorio 5", telefono: "(555) 123-4567", correo: "dr.wilson@cliniccare.com", exp: "6", calificacion: "4.8", consultas: "823", proxDispo: "Hoy 4:00 PM", monto: "90" },
+    // ];
 
-    const doctores = [
-        { nombreDoc: "Juan", apellidoDoc: "Perez", genero: "Masculino", num: "D001", especialidad: "Cardiología", horario: "Lun-Vie, 9:00-17:00", estado: "Disponible", pacientes: "145", ubicacion: "Consultorio 1", telefono: "(555) 123-4567", correo: "dr.wilson@cliniccare.com", exp: "8", calificacion: "4.8", consultas: "1247", proxDispo: "Hoy 3:00 PM", monto: "150" },
-        { nombreDoc: "Maria", apellidoDoc: "Lopez", genero: "Femenino", num: "D002", especialidad: "Pediatría", horario: "Lun-Jue, 8:00-16:00", estado: "En consulta", pacientes: "145", ubicacion: "Consultorio 2", telefono: "(555) 123-4567", correo: "dr.wilson@cliniccare.com", exp: "7", calificacion: "4.8", consultas: "1154", proxDispo: "Hoy 7:00 PM", monto: "75" },
-        { nombreDoc: "Carlos", apellidoDoc: "Sanchez", genero: "Masculino", num: "D003", especialidad: "Dermatología", horario: "Lun-Jue, 8:00-17:00", estado: "Disponible", pacientes: "145", ubicacion: "Consultorio 3", telefono: "(555) 123-4567", correo: "dr.wilson@cliniccare.com", exp: "3", calificacion: "4.8", consultas: "320", proxDispo: "Mañana 9:00 AM", monto: "80" },
-        { nombreDoc: "Ana", apellidoDoc: "Torres", genero: "Femenino", num: "D004", especialidad: "Neurología", horario: "Lun-Jue, 8:00-16:00", estado: "Ausente", pacientes: "145", ubicacion: "Consultorio 4", telefono: "(555) 123-4567", correo: "dr.wilson@cliniccare.com", exp: "5", calificacion: "4.8", consultas: "583", proxDispo: "Mañana 1:00 PM", monto: "125" },
-        { nombreDoc: "Luis", apellidoDoc: "Garcia", genero: "Masculino", num: "D005", especialidad: "Oftalmología", horario: "Lun-Jue, 8:00-16:00", estado: "En consulta", pacientes: "145", ubicacion: "Consultorio 5", telefono: "(555) 123-4567", correo: "dr.wilson@cliniccare.com", exp: "6", calificacion: "4.8", consultas: "823", proxDispo: "Hoy 4:00 PM", monto: "90" },
-    ];
-
-    const filtrarDoctor = doctores.filter((doctors) => {
+    const filtrarDoctor = doctores?.filter((doctors) => {
         const doctorInput = (
             doctors.nombreDoc.toLowerCase().includes(buscarDoctor.toLowerCase())
             || doctors.apellidoDoc.toLowerCase().includes(buscarDoctor.toLowerCase())
@@ -61,7 +64,7 @@ const InputListaComponent = () => {
                         <div className="flex flex-col gap-4" >
                             <p className="text-md font-semibold">Filtros Avanzados</p>
                             {/* Estado */}
-                            <div className="flex flex-col gap-1">
+                            {/* <div className="flex flex-col gap-1">
                                 <p className="sm">Estado</p>
                                 <Select defaultValue="allCategoria" onValueChange={(btnEST) => setEstados(btnEST)}>
                                     <SelectTrigger className="w-full">
@@ -76,7 +79,7 @@ const InputListaComponent = () => {
                                         </SelectGroup>
                                     </SelectContent>
                                 </Select>
-                            </div>
+                            </div> */}
                             {/* Especialidad */}
                             <div className="flex flex-col gap-1">
                                 <p className="sm">Especialidad</p>
@@ -84,14 +87,25 @@ const InputListaComponent = () => {
                                     <SelectTrigger className="w-full">
                                         <SelectValue placeholder="Todas las categorias" />
                                     </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectGroup>
+                                    <SelectContent className="max-h-[40vh] overflow-y-auto">
+                                        <SelectGroup >
                                             <SelectItem value="allEspecialidad">Todas las especialidades</SelectItem>
                                             <SelectItem value="Cardiología">Cardiología</SelectItem>
                                             <SelectItem value="Pediatría">Pediatría</SelectItem>
                                             <SelectItem value="Dermatología">Dermatología</SelectItem>
                                             <SelectItem value="Neurología">Neurología</SelectItem>
                                             <SelectItem value="Oftalmología">Oftalmología</SelectItem>
+                                            <SelectItem value="Ginecología y Obstetricia">Ginecología y Obstetricia</SelectItem>
+                                            <SelectItem value="Nutrición">Nutrición</SelectItem>
+                                            <SelectItem value="Flebología">Flebología</SelectItem>
+                                            <SelectItem value="Urología">Urología</SelectItem>
+                                            <SelectItem value="Otorrinolaringología">Otorrinolaringología</SelectItem>
+                                            <SelectItem value="Cirugía General">Cirugía General</SelectItem>
+                                            <SelectItem value="Psicología">Psicología</SelectItem>
+                                            <SelectItem value="Traumatología">Traumatología</SelectItem>
+                                            <SelectItem value="Medicina General">Medicina General</SelectItem>
+                                            <SelectItem value="Pediatría">Pediatría</SelectItem>
+                                            <SelectItem value="Neurocirugía">Neurocirugía</SelectItem>
                                         </SelectGroup>
                                     </SelectContent>
                                 </Select>
@@ -122,7 +136,7 @@ const InputListaComponent = () => {
                     <CardTitle className="flex flex-col lg:flex-row justify-between gap-4 pb-4">
                         { }
                         <div className="flex flex-col gap-1">
-                            <p className="text-xl sm:text-2xl font-semibold">Lista de Doctores (5)</p>
+                            <p className="text-xl sm:text-2xl font-semibold">Lista de Doctores</p>
                             <p className="text-gray-500 text-sm sm:text-base">Información general de doctores</p>
                         </div>
                     </CardTitle>
@@ -324,10 +338,10 @@ const InputListaComponent = () => {
                                                                 </div>
                                                                 <div className="flex sm:flex-col flex-row-reverse sm:items-end items-center sm:gap-0 gap-2">
                                                                     <p>2024-01-25 - 09:00 AM</p>
-                                                                    <div className={`w-min text-xs px-2 py-1 rounded-xl flex sm:self-end whitespace-nowrap ${doctoress.estado === "Disponible" ? "bg-black text-white"
+                                                                    {/* <div className={`w-min text-xs px-2 py-1 rounded-xl flex sm:self-end whitespace-nowrap ${doctoress.estado === "Disponible" ? "bg-black text-white"
                                                                         : doctoress.estado === "En consulta" ? "bg-gray-100 text-black" : "bg-red-600 text-white"}`}>
                                                                         {doctoress.estado}
-                                                                    </div>
+                                                                    </div> */}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -347,10 +361,10 @@ const InputListaComponent = () => {
                                                                 </div>
                                                                 <div className="flex sm:flex-col flex-row-reverse sm:items-end items-center sm:gap-0 gap-2">
                                                                     <p>2024-01-25 - 09:00 AM</p>
-                                                                    <div className={`w-min text-xs px-2 py-1 rounded-xl flex sm:self-end whitespace-nowrap ${doctoress.estado === "Disponible" ? "bg-black text-white"
+                                                                    {/* <div className={`w-min text-xs px-2 py-1 rounded-xl flex sm:self-end whitespace-nowrap ${doctoress.estado === "Disponible" ? "bg-black text-white"
                                                                         : doctoress.estado === "En consulta" ? "bg-gray-100 text-black" : "bg-red-600 text-white"}`}>
                                                                         {doctoress.estado}
-                                                                    </div>
+                                                                    </div> */}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -370,10 +384,10 @@ const InputListaComponent = () => {
                                                                 </div>
                                                                 <div className="flex sm:flex-col flex-row-reverse sm:items-end items-center sm:gap-0 gap-2">
                                                                     <p className="sm:text-md">2024-01-25 - 09:00 AM</p>
-                                                                    <div className={`w-min text-xs px-2 py-1 rounded-xl flex sm:self-end whitespace-nowrap ${doctoress.estado === "Disponible" ? "bg-black text-white"
+                                                                    {/* <div className={`w-min text-xs px-2 py-1 rounded-xl flex sm:self-end whitespace-nowrap ${doctoress.estado === "Disponible" ? "bg-black text-white"
                                                                         : doctoress.estado === "En consulta" ? "bg-gray-100 text-black" : "bg-red-600 text-white"}`}>
                                                                         {doctoress.estado}
-                                                                    </div>
+                                                                    </div> */}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -451,6 +465,17 @@ const InputListaComponent = () => {
                                                                                 <SelectItem value="Dermatología">Dermatología</SelectItem>
                                                                                 <SelectItem value="Neurología">Neurología</SelectItem>
                                                                                 <SelectItem value="Oftalmología">Oftalmología</SelectItem>
+                                                                                <SelectItem value="Ginecología y Obstetricia">Ginecología y Obstetricia</SelectItem>
+                                                                                <SelectItem value="Nutrición">Nutrición</SelectItem>
+                                                                                <SelectItem value="Flebología">Flebología</SelectItem>
+                                                                                <SelectItem value="Urología">Urología</SelectItem>
+                                                                                <SelectItem value="Otorrinolaringología">Otorrinolaringología</SelectItem>
+                                                                                <SelectItem value="Cirugía General">Cirugía General</SelectItem>
+                                                                                <SelectItem value="Psicología">Psicología</SelectItem>
+                                                                                <SelectItem value="Traumatología">Traumatología</SelectItem>
+                                                                                <SelectItem value="Medicina General">Medicina General</SelectItem>
+                                                                                <SelectItem value="Pediatría">Pediatría</SelectItem>
+                                                                                <SelectItem value="Neurocirugía">Neurocirugía</SelectItem>
                                                                             </SelectGroup>
                                                                         </SelectContent>
                                                                     </Select>
