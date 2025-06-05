@@ -1,8 +1,8 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../../components/ui/table"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Activity, ArrowLeft, Calendar, ChevronDown, Eye, File, FileText, Funnel, MoveLeft } from "lucide-react";
+import { Activity, ArrowLeft, Calendar, ChevronDown, Eye, File, FileText, Funnel, IdCard, MoveLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "../../../components/ui/card";
 import { Input } from "../../../components/ui/input"
@@ -17,56 +17,19 @@ import { Tabs, TabsTrigger } from "../../../components/ui/tabs"
 import { TabsContent, TabsList } from "@radix-ui/react-tabs";
 import { Avatar } from "../../../components/ui/avatar"
 import { AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
-
-
-
-const data = [
-    {
-        nombre: 'Luis Enrique Martínez',
-        sexo: 'Masculino',
-        edad: 38,
-        condicion: 'Hipertension',
-        ultimaVisita: 'Hoy, 09:00 AM',
-        estado: 'Activo'
-    },
-    {
-        nombre: 'María González',
-        sexo: 'Femenino',
-        edad: 45,
-        condicion: 'Diabetes Tipo 2',
-        ultimaVisita: 'Hoy, 10:30 AM',
-        estado: 'Activo'
-    },
-    {
-        nombre: 'Carlos Rodríguez',
-        sexo: 'Masculino',
-        edad: 29,
-        condicion: 'Dolor torácico',
-        ultimaVisita: 'Hoy, 11:45 AM',
-        estado: 'En evaluación'
-    },
-    {
-        nombre: 'Ana López',
-        sexo: 'Femenino',
-        edad: 52,
-        condicion: 'Arritmia',
-        ultimaVisita: '18/05/2023',
-        estado: 'Activo'
-    },
-    {
-        nombre: 'Jorge Méndez',
-        sexo: 'Masculino',
-        edad: 61,
-        condicion: 'Post infarto',
-        ultimaVisita: '10/05/2023',
-        estado: 'En tratamiento'
-    }
-]
-
-
-
+import { useMedicoPacientes } from "../../../hooks/useMedicoPacientes";
+import { AuthContext } from "@/context/authContext";
 
 export const MisPacientes = () => {
+
+
+    const { user } = useContext(AuthContext)
+
+    const { medicoPacientes,
+        cargandoPacientesMedico,
+        errorMedicoPacientes } = useMedicoPacientes(1)
+
+
 
     const [sorting, setSorting] = useState("");
     const [selected, setSelected] = useState(null);
@@ -88,13 +51,13 @@ export const MisPacientes = () => {
     }])
 
 
-    const filtrarPacientes = data.filter((paciente) => {
+    const filtrarPacientes = medicoPacientes.filter((paciente) => {
         return (
-            paciente.nombre.toLowerCase().includes(sorting.toLowerCase())
-            && paciente.estado.includes(
-                filterOptions.find(opcion => opcion.visible === true).estado === 'Todos'
-                    ? ''
-                    : filterOptions.find(opcion => opcion.visible === true).estado)
+            paciente.nombres.toLowerCase().includes(sorting.toLowerCase())
+            // && paciente.estado.includes(
+            //     filterOptions.find(opcion => opcion.visible === true).estado === 'Todos'
+            //         ? ''
+            //         : filterOptions.find(opcion => opcion.visible === true).estado)
         );
     });
 
@@ -178,9 +141,9 @@ export const MisPacientes = () => {
                                 <TableRow>
                                     <TableHead>Paciente</TableHead>
                                     <TableHead>Edad</TableHead>
+
+                                    <TableHead>Numero de identifiacion</TableHead>
                                     <TableHead>Condicion</TableHead>
-                                    <TableHead>Ultima visita</TableHead>
-                                    <TableHead>Estado</TableHead>
                                     <TableHead>Acciones</TableHead>
                                 </TableRow>
                             </TableHeader>
@@ -189,17 +152,18 @@ export const MisPacientes = () => {
                                 {filtrarPacientes.map((item, index) => (
                                     <TableRow key={index}>
                                         <TableCell className={'flex flex-col'}>
-                                            <span className="font-medium">{item.nombre}</span>
+                                            <span className="font-medium">{item.nombres}</span>
                                             <span className="text-muted-foreground text-sm">{item.sexo}</span>
+
                                         </TableCell>
                                         <TableCell>{item.edad}</TableCell>
-                                        <TableCell>{item.condicion}</TableCell>
-                                        <TableCell>{item.ultimaVisita}</TableCell>
-                                        <TableCell>
+                                        <TableCell>{item.numeroIdentificacion}</TableCell>
+                                        <TableCell>{item.antecedentes}</TableCell>
+                                        {/* <TableCell>
                                             <Badge className={`px-2 py-1 text-xs ${item.estado === "En tratamiento" ? 'bg-blue-100 text-blue-600'
                                                 : item.estado === 'Activo' ? 'bg-green-100 text-green-600' : 'bg-yellow-100 text-yellow-600'
                                                 }`}>{item.estado}</Badge>
-                                        </TableCell>
+                                        </TableCell> */}
                                         <TableCell className="text-center">
                                             <Dialog>
                                                 <DialogTrigger asChild>
@@ -211,11 +175,14 @@ export const MisPacientes = () => {
                                                     <h3 className="text-lg font-semibold mb-2">Detalle del registro</h3>
                                                     {selected && (
                                                         <ul className="text-sm space-y-1">
-                                                            <li><strong>Nombre:</strong> {selected.nombre}</li>
+                                                            <li><strong>Nombres:</strong> {selected.nombres}</li>
+                                                            <li><strong>Apellidos:</strong> {selected.apellidos}</li>
+                                                            <li><strong>Sexo:</strong> {selected.sexo}</li>
                                                             <li><strong>Edad:</strong> {selected.edad}</li>
-                                                            <li><strong>Condicion:</strong> {selected.condicion}</li>
-                                                            <li><strong>Ultima visita:</strong> {selected.ultimaVisita}</li>
-                                                            <li><strong>Estado:</strong> {selected.estado}</li>
+                                                            <li><strong>Condicion:</strong> {selected.antecedentes}</li>
+                                                            <li><strong>Numero de identificacion:</strong> {selected.numeroIdentificacion}</li>
+                                                            <li><strong>Telefono: </strong>{selected.telefono}</li>
+                                                            {/* <li><strong>Estado:</strong> {selected.estado}</li> */}
                                                         </ul>
                                                     )}
                                                 </DialogContent>
@@ -248,7 +215,7 @@ export const MisPacientes = () => {
                                             <AvatarFallback className="text-blue-600 mb-2">HR</AvatarFallback>
                                         </Avatar>
                                         <div className="min-w-0">
-                                            <h2 className="truncate">{item.nombre}</h2>
+                                            <h2 className="truncate">{item.nombres}</h2>
                                             <p className="text-sm text-muted-foreground truncate">{item.edad} años • {item.sexo}</p>
                                         </div>
                                     </CardTitle>
@@ -259,27 +226,27 @@ export const MisPacientes = () => {
                                             <Activity />
                                             <div>
                                                 <p className="text-xs text-muted-foreground">Condición:</p>
-                                                <p className="text-sm">{item.condicion}</p>
+                                                <p className="text-sm">{item.antecedentes}</p>
                                             </div>
                                         </div>
                                         <div className="flex flex-row items-center gap-2 min-w-[45%]">
-                                            <Calendar />
+                                            <IdCard />
                                             <div>
-                                                <p className="text-xs text-muted-foreground">Última visita:</p>
-                                                <p className="text-sm">{item.ultimaVisita}</p>
+                                                <p className="text-xs text-muted-foreground">DNI:</p>
+                                                <p className="text-sm">{item.numeroIdentificacion}</p>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="flex flex-col lg:flex-row justify-between items-center gap-2 w-full flex-wrap">
-                                        <Badge
+                                        {/* <Badge
                                             className={`px-2 py-1 text-xs ${item.estado === "En tratamiento"
-                                                    ? "bg-blue-100 text-blue-600"
-                                                    : item.estado === "Activo"
-                                                        ? "bg-green-100 text-green-600"
-                                                        : "bg-yellow-100 text-yellow-600"
+                                                ? "bg-blue-100 text-blue-600"
+                                                : item.estado === "Activo"
+                                                    ? "bg-green-100 text-green-600"
+                                                    : "bg-yellow-100 text-yellow-600"
                                                 }`}>
                                             {item.estado}
-                                        </Badge>
+                                        </Badge> */}
                                         <Dialog>
                                             <DialogTrigger asChild>
                                                 <Button variant="outline" size="sm" className="w-full sm:w-auto justify-center text-xs sm:text-sm" onClick={() => setSelected(item)}>
@@ -290,7 +257,7 @@ export const MisPacientes = () => {
                                                 <div className="flex flex-col space-y-3">
                                                     <div className="flex items-center space-x-3">
                                                         <Avatar className="size-10">
-                                                            <AvatarImage src="https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-5.png" alt={selected?.nombre}/>
+                                                            <AvatarImage src="https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-5.png" alt={selected?.nombre} />
                                                             <AvatarFallback className="text-blue-600">
                                                                 {selected?.nombre
                                                                     ?.split(" ")
@@ -304,6 +271,14 @@ export const MisPacientes = () => {
                                                         <div className="bg-slate-50 dark:bg-slate-900 rounded-md p-3">
                                                             <ul className="text-sm space-y-2">
                                                                 <li className="flex justify-between">
+                                                                    <span className="text-muted-foreground">Nombres:</span>
+                                                                    <span className="font-medium">{selected.nombres}</span>
+                                                                </li>
+                                                                <li className="flex justify-between">
+                                                                    <span className="text-muted-foreground">Apellidos:</span>
+                                                                    <span className="font-medium">{selected.apellidos}</span>
+                                                                </li>
+                                                                <li className="flex justify-between">
                                                                     <span className="text-muted-foreground">Edad:</span>
                                                                     <span className="font-medium">{selected.edad} años</span>
                                                                 </li>
@@ -316,22 +291,27 @@ export const MisPacientes = () => {
                                                                     <span className="font-medium">{selected.condicion}</span>
                                                                 </li>
                                                                 <li className="flex justify-between">
-                                                                    <span className="text-muted-foreground">Última visita:</span>
-                                                                    <span className="font-medium">{selected.ultimaVisita}</span>
+                                                                    <span className="text-muted-foreground">DNI:</span>
+                                                                    <span className="font-medium">{selected.numeroIdentificacion}</span>
                                                                 </li>
                                                                 <li className="flex justify-between">
+                                                                    <span className="text-muted-foreground">Telefono:</span>
+                                                                    <span className="font-medium">{selected.telefono}</span>
+                                                                </li>
+
+                                                                {/* <li className="flex justify-between">
                                                                     <span className="text-muted-foreground">Estado:</span>
                                                                     <span>
                                                                         <Badge
                                                                             className={`px-2 py-1 text-xs ${selected.estado === "En tratamiento"
-                                                                                    ? "bg-blue-100 text-blue-600"
-                                                                                    : selected.estado === "Activo"
-                                                                                        ? "bg-green-100 text-green-600"
-                                                                                        : "bg-yellow-100 text-yellow-600"
+                                                                                ? "bg-blue-100 text-blue-600"
+                                                                                : selected.estado === "Activo"
+                                                                                    ? "bg-green-100 text-green-600"
+                                                                                    : "bg-yellow-100 text-yellow-600"
                                                                                 }`}>{selected.estado}
                                                                         </Badge>
                                                                     </span>
-                                                                </li>
+                                                                </li> */}
                                                             </ul>
                                                         </div>
                                                     )}

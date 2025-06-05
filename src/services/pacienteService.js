@@ -9,3 +9,13 @@ export const informacionPaciente = async (pacienteId) =>{
         throw error;
     }
 }
+
+export const datosPacientes = async ()=>{
+    try {
+      const response = await axiosInstance.get("/pacientes");
+      return response.data;
+    } catch (error) {
+      console.error("Error al obtener especialidades:", error);
+      throw error;
+    }
+}
