@@ -1,6 +1,7 @@
 import { useState } from "react";
 import RegistrationForm from "@/pages/pagina-publica/Usuarios/components/RegistrationForm";
 import loginImg from "../../../assets/images/imgRegistro.jpg";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -39,7 +40,10 @@ const Register = () => {
       {/* Formulario */}
       <div className="flex w-full md:w-[50%] items-center justify-center px-4 sm:px-12">
         <div className="w-full max-w-2xl">
-          <button className="flex items-center text-gray-600 mb-6">
+          <Link
+            to="/login"
+            className="flex items-center text-gray-600 mb-6 hover:underline"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5 mr-2"
@@ -52,8 +56,8 @@ const Register = () => {
                 clipRule="evenodd"
               />
             </svg>
-            Volver
-          </button>
+            Volver al login
+          </Link>
 
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Registro de nuevo usuario

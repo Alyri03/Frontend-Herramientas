@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { usePaciente } from "../hooks/usePaciente";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "@/context/authContext";
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
@@ -18,6 +19,7 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
+import Spinner from "@/components/Spinner";
 
 import {
   Menu,
@@ -46,46 +48,154 @@ function useEsEscritorio() {
 
 export default function Sidebar() {
   const location = useLocation();
+  const navigate = useNavigate();
   const esEscritorio = useEsEscritorio();
   const [colapsado, setColapsado] = useState(false);
   const [mostrarDialogo, setMostrarDialogo] = useState(false);
+  const [loadingLogout, setLoadingLogout] = useState(false);
   const { user, logout } = useContext(AuthContext);
+
+  const esRutaActiva = (ruta) => {
+    if (ruta === "/intranet/paciente") {
+      return location.pathname === ruta;
+    }
+    return location.pathname.startsWith(ruta);
+  };
 
   let navItems = [];
 
   if (user?.role === "PACIENTE") {
     navItems = [
       { label: "Inicio", icon: <Home size={18} />, to: "/intranet/paciente" },
-      { label: "Mis citas", icon: <CalendarCheck size={18} />, to: "/intranet/paciente/citas" },
-      { label: "Historial", icon: <NotebookText size={18} />, to: "/intranet/paciente/historial" },
-      { label: "Mi Perfil", icon: <User size={18} />, to: "/intranet/paciente/perfil" },
+      {
+        label: "Mis citas",
+        icon: <CalendarCheck size={18} />,
+        to: "/intranet/paciente/citas",
+      },
+      {
+        label: "Historial",
+        icon: <NotebookText size={18} />,
+        to: "/intranet/paciente/historial",
+      },
+      {
+        label: "Mi Perfil",
+        icon: <User size={18} />,
+        to: "/intranet/paciente/perfil",
+      },
     ];
   } else if (user?.role === "MEDICO") {
     navItems = [
       { label: "Inicio", icon: <Home size={18} />, to: "/intranet/medico" },
-      { label: "Mis pacientes", icon: <User size={18} />, to: "/intranet/medico/pacientes" },
-      { label: "Agenda", icon: <CalendarCheck size={18} />, to: "/intranet/medico/agenda" },
-      { label: "Perfil", icon: <User size={18} />, to: "/intranet/medico/perfil" },
+      {
+        label: "Mis pacientes",
+        icon: <User size={18} />,
+        to: "/intranet/medico/pacientes",
+      },
+      {
+        label: "Agenda",
+        icon: <CalendarCheck size={18} />,
+        to: "/intranet/medico/agenda",
+      },
+      {
+        label: "Perfil",
+        icon: <User size={18} />,
+        to: "/intranet/medico/perfil",
+      },
     ];
   } else if (user?.role === "RECEPCIONISTA") {
     navItems = [
-      { label: "Inicio", icon: <Home size={18} />, to: "/intranet/recepcionista" },
-      { label: "Pacientes", icon: <User size={18} />, to: "/intranet/recepcionista/pacientes" },
-      { label: "Médicos", icon: <User size={18} />, to: "/intranet/recepcionista/medicos" },
-      { label: "Servicios", icon: <NotebookText size={18} />, to: "/intranet/recepcionista/servicios" },
-      { label: "Seguros", icon: <NotebookText size={18} />, to: "/intranet/recepcionista/seguros" },
-      { label: "Citas", icon: <CalendarCheck size={18} />, to: "/intranet/recepcionista/citas" },
-      { label: "Reportes", icon: <NotebookText size={18} />, to: "/intranet/recepcionista/reportes" },
-      { label: "Perfil", icon: <User size={18} />, to: "/intranet/recepcionista/perfil" },
+      {
+        label: "Inicio",
+        icon: <Home size={18} />,
+        to: "/intranet/recepcionista",
+      },
+      {
+        label: "Pacientes",
+        icon: <User size={18} />,
+        to: "/intranet/recepcionista/pacientes",
+      },
+      {
+        label: "Médicos",
+        icon: <User size={18} />,
+        to: "/intranet/recepcionista/medicos",
+      },
+      {
+        label: "Servicios",
+        icon: <NotebookText size={18} />,
+        to: "/intranet/recepcionista/servicios",
+      },
+      {
+        label: "Seguros",
+        icon: <NotebookText size={18} />,
+        to: "/intranet/recepcionista/seguros",
+      },
+      {
+        label: "Citas",
+        icon: <CalendarCheck size={18} />,
+        to: "/intranet/recepcionista/citas",
+      },
+      {
+        label: "Reportes",
+        icon: <NotebookText size={18} />,
+        to: "/intranet/recepcionista/reportes",
+      },
+      {
+        label: "Perfil",
+        icon: <User size={18} />,
+        to: "/intranet/recepcionista/perfil",
+      },
     ];
-  } else if (user?.role === "ADMINISTRADOR") {
+  } else if (user?.role === "ADMIN") {
     navItems = [
-      { label: "Usuarios", icon: <User size={18} />, to: "/intranet/admin/usuarios" },
-      { label: "Configuración", icon: <NotebookText size={18} />, to: "/intranet/admin/configuracion" },
+      {
+        label: "Dashboard",
+        icon: <Home size={18} />,
+        to: "/intranet/admin/Dashboard",
+      },
+      {
+        label: "Pacientes",
+        icon: <User size={18} />,
+        to: "/intranet/admin/paciente",
+      },
+      {
+        label: "Usuarios",
+        icon: <User size={18} />,
+        to: "/intranet/admin/usuarios",
+      },
+      {
+        label: "Configuración",
+        icon: <NotebookText size={18} />,
+        to: "/intranet/admin/configuracion",
+      },
+      {
+        label: "Citas",
+        icon: <CalendarCheck size={18} />,
+        to: "/intranet/admin/citas",
+      },
+      {
+        label: "Doctores",
+        icon: <User size={18} />,
+        to: "/intranet/admin/doctores",
+      },
     ];
   }
 
+  const cerrarSesion = async () => {
+    setLoadingLogout(true);
+    await logout();
 
+    const interval = setInterval(() => {
+      const borrado =
+        !localStorage.getItem("authUser") &&
+        !sessionStorage.getItem("authUser");
+      if (borrado) {
+        clearInterval(interval);
+        setMostrarDialogo(false);
+        setLoadingLogout(false);
+        navigate("/login");
+      }
+    }, 100);
+  };
 
   const NavLinks = () => (
     <>
@@ -95,7 +205,6 @@ export default function Sidebar() {
             Clínica ICA
           </Link>
         )}
-
         <button
           onClick={() => setColapsado(!colapsado)}
           className="hidden md:inline-flex text-muted-foreground hover:text-blue-600 transition"
@@ -112,11 +221,13 @@ export default function Sidebar() {
             <Link
               key={item.to}
               to={item.to}
-              className={`group flex items-center ${esColapsado ? "justify-center p-2" : "gap-3 px-3 py-2"
-                } rounded-md text-sm font-medium transition-colors ${location.pathname === item.to
+              className={`group flex items-center ${
+                esColapsado ? "justify-center p-2" : "gap-3 px-3 py-2"
+              } rounded-md text-sm font-medium transition-colors ${
+                esRutaActiva(item.to)
                   ? "bg-blue-100 text-blue-700"
                   : "hover:bg-muted text-muted-foreground"
-                }`}
+              }`}
             >
               {item.icon}
               {!esColapsado && item.label}
@@ -129,7 +240,14 @@ export default function Sidebar() {
 
   const UserInfo = () => {
     const esColapsado = colapsado && esEscritorio;
-    const iniciales = user?.nombre?.slice(0, 2).toUpperCase() || "US";
+    const { paciente } = usePaciente(user?.usuarioId);
+
+    const iniciales = paciente?.nombres
+      ? paciente.nombres.slice(0, 2).toUpperCase()
+      : "US";
+
+    const mostrarNombre =
+      user?.role === "PACIENTE" && paciente ? `${paciente.nombres}` : "Usuario";
 
     return (
       <div className="text-sm border-t pt-4">
@@ -146,8 +264,10 @@ export default function Sidebar() {
               </PopoverTrigger>
               <PopoverContent align="start" className="w-48 p-2">
                 <div className="mb-2">
-                  <p className="font-medium">{user?.nombre || "Usuario"}</p>
-                  <p className="text-xs text-muted-foreground">{user?.correo}</p>
+                  <p className="font-medium">{mostrarNombre}</p>
+                  <p className="text-xs text-muted-foreground">
+                    {user?.correo}
+                  </p>
                 </div>
                 <Separator />
                 <Button
@@ -167,7 +287,7 @@ export default function Sidebar() {
                 {iniciales}
               </div>
               <div>
-                <p className="font-medium">{user?.nombre || "Usuario"}</p>
+                <p className="font-medium">{mostrarNombre}</p>
                 <p className="text-xs text-muted-foreground">{user?.correo}</p>
               </div>
             </div>
@@ -187,7 +307,12 @@ export default function Sidebar() {
 
   return (
     <>
-      {/* 📱 Sidebar en mobile */}
+      {loadingLogout && (
+        <div className="fixed inset-0 bg-white/60 z-[999] flex items-center justify-center">
+          <Spinner size={12} />
+        </div>
+      )}
+
       <Sheet>
         <SheetTrigger asChild>
           <Button variant="ghost" className="md:hidden fixed top-4 left-4 z-50">
@@ -196,22 +321,25 @@ export default function Sidebar() {
         </SheetTrigger>
         <SheetContent side="left" className="p-0 w-72">
           <div className="flex flex-col h-full justify-between p-4">
-            <div><NavLinks /></div>
+            <div>
+              <NavLinks />
+            </div>
             <UserInfo />
           </div>
         </SheetContent>
       </Sheet>
 
-      {/* 💻 Sidebar en escritorio */}
       <div
-        className={`hidden md:flex flex-col justify-between border-r bg-white transition-all duration-300 p-4 ${colapsado ? "w-20" : "w-64"
-          }`}
+        className={`hidden md:flex flex-col justify-between border-r bg-white transition-all duration-300 p-4 h-screen ${
+          colapsado ? "w-20" : "w-64"
+        }`}
       >
-        <div><NavLinks /></div>
+        <div>
+          <NavLinks />
+        </div>
         <UserInfo />
       </div>
 
-      {/* 🔐 Modal de confirmación */}
       <Dialog open={mostrarDialogo} onOpenChange={setMostrarDialogo}>
         <DialogContent>
           <DialogHeader>
@@ -226,12 +354,10 @@ export default function Sidebar() {
             </Button>
             <Button
               variant="destructive"
-              onClick={() => {
-                logout();
-                setMostrarDialogo(false);
-              }}
+              onClick={cerrarSesion}
+              disabled={loadingLogout}
             >
-              Cerrar sesión
+              {loadingLogout ? "Cerrando..." : "Cerrar sesión"}
             </Button>
           </DialogFooter>
         </DialogContent>

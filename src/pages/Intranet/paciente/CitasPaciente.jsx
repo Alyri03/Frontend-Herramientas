@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Eye, CalendarIcon } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -23,6 +24,7 @@ const citas = [
 const estados = ["PENDIENTE", "CONFIRMADA", "CANCELADA", "REPROGRAMADA", "ATENDIDA", "NO_ASISTIO", "EN_CURSO"];
 
 const CitasPaciente = () => {
+  const navigate = useNavigate();
   const [citaSeleccionada, setCitaSeleccionada] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [estadoSeleccionado, setEstadoSeleccionado] = useState(null);
@@ -56,12 +58,19 @@ const CitasPaciente = () => {
     setIsOpen(true);
   };
 
+   const handleIrCrearCita = () => {
+    navigate("/intranet/paciente/citas/nueva");
+  };
+
+
   return (
     <div className="space-y-6">
       <h1 className="text-2xl font-bold tracking-tight">Todas mis citas</h1>
 
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 flex-wrap">
-        <Button className="w-fit"><span className="mr-2">+</span> Solicitar cita</Button>
+       <Button className="w-fit" onClick={handleIrCrearCita}>
+          <span className="mr-2">+</span> Solicitar cita
+        </Button>
 
         <div className="flex flex-wrap items-center gap-3">
           <Select onValueChange={(valor) => setEstadoSeleccionado(valor === "TODOS" ? null : valor)}>

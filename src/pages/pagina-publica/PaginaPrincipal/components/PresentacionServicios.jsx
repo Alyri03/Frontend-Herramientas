@@ -1,47 +1,34 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-
-const servicios = [
-  {
-    nombre: 'Centro Quirúrgico',
-    descripcion:
-      'Contamos con quirófanos modernos, equipados con tecnología de última generación para garantizar procedimientos seguros y efectivos en diversas especialidades médicas.',
-    imagen:
-      'https://www.clinicapj.org.pe/store-imagenes/clinica/Servicios/Quirurgico/Cl__nica_0374.jpg',
-  },
-  {
-    nombre: 'Medicina física y rehabilitación',
-    descripcion:
-      'Ofrecemos terapias especializadas para ayudarte a recuperar tu movilidad, fuerza y bienestar físico, adaptadas a tus necesidades y con un enfoque integral en tu recuperación.',
-    imagen:
-      'https://web.sisol.gob.pe/wp-content/uploads/2023/04/9-TERAPIA-FISICA-Y-REHABILITACION.jpg',
-  },
-  {
-    nombre: 'Atención Hospitalaria',
-    descripcion:
-      'Brindamos un servicio de hospitalización cálido y seguro, con profesionales altamente capacitados y atención personalizada las 24 horas del día.',
-    imagen:
-      'https://www.esan.edu.pe/images/blog/2020/08/20/1500x844-flujo-pacientes.jpg',
-  },
-  {
-    nombre: 'Emergencia Adulta',
-    descripcion:
-      'Atendemos urgencias médicas en adultos con rapidez y eficiencia, priorizando el diagnóstico oportuno y la intervención inmediata en un entorno seguro.',
-    imagen:
-      'https://cdn.sanity.io/images/1gm9mx7i/production/5498774875d711f9ce7c570834bbd761b4efb532-1060x424.jpg?w=1920&q=90&fit=max&auto=format',
-  },
-  {
-    nombre: 'Emergencia Pediátrica',
-    descripcion:
-      'Un espacio especialmente diseñado para la atención de emergencias en niños, con equipos médicos especializados y un enfoque centrado en el bienestar infantil.',
-    imagen:
-      'https://www.insnsb.gob.pe/wp-content/uploads/2020/01/DSC_3027.jpg',
-  },
-];
+import { useDatosServicios } from '@/hooks/useDatosServicios';
+import Spinner from '@/components/Spinner';
 
 const PresentacionServicios = () => {
-  const [servicioActivo, setServicioActivo] = useState(servicios[0]);
+  const { servicios, cargandoServicios, errorServicios } = useDatosServicios();
+  const [servicioActivo, setServicioActivo] = useState(null);
+
+  useEffect(() => {
+    if (servicios.length > 0) {
+      setServicioActivo(servicios[0]);
+    }
+  }, [servicios]);
+
+  if (cargandoServicios) {
+    return (
+      <div className="flex justify-center py-10">
+        <Spinner size={10} />
+      </div>
+    );
+  }
+
+  if (errorServicios || !servicioActivo) {
+    return (
+      <p className="text-center text-red-500 py-10">
+        Error al cargar los servicios o no hay servicios disponibles.
+      </p>
+    );
+  }
 
   return (
     <div
@@ -55,19 +42,18 @@ const PresentacionServicios = () => {
           <span className="text-[#1B669A]">servicios de salud</span>
         </h2>
 
-        {/* Botones */}
-        <div className="flex w-full items-center gap-3 overflow-x-auto whitespace-nowrap pb-2 lg:flex-col lg:items-start lg:overflow-visible lg:whitespace-normal">
+        <div className="flex w-full items-center gap-3 overflow-x-auto pb-2 lg:flex-col lg:items-start lg:overflow-visible">
           {servicios.map((servicio, idx) => (
             <button
               key={idx}
               onClick={() => setServicioActivo(servicio)}
-              className={`flex h-[52px] w-[260px] items-center justify-center gap-2 rounded-full border px-6 text-center text-sm font-medium transition-all sm:text-base ${
-                servicioActivo.nombre === servicio.nombre
+              className={`flex h-[52px] w-[260px] items-center justify-center gap-2 rounded-full border px-6 text-sm font-medium transition-all sm:text-base ${
+                servicioActivo?.nombre === servicio.nombre
                   ? 'bg-black text-white'
                   : 'border-gray-300 text-gray-500 hover:bg-gray-100'
               }`}
             >
-              {servicioActivo.nombre === servicio.nombre && (
+              {servicioActivo?.nombre === servicio.nombre && (
                 <FontAwesomeIcon icon={faArrowRight} />
               )}
               {servicio.nombre}
@@ -77,16 +63,24 @@ const PresentacionServicios = () => {
       </div>
 
       {/* Imagen */}
-      <div className="flex w-full justify-center lg:w-[300px]" data-aos="zoom-in" data-aos-delay="200">
+      <div
+        className="flex w-full justify-center lg:w-[300px]"
+        data-aos="zoom-in"
+        data-aos-delay="200"
+      >
         <img
-          src={servicioActivo.imagen}
+          src={servicioActivo.imagenUrl}
           alt={servicioActivo.nombre}
           className="h-[400px] w-[300px] rounded-full object-cover sm:h-[440px] sm:w-[320px]"
         />
       </div>
 
       {/* Texto */}
-      <div className="flex w-full flex-col justify-start lg:w-1/3" data-aos="fade-left" data-aos-delay="300">
+      <div
+        className="flex w-full flex-col justify-start lg:w-1/3"
+        data-aos="fade-left"
+        data-aos-delay="300"
+      >
         <h3 className="mb-4 text-center text-3xl font-semibold lg:text-center">
           {servicioActivo.nombre}
         </h3>

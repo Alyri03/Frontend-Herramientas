@@ -1,3 +1,7 @@
+import { useContext } from "react";
+import { AuthContext } from "@/context/authContext";
+import { usePaciente } from "../hooks/usePaciente";
+
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import ItemsCita from "../components/ItemsCita";
@@ -10,22 +14,54 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFlask, faHeadset } from "@fortawesome/free-solid-svg-icons";
 
 export default function InicioPaciente() {
+  const { user } = useContext(AuthContext);
+  const { paciente } = usePaciente(user?.usuarioId);
+
   const citas = [
-    { nombre: "Dra. María Rodríguez", especialidad: "Cardiología", fecha: "Lunes, 24 de Abril", hora: "10:30 AM", estado: "Confirmada" },
-    { nombre: "Dr. Carlos Mendoza", especialidad: "Medicina General", fecha: "Miércoles, 26 de Abril", hora: "3:15 PM", estado: "Confirmada" }
+    {
+      nombre: "Dra. María Rodríguez",
+      especialidad: "Cardiología",
+      fecha: "Lunes, 24 de Abril",
+      hora: "10:30 AM",
+      estado: "Confirmada",
+    },
+    {
+      nombre: "Dr. Carlos Mendoza",
+      especialidad: "Medicina General",
+      fecha: "Miércoles, 26 de Abril",
+      hora: "3:15 PM",
+      estado: "Confirmada",
+    },
   ];
 
   const tarjetas = [
-    { titulo: "Conoce tus resultados", descripcion: "Accede a tus resultados de laboratorio de forma segura", boton: "Ver resultados", icono: faFlask, colorTexto: "text-blue-600",
-       colorFondoIcono: "bg-blue-100", colorFondoCirculo: "bg-blue-50", imagen: resultadosImg, botonVariant: "default" }, 
     {
-    titulo: "Canales de atención", descripcion: "Contacta con nuestro equipo de soporte 24/7", boton: "Contactar", icono: faHeadset, colorTexto: "text-yellow-600",
-     colorFondoIcono: "bg-yellow-100", colorFondoCirculo: "bg-yellow-50", imagen: soporteImg, botonVariant: "outline"
-    }
+      titulo: "Conoce tus resultados",
+      descripcion: "Accede a tus resultados de laboratorio de forma segura",
+      boton: "Ver resultados",
+      icono: faFlask,
+      colorTexto: "text-blue-600",
+      colorFondoIcono: "bg-blue-100",
+      colorFondoCirculo: "bg-blue-50",
+      imagen: resultadosImg,
+      botonVariant: "default",
+    },
+    {
+      titulo: "Canales de atención",
+      descripcion: "Contacta con nuestro equipo de soporte 24/7",
+      boton: "Contactar",
+      icono: faHeadset,
+      colorTexto: "text-yellow-600",
+      colorFondoIcono: "bg-yellow-100",
+      colorFondoCirculo: "bg-yellow-50",
+      imagen: soporteImg,
+      botonVariant: "outline",
+    },
   ];
 
   return (
     <main className="space-y-8">
+      {/* Bienvenida */}
       <section>
         <Card as="article" className="flex flex-col md:flex-row justify-between items-center p-6 md:p-8 rounded-2xl shadow-sm w-full">
           <div className="space-y-3 max-w-xl w-full">
@@ -33,7 +69,9 @@ export default function InicioPaciente() {
               Bienvenido de vuelta
             </span>
             <header>
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold my-4">Hola, Luis Enrique</h1>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold my-4">
+                Hola, {paciente?.nombres || "Paciente"}
+              </h1>
             </header>
             <p className="text-sm sm:text-base md:text-lg text-muted-foreground">
               Bienvenido a tu clínica virtual. Agenda tu cita médica de manera rápida y sencilla.
@@ -51,6 +89,7 @@ export default function InicioPaciente() {
         </Card>
       </section>
 
+      {/* Tarjetas informativas */}
       <section className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full" aria-label="Sección informativa">
         {tarjetas.map((item, i) => (
           <Card key={i} as="article" className="flex flex-col md:flex-row justify-between items-center gap-4 p-6 rounded-2xl shadow-sm">
@@ -72,6 +111,7 @@ export default function InicioPaciente() {
         ))}
       </section>
 
+      {/* Citas */}
       <section className="md:col-span-2 space-y-2" aria-labelledby="proximas-citas">
         <header className="flex justify-between items-center px-1 md:px-0">
           <h2 id="proximas-citas" className="text-lg font-semibold">Próximas citas</h2>

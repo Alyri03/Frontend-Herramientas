@@ -76,10 +76,6 @@ export const AgendaTabla = ({ filtrarPacientes, date }) => {
                             <TableCell>
 
                                 <div className="flex flex-row items-center gap-2 justify-center">
-                                    <Avatar>
-                                        <AvatarImage src="s" />
-                                        <AvatarFallback className={'text-blue-600 mb-2'}>CN</AvatarFallback>
-                                    </Avatar>
                                     {pacientess.nombre}
                                 </div>
 

@@ -24,12 +24,17 @@ import InicioPaciente from '@/pages/Intranet/paciente/InicioPaciente.jsx';
 import CitasPaciente from '@/pages/Intranet/paciente/CitasPaciente.jsx';
 import HistorialPaciente from '@/pages/Intranet/paciente/HistorialPaciente.jsx';
 import PerfilPaciente from '@/pages/Intranet/paciente/PerfilPaciente.jsx';
+import CrearCita from '@/pages/Intranet/paciente/CrearCita.jsx'; 
 
 // Médico
 import { MisPacientes } from '@/pages/Intranet/medico/Pacientes';
 import InicioMedico from '@/pages/Intranet/medico/InicioMedico';
 import Agenda from '@/pages/Intranet/medico/Agenda';
 import Atencion from '@/pages/Intranet/medico/Atencion';
+import { Citas } from '../pages/Intranet/admin/Citas';
+import Doctors from '../pages/Intranet/admin/Doctors';
+import Dashboard from '../pages/Intranet/admin/Dashboard';
+import Pacientes from '../pages/Intranet/admin/Pacientes';
 
 // Recepcionista
 import InicioRecepcionista from '@/pages/Intranet/recepcionista/InicioRecepcionista.jsx';
@@ -60,6 +65,7 @@ const AppRoutes = () => {
           <Route index element={<InicioPaciente />} />
           <Route path="paciente" element={<InicioPaciente />} />
           <Route path="paciente/citas" element={<CitasPaciente />} />
+          <Route path="paciente/citas/nueva" element={<CrearCita />} /> 
           <Route path="paciente/historial" element={<HistorialPaciente />} />
           <Route path="paciente/perfil" element={<PerfilPaciente />} />
         </Route>
@@ -85,9 +91,14 @@ const AppRoutes = () => {
         </Route>
 
         {/* ADMINISTRADOR */}
-        <Route element={<RutaProtegidaPorRol rolPermitido="ADMINISTRADOR" />}>
+        <Route element={<RutaProtegidaPorRol rolPermitido="ADMIN" />}>
+          <Route path='admin/Dashboard' element={<Dashboard />} />
+          <Route path='admin/paciente' element={<Pacientes />} />
           <Route path="admin/usuarios" element={<div>Gestión de Usuarios</div>} />
           <Route path="admin/configuracion" element={<div>Configuración General</div>} />
+          <Route path='admin/citas' element={<Citas />} />
+          <Route path='admin/doctores' element={<Doctors />} />
+
         </Route>
       </Route>
 
