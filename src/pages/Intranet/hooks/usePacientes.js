@@ -31,7 +31,7 @@ export const usePacientes = () => {
         telefono: p.telefono,
         email: p.usuario?.correo || "",
         condicion: p.tipoSangre || "N/A", 
-        estado: "Activo", // Puedes cambiarlo si tienes un campo real en la API
+        estado: "Activo", // Puedes cambiarlo si tienes un campo
       })),
   });
 

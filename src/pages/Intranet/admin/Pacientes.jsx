@@ -8,8 +8,6 @@ import TablaPacientes from "./components/TablaPacientes"
 import BarraBusqueda from "./components/BarraBusqueda"
 import ModalDetallePaciente from "./components/ModalDetallePaciente"
 import ModalEditarPaciente from "./components/ModalEditarPaciente"
-import ModalAñadirPaciente from "./components/ModalAnadir"
-import ModalProgramarCita from "./components/ModalProgramarCita"
 
 export default function Pacientes() {
   const { pacientes, isLoading, error } = usePacientes()
@@ -19,8 +17,6 @@ export default function Pacientes() {
   const [pacienteEditando, setPacienteEditando] = useState(null)
   const [mostrarModalDetalle, setMostrarModalDetalle] = useState(false)
   const [mostrarModalEditar, setMostrarModalEditar] = useState(false)
-  const [mostrarModalAñadir, setMostrarModalAñadir] = useState(false)
-  const [mostrarModalCita, setMostrarModalCita] = useState(false)
 
   React.useEffect(() => {
     if (pacientes) setPacientesFiltrados(pacientes)
@@ -99,7 +95,7 @@ export default function Pacientes() {
       {mostrarModalEditar && pacienteEditando && (
         <ModalEditarPaciente paciente={pacienteEditando} onCerrar={() => setMostrarModalEditar(false)} />
       )}
-      
+
     </div>
   )
 }

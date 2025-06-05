@@ -15,7 +15,7 @@ export const datosPacientes = async ()=>{
       const response = await axiosInstance.get("/pacientes");
       return response.data;
     } catch (error) {
-      console.error("Error al obtener especialidades:", error);
+      console.error("Error al obtener Pacientes:", error);
       throw error;
     }
 }
