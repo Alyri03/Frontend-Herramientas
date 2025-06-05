@@ -7,7 +7,7 @@ import Aseguradoras from '@/components/Aseguradoras';
 import Preefooter from '@/components/Preefooter';
 
 const PaginaPrincipal = () => {
-    console.log("Probando CICD con Jenkins 8")
+    console.log("Probando CICD con Jenkins 9")
     return (
         <>
             <Carrusel />
