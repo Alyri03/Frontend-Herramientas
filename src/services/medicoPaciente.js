@@ -7,7 +7,7 @@ export const obtenerPacientesPorMedicoId = async (id) => {
         const response = await axiosInstance.get(`/citas/medico/${id}/pacientes`)
         return response.data
     } catch(error){
-        console.error("Error al obtener todos los medicos: ", error)
+        console.error("Error al obtener todos los pacientes: ", error)
         throw Error
     }
 
