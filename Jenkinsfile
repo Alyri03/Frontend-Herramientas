@@ -2,12 +2,12 @@ pipeline {
   agent {
     docker {
       image 'node:18'
-      args '-u root' //  ejecuta como root dentro del contenedor
+      args '-u root'
     }
   }
 
   environment {
-    VERCEL_TOKEN = credentials('VERCEL_TOKEN')
+    VERCEL_TOKEN = credentials('vercel_token')
   }
 
   stages {
