@@ -32,7 +32,7 @@ const InputListaComponent = () => {
     const filtrarDoctor = doctores?.filter((doctors) => {
         const doctorInput = (
             doctors.nombreDoc.toLowerCase().includes(buscarDoctor.toLowerCase())
-            || doctors.apellidoDoc.toLowerCase().includes(buscarDoctor.toLowerCase())
+            // || doctors.apellidoDoc.toLowerCase().includes(buscarDoctor.toLowerCase())
         );
 
         const estadosFiltro = estados === "allCategoria" || doctors.estado === estados;
