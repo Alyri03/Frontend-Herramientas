@@ -36,6 +36,7 @@ import InicioRecepcionista from '@/pages/Intranet/recepcionista/InicioRecepcioni
 import MedicosRecepcionista from '@/pages/Intranet/recepcionista/MedicosRecepcionista.jsx';
 import PacientesRecepcionista from '@/pages/Intranet/recepcionista/PacientesRecepcionista.jsx';
 import ServiciosRecepcionista from '@/pages/Intranet/recepcionista/ServiciosRecepcionista.jsx';
+import SegurosRecepcionista from '@/pages/Intranet/recepcionista/SegurosRecepcionista.jsx';
 
 const AppRoutes = () => {
   return (
@@ -77,7 +78,7 @@ const AppRoutes = () => {
           <Route path="recepcionista/pacientes" element={<PacientesRecepcionista />} />
           <Route path="recepcionista/medicos" element={<MedicosRecepcionista />} />
           <Route path="recepcionista/servicios" element={<ServiciosRecepcionista />} />
-          <Route path="recepcionista/seguros" element={<div>Gestión de Seguros</div>} />
+          <Route path="recepcionista/seguros" element={<SegurosRecepcionista />} />
           <Route path="recepcionista/citas" element={<div>Gestión de Citas</div>} />
           <Route path="recepcionista/reportes" element={<div>Reportes Generales</div>} />
           <Route path="recepcionista/perfil" element={<div>Mi Perfil Recepcionista</div>} />
